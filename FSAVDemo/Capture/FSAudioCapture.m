@@ -3,7 +3,7 @@
 //  FSAVDemo
 //
 //  Created by louis on 2022/5/27.
-//
+//  音频采集->pcm
 
 #import "FSAudioCapture.h"
 #import <mach/mach_time.h>

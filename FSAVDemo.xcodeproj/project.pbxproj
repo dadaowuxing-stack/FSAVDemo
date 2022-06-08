@@ -16,9 +16,13 @@
 		B21489BC2840BE4700446FD4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B21489BA2840BE4700446FD4 /* LaunchScreen.storyboard */; };
 		B21489BF2840BE4700446FD4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B21489BE2840BE4700446FD4 /* main.m */; };
 		B21489EC2840D2E400446FD4 /* FSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B21489EB2840D2E400446FD4 /* FSNavigationController.m */; };
-		B21489F02840D5F000446FD4 /* FSAudioCaptureVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B21489EF2840D5F000446FD4 /* FSAudioCaptureVC.m */; };
+		B21489F02840D5F000446FD4 /* FSAudioHandleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B21489EF2840D5F000446FD4 /* FSAudioHandleVC.m */; };
 		B21489FD2840D8DB00446FD4 /* FSAudioConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = B21489FA2840D8DB00446FD4 /* FSAudioConfig.m */; };
 		B21489FE2840D8DB00446FD4 /* FSAudioCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = B21489FB2840D8DB00446FD4 /* FSAudioCapture.m */; };
+		B24648C528508053001D1A6F /* FSAudioEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = B24648C428508053001D1A6F /* FSAudioEncoder.m */; };
+		B24648C828508312001D1A6F /* FSAudioTools.m in Sources */ = {isa = PBXBuildFile; fileRef = B24648C728508312001D1A6F /* FSAudioTools.m */; };
+		B24648D128508376001D1A6F /* FSVideoHandleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B24648D028508376001D1A6F /* FSVideoHandleVC.m */; };
+		B24648DA285087BC001D1A6F /* FSBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B24648D9285087BC001D1A6F /* FSBaseVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,12 +40,20 @@
 		B21489BE2840BE4700446FD4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B21489EA2840D2E400446FD4 /* FSNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSNavigationController.h; sourceTree = "<group>"; };
 		B21489EB2840D2E400446FD4 /* FSNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSNavigationController.m; sourceTree = "<group>"; };
-		B21489EE2840D5F000446FD4 /* FSAudioCaptureVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSAudioCaptureVC.h; sourceTree = "<group>"; };
-		B21489EF2840D5F000446FD4 /* FSAudioCaptureVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSAudioCaptureVC.m; sourceTree = "<group>"; };
+		B21489EE2840D5F000446FD4 /* FSAudioHandleVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSAudioHandleVC.h; sourceTree = "<group>"; };
+		B21489EF2840D5F000446FD4 /* FSAudioHandleVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSAudioHandleVC.m; sourceTree = "<group>"; };
 		B21489F92840D8DB00446FD4 /* FSAudioCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSAudioCapture.h; sourceTree = "<group>"; };
 		B21489FA2840D8DB00446FD4 /* FSAudioConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSAudioConfig.m; sourceTree = "<group>"; };
 		B21489FB2840D8DB00446FD4 /* FSAudioCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSAudioCapture.m; sourceTree = "<group>"; };
 		B21489FC2840D8DB00446FD4 /* FSAudioConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSAudioConfig.h; sourceTree = "<group>"; };
+		B24648C328508053001D1A6F /* FSAudioEncoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSAudioEncoder.h; sourceTree = "<group>"; };
+		B24648C428508053001D1A6F /* FSAudioEncoder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSAudioEncoder.m; sourceTree = "<group>"; };
+		B24648C628508312001D1A6F /* FSAudioTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSAudioTools.h; sourceTree = "<group>"; };
+		B24648C728508312001D1A6F /* FSAudioTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSAudioTools.m; sourceTree = "<group>"; };
+		B24648CF28508376001D1A6F /* FSVideoHandleVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSVideoHandleVC.h; sourceTree = "<group>"; };
+		B24648D028508376001D1A6F /* FSVideoHandleVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSVideoHandleVC.m; sourceTree = "<group>"; };
+		B24648D8285087BC001D1A6F /* FSBaseVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSBaseVC.h; sourceTree = "<group>"; };
+		B24648D9285087BC001D1A6F /* FSBaseVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSBaseVC.m; sourceTree = "<group>"; };
 		B43B142B74CD778284E7FC94 /* Pods-FSAVDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FSAVDemo.debug.xcconfig"; path = "Target Support Files/Pods-FSAVDemo/Pods-FSAVDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		E14148EDECE7C824EACC7D64 /* Pods_FSAVDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FSAVDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F813BB9C1E6A0785E829C839 /* Pods-FSAVDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FSAVDemo.release.xcconfig"; path = "Target Support Files/Pods-FSAVDemo/Pods-FSAVDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -89,6 +101,7 @@
 		B21489AB2840BE4600446FD4 /* FSAVDemo */ = {
 			isa = PBXGroup;
 			children = (
+				B24648C228508038001D1A6F /* Encoder */,
 				B21489F82840D8DB00446FD4 /* Capture */,
 				B21489ED2840D5D600446FD4 /* AudioDemo */,
 				B21489AC2840BE4600446FD4 /* AppDelegate.h */,
@@ -111,8 +124,12 @@
 		B21489ED2840D5D600446FD4 /* AudioDemo */ = {
 			isa = PBXGroup;
 			children = (
-				B21489EE2840D5F000446FD4 /* FSAudioCaptureVC.h */,
-				B21489EF2840D5F000446FD4 /* FSAudioCaptureVC.m */,
+				B21489EE2840D5F000446FD4 /* FSAudioHandleVC.h */,
+				B21489EF2840D5F000446FD4 /* FSAudioHandleVC.m */,
+				B24648CF28508376001D1A6F /* FSVideoHandleVC.h */,
+				B24648D028508376001D1A6F /* FSVideoHandleVC.m */,
+				B24648D8285087BC001D1A6F /* FSBaseVC.h */,
+				B24648D9285087BC001D1A6F /* FSBaseVC.m */,
 			);
 			path = AudioDemo;
 			sourceTree = "<group>";
@@ -126,6 +143,17 @@
 				B21489FA2840D8DB00446FD4 /* FSAudioConfig.m */,
 			);
 			path = Capture;
+			sourceTree = "<group>";
+		};
+		B24648C228508038001D1A6F /* Encoder */ = {
+			isa = PBXGroup;
+			children = (
+				B24648C328508053001D1A6F /* FSAudioEncoder.h */,
+				B24648C428508053001D1A6F /* FSAudioEncoder.m */,
+				B24648C628508312001D1A6F /* FSAudioTools.h */,
+				B24648C728508312001D1A6F /* FSAudioTools.m */,
+			);
+			path = Encoder;
 			sourceTree = "<group>";
 		};
 		E10ECA1E5B0513F218284CF0 /* Frameworks */ = {
@@ -251,12 +279,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				B21489B42840BE4600446FD4 /* FSViewController.m in Sources */,
-				B21489F02840D5F000446FD4 /* FSAudioCaptureVC.m in Sources */,
+				B21489F02840D5F000446FD4 /* FSAudioHandleVC.m in Sources */,
 				B21489FE2840D8DB00446FD4 /* FSAudioCapture.m in Sources */,
+				B24648C828508312001D1A6F /* FSAudioTools.m in Sources */,
 				B21489EC2840D2E400446FD4 /* FSNavigationController.m in Sources */,
 				B21489FD2840D8DB00446FD4 /* FSAudioConfig.m in Sources */,
+				B24648C528508053001D1A6F /* FSAudioEncoder.m in Sources */,
+				B24648D128508376001D1A6F /* FSVideoHandleVC.m in Sources */,
 				B21489AE2840BE4600446FD4 /* AppDelegate.m in Sources */,
 				B21489BF2840BE4700446FD4 /* main.m in Sources */,
+				B24648DA285087BC001D1A6F /* FSBaseVC.m in Sources */,
 				B21489B12840BE4600446FD4 /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

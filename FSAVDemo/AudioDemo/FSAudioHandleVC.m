@@ -5,11 +5,11 @@
 //  Created by louis on 2022/5/27.
 //
 
-#import "FSAudioCaptureVC.h"
+#import "FSAudioHandleVC.h"
 #import "FSAudioCapture.h"
 #import <AVFoundation/AVFoundation.h>
 
-@interface FSAudioCaptureVC ()
+@interface FSAudioHandleVC ()
 
 @property (nonatomic, strong) FSAudioConfig *audioConfig;
 @property (nonatomic, strong) FSAudioCapture *audioCapture;
@@ -17,10 +17,12 @@
 
 @property (nonatomic, strong) UIButton *audioButton;
 @property (nonatomic, assign) BOOL isRecording;
+@property (nonatomic, copy) NSString *startTitle;
+@property (nonatomic, copy) NSString *stopTitle;
 
 @end
 
-@implementation FSAudioCaptureVC
+@implementation FSAudioHandleVC
 
 - (void)dealloc {
     if (_fileHandle) {
@@ -31,11 +33,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.edgesForExtendedLayout = UIRectEdgeAll;
-    self.extendedLayoutIncludesOpaqueBars = YES;
-    self.title = @"Audio Capture";
-    self.view.backgroundColor = [UIColor whiteColor];
-    
     self.isRecording = NO;
     
     [self _setupAudioSession];
@@ -43,22 +40,31 @@
 }
 
 - (void)_setupUI {
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setFrame:CGRectMake(100, 200, 150, 50)];
-    button.backgroundColor = [UIColor greenColor];
-    [button setTitle:@"开始录制" forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    button.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:16.0];
-    [button addTarget:self action:@selector(audioButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button];
     
-    self.audioButton = button;
+    self.audioButton = [self buttonWithFrame:CGRectMake(100, 100, 150, 50) title:@"开始采集" action:@selector(audioButtonAction:)];
+    [self.view addSubview:self.audioButton];
 }
+
+- (UIButton *)buttonWithFrame:(CGRect)frame title:(NSString *)title action:(SEL)action {
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setFrame:frame];
+    button.layer.borderWidth = 1;
+    button.layer.cornerRadius = 8;
+    button.layer.borderColor = [UIColor redColor].CGColor;
+    [button setTitle:title forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    button.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:16.0];
+    [button addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
+    
+    return button;
+}
+
+#pragma mark - Action
 
 - (void)audioButtonAction:(UIButton *)sender {
     if (!self.isRecording) {
         self.isRecording = YES;
-        [self.audioButton setTitle:@"停止录制" forState:UIControlStateNormal];
+        [self.audioButton setTitle:@"停止采集" forState:UIControlStateNormal];
         NSString *audioPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"out.pcm"];
         NSLog(@"PCM file path: %@", audioPath);
         [[NSFileManager defaultManager] removeItemAtPath:audioPath error:nil];
@@ -67,7 +73,7 @@
         [self.audioCapture startRunning];
     } else {
         self.isRecording = NO;
-        [self.audioButton setTitle:@"开始录制" forState:UIControlStateNormal];
+        [self.audioButton setTitle:@"开始采集" forState:UIControlStateNormal];
         [self.audioCapture stopRunning];
     }
 }
@@ -113,6 +119,7 @@
     return _audioConfig;
 }
 
+// 音频采集
 - (FSAudioCapture *)audioCapture {
     if (!_audioCapture) {
         __weak typeof(self) weakSelf = self;
