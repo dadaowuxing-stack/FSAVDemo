@@ -35,7 +35,7 @@
     if (self) {
         _config = config;
         // 创建串行队列,用于采集音频数据
-        _captureQueue = dispatch_queue_create("com.fengshuoliu.audioCaptureQueue", DISPATCH_QUEUE_SERIAL);
+        _captureQueue = dispatch_queue_create("com.louis.audioCaptureQueue", DISPATCH_QUEUE_SERIAL);
     }
     return self;
 }

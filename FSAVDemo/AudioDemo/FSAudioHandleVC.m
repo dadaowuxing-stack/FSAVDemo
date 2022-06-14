@@ -6,13 +6,17 @@
 //
 
 #import "FSAudioHandleVC.h"
+#import "FSAudioTools.h"
+#import "FSAudioEncoder.h"
 #import "FSAudioCapture.h"
 #import <AVFoundation/AVFoundation.h>
 
 @interface FSAudioHandleVC ()
 
 @property (nonatomic, strong) FSAudioConfig *audioConfig;
-@property (nonatomic, strong) FSAudioCapture *audioCapture;
+@property (nonatomic, strong) FSAudioCapture *audioCapture; // 音频采集
+@property (nonatomic, strong) FSAudioEncoder *audioEncoder; // 音频编码
+
 @property (nonatomic, strong) NSFileHandle *fileHandle;
 
 @property (nonatomic, strong) UIButton *audioButton;
@@ -65,8 +69,26 @@
     if (!self.isRecording) {
         self.isRecording = YES;
         [self.audioButton setTitle:@"停止采集" forState:UIControlStateNormal];
-        NSString *audioPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"out.pcm"];
-        NSLog(@"PCM file path: %@", audioPath);
+        NSString *pathComponent = @"out.pcm";
+        switch (self.opType) {
+            case FSMediaOpTypeAudioCapture: {
+                pathComponent = @"out.pcm";
+            }
+                break;
+            case FSMediaOpTypeAudioEncoder: {
+                pathComponent = @"out.aac";
+            }
+                break;
+            case FSMediaOpTypeAudioMuxer: {
+                
+            }
+                break;
+                
+            default:
+                break;
+        }
+        NSString *audioPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:pathComponent];
+        NSLog(@"audio file path: %@", audioPath);
         [[NSFileManager defaultManager] removeItemAtPath:audioPath error:nil];
         [[NSFileManager defaultManager] createFileAtPath:audioPath contents:nil attributes:nil];
         self.fileHandle = [NSFileHandle fileHandleForWritingAtPath:audioPath];
@@ -127,22 +149,67 @@
         _audioCapture.errorCallBack = ^(NSError* error) {
             NSLog(@"FSAudioCapture error: %zi %@", error.code, error.localizedDescription);
         };
-        // 音频采集数据回调。在这里将 PCM 数据写入文件。
+        // 音频采集数据回调: 在这里将 PCM 数据写入文件. or 在这里采集的 PCM 数据送给编码器.
         _audioCapture.sampleBufferOutputCallBack = ^(CMSampleBufferRef sampleBuffer) {
             __strong typeof(weakSelf) strongSelf = weakSelf;
             if (sampleBuffer) {
-                // 1.获取 CMBlockBuffer，这里面封装着 PCM 数据.
-                CMBlockBufferRef blockBuffer = CMSampleBufferGetDataBuffer(sampleBuffer);
-                size_t lengthAtOffsetOutput, totalLengthOutput;
-                char *dataPointer;
-                
-                // 2.从 CMBlockBuffer 中获取 PCM 数据存储到文件中.
-                CMBlockBufferGetDataPointer(blockBuffer, 0, &lengthAtOffsetOutput, &totalLengthOutput, &dataPointer);
-                [strongSelf.fileHandle writeData:[NSData dataWithBytes:dataPointer length:totalLengthOutput]];
+                /**
+                 (1) 将 PCM 数据写入文件
+                 */
+                if (self.opType == FSMediaOpTypeAudioCapture) {
+                    // 1.获取 CMBlockBuffer，这里面封装着 PCM 数据.
+                    CMBlockBufferRef blockBuffer = CMSampleBufferGetDataBuffer(sampleBuffer);
+                    size_t lengthAtOffsetOutput, totalLengthOutput;
+                    char *dataPointer;
+                    
+                    // 2.从 CMBlockBuffer 中获取 PCM 数据存储到文件中.
+                    CMBlockBufferGetDataPointer(blockBuffer, 0, &lengthAtOffsetOutput, &totalLengthOutput, &dataPointer);
+                    [strongSelf.fileHandle writeData:[NSData dataWithBytes:dataPointer length:totalLengthOutput]];
+                } else if (self.opType == FSMediaOpTypeAudioEncoder) {
+                    /**
+                     (2) 将采集的 PCM 数据送给编码器
+                     */
+                    [strongSelf.audioEncoder encodeSampleBuffer:sampleBuffer];
+                }
             }
         };
     }
     return _audioCapture;
+}
+
+- (FSAudioEncoder *)audioEncoder {
+    if (!_audioEncoder) {
+        __weak typeof(self) weakSelf = self;
+        _audioEncoder = [[FSAudioEncoder alloc] initWithAudioBitrate:96000];
+        _audioEncoder.errorCallBack = ^(NSError* error) {
+            NSLog(@"FSAudioEncoder error:%zi %@", error.code, error.localizedDescription);
+        };
+        // 音频编码数据回调。在这里将 AAC 数据写入文件.
+        _audioEncoder.sampleBufferOutputCallBack = ^(CMSampleBufferRef sampleBuffer) {
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            if (sampleBuffer) {
+                // 1.获取音频编码参数信息.
+                AudioStreamBasicDescription audioFormat = *CMAudioFormatDescriptionGetStreamBasicDescription(CMSampleBufferGetFormatDescription(sampleBuffer));
+                
+                // 2.获取音频编码数据。AAC 裸数据.
+                CMBlockBufferRef blockBuffer = CMSampleBufferGetDataBuffer(sampleBuffer);
+                size_t totolLength;
+                char *dataPointer = NULL;
+                CMBlockBufferGetDataPointer(blockBuffer, 0, NULL, &totolLength, &dataPointer);
+                if (totolLength == 0 || !dataPointer) {
+                    return;
+                }
+                
+                // 3.在每个 AAC packet 前先写入 ADTS 头数据.
+                // 由于 AAC 数据存储文件时需要在每个包（packet）前添加 ADTS 头来用于解码器解码音频流，所以这里添加一下 ADTS 头.
+                [strongSelf.fileHandle writeData:[FSAudioTools adtsDataWithChannels:audioFormat.mChannelsPerFrame sampleRate:audioFormat.mSampleRate rawDataLength:totolLength]];
+                
+                // 4.写入 AAC packet 数据.
+                [strongSelf.fileHandle writeData:[NSData dataWithBytes:dataPointer length:totolLength]];
+            }
+        };
+    }
+    return _audioEncoder;
 }
 
 @end

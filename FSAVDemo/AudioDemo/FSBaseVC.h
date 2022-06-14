@@ -9,7 +9,23 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSInteger, FSMediaOpType) {
+    FSMediaOpTypeAudioCapture = 0,
+    FSMediaOpTypeAudioEncoder,
+    FSMediaOpTypeAudioMuxer,
+    FSMediaOpTypeAudioDemuxer,
+    FSMediaOpTypeAudioDecoder,
+    
+    FSMediaOpTypeVideoCapture,
+    FSMediaOpTypeVideoEncoder,
+    FSMediaOpTypeVideoMuxer,
+    FSMediaOpTypeVideoDemuxer,
+    FSMediaOpTypeVideoDecoder,
+};
+
 @interface FSBaseVC : UIViewController
+
+@property (nonatomic, assign) FSMediaOpType opType;
 
 @end
 

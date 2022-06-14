@@ -35,10 +35,12 @@
 
 - (instancetype)initWithTitle:(NSString *)title
                      subTitle:(NSString *)subTitle
-                         path:(NSString *)path;
+                         path:(NSString *)path
+                       opType:(FSMediaOpType)opType;
 @property (nonatomic, strong, readonly) NSString *title;
 @property (nonatomic, strong, readonly) NSString *subTitle;
 @property (nonatomic, strong, readonly) NSString *path;
+@property (nonatomic, assign, readonly) FSMediaOpType opType;
 
 @end
 
@@ -46,12 +48,14 @@
 
 - (instancetype)initWithTitle:(NSString *)title
                      subTitle:(NSString *)subTitle
-                         path:(NSString *)path {
+                         path:(NSString *)path
+                       opType:(FSMediaOpType)opType {
     self = [super init];
     if ( !self ) return nil;
     _title = title;
     _subTitle = subTitle;
     _path = path;
+    _opType = opType;
     
     return self;
 }
@@ -101,24 +105,27 @@ static NSString * const FSMainTableCellIdentifier = @"FSMainTableCellIdentifier"
 
 - (NSArray *)_audioItems {
     return @[
-        [[FSItem alloc] initWithTitle:@"Audio Capture" subTitle:@"音频采集" path:@"FSAudioHandleVC"],
-        [[FSItem alloc] initWithTitle:@"Audio Encoder" subTitle:@"音频编码" path:@"FSAudioHandleVC"],
-        [[FSItem alloc] initWithTitle:@"Audio Muxer" subTitle:@"音频封装" path:@"FSAudioHandleVC"],
+        [[FSItem alloc] initWithTitle:@"Audio Capture" subTitle:@"音频采集" path:@"FSAudioHandleVC" opType:FSMediaOpTypeAudioCapture],
+        [[FSItem alloc] initWithTitle:@"Audio Encoder" subTitle:@"音频编码" path:@"FSAudioHandleVC" opType:FSMediaOpTypeAudioEncoder],
+        [[FSItem alloc] initWithTitle:@"Audio Muxer" subTitle:@"音频封装" path:@"FSAudioHandleVC" opType:FSMediaOpTypeAudioMuxer],
     ];
 }
 
 - (NSArray *)_videoItems {
     return @[
-        [[FSItem alloc] initWithTitle:@"Video Capture" subTitle:@"视频采集" path:@"FSVideoHandleVC"],
-        [[FSItem alloc] initWithTitle:@"Video Encoder" subTitle:@"视频编码" path:@"FSVideoHandleVC"],
-        [[FSItem alloc] initWithTitle:@"Video Muxer" subTitle:@"视频封装" path:@"FSVideoHandleVC"],
+        [[FSItem alloc] initWithTitle:@"Video Capture" subTitle:@"视频采集" path:@"FSVideoHandleVC" opType:FSMediaOpTypeVideoCapture],
+        [[FSItem alloc] initWithTitle:@"Video Encoder" subTitle:@"视频编码" path:@"FSVideoHandleVC" opType:FSMediaOpTypeVideoEncoder],
+        [[FSItem alloc] initWithTitle:@"Video Muxer" subTitle:@"视频封装" path:@"FSVideoHandleVC" opType:FSMediaOpTypeVideoMuxer],
     ];
 }
 
 #pragma mark - Navigation
-- (void)goToDemoPageWithViewControllerName:(NSString *)name title:(NSString *)title {
+- (void)goToDemoPageWithViewControllerName:(NSString *)name
+                                     title:(NSString *)title
+                                    opType:(FSMediaOpType)opType {
     FSBaseVC *vc = [(FSBaseVC *) [NSClassFromString(name) alloc] init];
     vc.title = title;
+    vc.opType = opType;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -128,7 +135,7 @@ static NSString * const FSMainTableCellIdentifier = @"FSMainTableCellIdentifier"
     
     FSSectionItem *sectionItem = self.dataSource[indexPath.section];
     FSItem *item = sectionItem.items[indexPath.row];
-    [self goToDemoPageWithViewControllerName:item.path title:item.subTitle];
+    [self goToDemoPageWithViewControllerName:item.path title:item.subTitle opType:item.opType];
 }
 
 #pragma mark - UITableViewDataSource
