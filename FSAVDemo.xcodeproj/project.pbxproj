@@ -23,6 +23,12 @@
 		B24648C828508312001D1A6F /* FSAudioTools.m in Sources */ = {isa = PBXBuildFile; fileRef = B24648C728508312001D1A6F /* FSAudioTools.m */; };
 		B24648D128508376001D1A6F /* FSVideoHandleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B24648D028508376001D1A6F /* FSVideoHandleVC.m */; };
 		B24648DA285087BC001D1A6F /* FSBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B24648D9285087BC001D1A6F /* FSBaseVC.m */; };
+		B2C7750028595EA400481615 /* FSMP4Muxer.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C774FF28595EA400481615 /* FSMP4Muxer.m */; };
+		B2C7750328595ECA00481615 /* FSMuxerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C7750228595ECA00481615 /* FSMuxerConfig.m */; };
+		B2C775072859625700481615 /* FSMP4Demuxer.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C775062859625700481615 /* FSMP4Demuxer.m */; };
+		B2C7750A2859627800481615 /* FSDemuxerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C775092859627800481615 /* FSDemuxerConfig.m */; };
+		B2C7750E2859630000481615 /* FSAudioDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C7750D2859630000481615 /* FSAudioDecoder.m */; };
+		B2C775122859642D00481615 /* FSAudioRender.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C775112859642D00481615 /* FSAudioRender.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +60,19 @@
 		B24648D028508376001D1A6F /* FSVideoHandleVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSVideoHandleVC.m; sourceTree = "<group>"; };
 		B24648D8285087BC001D1A6F /* FSBaseVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSBaseVC.h; sourceTree = "<group>"; };
 		B24648D9285087BC001D1A6F /* FSBaseVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSBaseVC.m; sourceTree = "<group>"; };
+		B2C774FE28595EA400481615 /* FSMP4Muxer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMP4Muxer.h; sourceTree = "<group>"; };
+		B2C774FF28595EA400481615 /* FSMP4Muxer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSMP4Muxer.m; sourceTree = "<group>"; };
+		B2C7750128595ECA00481615 /* FSMuxerConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMuxerConfig.h; sourceTree = "<group>"; };
+		B2C7750228595ECA00481615 /* FSMuxerConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSMuxerConfig.m; sourceTree = "<group>"; };
+		B2C775052859625700481615 /* FSMP4Demuxer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMP4Demuxer.h; sourceTree = "<group>"; };
+		B2C775062859625700481615 /* FSMP4Demuxer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSMP4Demuxer.m; sourceTree = "<group>"; };
+		B2C775082859627800481615 /* FSDemuxerConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSDemuxerConfig.h; sourceTree = "<group>"; };
+		B2C775092859627800481615 /* FSDemuxerConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSDemuxerConfig.m; sourceTree = "<group>"; };
+		B2C7750C2859630000481615 /* FSAudioDecoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSAudioDecoder.h; sourceTree = "<group>"; };
+		B2C7750D2859630000481615 /* FSAudioDecoder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSAudioDecoder.m; sourceTree = "<group>"; };
+		B2C775102859642D00481615 /* FSAudioRender.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSAudioRender.h; sourceTree = "<group>"; };
+		B2C775112859642D00481615 /* FSAudioRender.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSAudioRender.m; sourceTree = "<group>"; };
+		B2C775142859672300481615 /* FSMediaBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMediaBase.h; sourceTree = "<group>"; };
 		B43B142B74CD778284E7FC94 /* Pods-FSAVDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FSAVDemo.debug.xcconfig"; path = "Target Support Files/Pods-FSAVDemo/Pods-FSAVDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		E14148EDECE7C824EACC7D64 /* Pods_FSAVDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FSAVDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F813BB9C1E6A0785E829C839 /* Pods-FSAVDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FSAVDemo.release.xcconfig"; path = "Target Support Files/Pods-FSAVDemo/Pods-FSAVDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -101,22 +120,27 @@
 		B21489AB2840BE4600446FD4 /* FSAVDemo */ = {
 			isa = PBXGroup;
 			children = (
-				B24648C228508038001D1A6F /* Encoder */,
-				B21489F82840D8DB00446FD4 /* Capture */,
 				B21489ED2840D5D600446FD4 /* AudioDemo */,
+				B2C77513285966F700481615 /* Base */,
+				B21489F82840D8DB00446FD4 /* Capture */,
+				B2C7750B285962E700481615 /* Decoder */,
+				B2C775042859623E00481615 /* Demuxer */,
+				B24648C228508038001D1A6F /* Encoder */,
+				B2C774FD28595E8900481615 /* Muxer */,
+				B2C7750F2859641900481615 /* Render */,
+				B21489EA2840D2E400446FD4 /* FSNavigationController.h */,
+				B21489EB2840D2E400446FD4 /* FSNavigationController.m */,
+				B21489B22840BE4600446FD4 /* FSViewController.h */,
+				B21489B32840BE4600446FD4 /* FSViewController.m */,
+				B21489BD2840BE4700446FD4 /* Info.plist */,
+				B21489BA2840BE4700446FD4 /* LaunchScreen.storyboard */,
+				B21489BE2840BE4700446FD4 /* main.m */,
+				B21489B52840BE4600446FD4 /* Main.storyboard */,
+				B21489B82840BE4700446FD4 /* Assets.xcassets */,
 				B21489AC2840BE4600446FD4 /* AppDelegate.h */,
 				B21489AD2840BE4600446FD4 /* AppDelegate.m */,
 				B21489AF2840BE4600446FD4 /* SceneDelegate.h */,
 				B21489B02840BE4600446FD4 /* SceneDelegate.m */,
-				B21489B22840BE4600446FD4 /* FSViewController.h */,
-				B21489B32840BE4600446FD4 /* FSViewController.m */,
-				B21489EA2840D2E400446FD4 /* FSNavigationController.h */,
-				B21489EB2840D2E400446FD4 /* FSNavigationController.m */,
-				B21489B52840BE4600446FD4 /* Main.storyboard */,
-				B21489B82840BE4700446FD4 /* Assets.xcassets */,
-				B21489BA2840BE4700446FD4 /* LaunchScreen.storyboard */,
-				B21489BD2840BE4700446FD4 /* Info.plist */,
-				B21489BE2840BE4700446FD4 /* main.m */,
 			);
 			path = FSAVDemo;
 			sourceTree = "<group>";
@@ -154,6 +178,54 @@
 				B24648C728508312001D1A6F /* FSAudioTools.m */,
 			);
 			path = Encoder;
+			sourceTree = "<group>";
+		};
+		B2C774FD28595E8900481615 /* Muxer */ = {
+			isa = PBXGroup;
+			children = (
+				B2C774FE28595EA400481615 /* FSMP4Muxer.h */,
+				B2C774FF28595EA400481615 /* FSMP4Muxer.m */,
+				B2C7750128595ECA00481615 /* FSMuxerConfig.h */,
+				B2C7750228595ECA00481615 /* FSMuxerConfig.m */,
+			);
+			path = Muxer;
+			sourceTree = "<group>";
+		};
+		B2C775042859623E00481615 /* Demuxer */ = {
+			isa = PBXGroup;
+			children = (
+				B2C775052859625700481615 /* FSMP4Demuxer.h */,
+				B2C775062859625700481615 /* FSMP4Demuxer.m */,
+				B2C775082859627800481615 /* FSDemuxerConfig.h */,
+				B2C775092859627800481615 /* FSDemuxerConfig.m */,
+			);
+			path = Demuxer;
+			sourceTree = "<group>";
+		};
+		B2C7750B285962E700481615 /* Decoder */ = {
+			isa = PBXGroup;
+			children = (
+				B2C7750C2859630000481615 /* FSAudioDecoder.h */,
+				B2C7750D2859630000481615 /* FSAudioDecoder.m */,
+			);
+			path = Decoder;
+			sourceTree = "<group>";
+		};
+		B2C7750F2859641900481615 /* Render */ = {
+			isa = PBXGroup;
+			children = (
+				B2C775102859642D00481615 /* FSAudioRender.h */,
+				B2C775112859642D00481615 /* FSAudioRender.m */,
+			);
+			path = Render;
+			sourceTree = "<group>";
+		};
+		B2C77513285966F700481615 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				B2C775142859672300481615 /* FSMediaBase.h */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 		E10ECA1E5B0513F218284CF0 /* Frameworks */ = {
@@ -278,13 +350,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2C7750028595EA400481615 /* FSMP4Muxer.m in Sources */,
 				B21489B42840BE4600446FD4 /* FSViewController.m in Sources */,
+				B2C7750E2859630000481615 /* FSAudioDecoder.m in Sources */,
 				B21489F02840D5F000446FD4 /* FSAudioHandleVC.m in Sources */,
 				B21489FE2840D8DB00446FD4 /* FSAudioCapture.m in Sources */,
+				B2C775122859642D00481615 /* FSAudioRender.m in Sources */,
 				B24648C828508312001D1A6F /* FSAudioTools.m in Sources */,
+				B2C7750A2859627800481615 /* FSDemuxerConfig.m in Sources */,
 				B21489EC2840D2E400446FD4 /* FSNavigationController.m in Sources */,
 				B21489FD2840D8DB00446FD4 /* FSAudioConfig.m in Sources */,
 				B24648C528508053001D1A6F /* FSAudioEncoder.m in Sources */,
+				B2C7750328595ECA00481615 /* FSMuxerConfig.m in Sources */,
+				B2C775072859625700481615 /* FSMP4Demuxer.m in Sources */,
 				B24648D128508376001D1A6F /* FSVideoHandleVC.m in Sources */,
 				B21489AE2840BE4600446FD4 /* AppDelegate.m in Sources */,
 				B21489BF2840BE4700446FD4 /* main.m in Sources */,
