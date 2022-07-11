@@ -40,7 +40,7 @@
     self = [super init];
     if (self) {
         _config = config;
-        _muxerQueue = dispatch_queue_create("com.KeyFrameKit.muxerQueue", DISPATCH_QUEUE_SERIAL); // 封装任务队列(串行队列).
+        _muxerQueue = dispatch_queue_create("com.louis.muxerQueue", DISPATCH_QUEUE_SERIAL); // 封装任务队列(串行队列).
         _semaphore = dispatch_semaphore_create(1);
         CMSimpleQueueCreate(kCFAllocatorDefault, FSMP4MuxerMaxQueueCount, &_audioQueue);
         CMSimpleQueueCreate(kCFAllocatorDefault, FSMP4MuxerMaxQueueCount, &_videoQueue);

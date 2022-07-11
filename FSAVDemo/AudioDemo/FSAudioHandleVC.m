@@ -8,18 +8,25 @@
 #import "FSAudioHandleVC.h"
 #import <AVFoundation/AVFoundation.h>
 #import "FSAudioTools.h"
-#import "FSAudioEncoder.h"
+// 采集
 #import "FSAudioCapture.h"
-#import "FSMuxerConfig.h"
+// 编码
+#import "FSAudioEncoder.h"
+// 封装
 #import "FSMP4Muxer.h"
+// 解封装
+#import "FSMP4Demuxer.h"
 
 @interface FSAudioHandleVC ()
 
 @property (nonatomic, strong) FSAudioConfig *audioConfig;
-@property (nonatomic, strong) FSAudioCapture *audioCapture; // 音频采集
-@property (nonatomic, strong) FSAudioEncoder *audioEncoder; // 音频编码
+@property (nonatomic, strong) FSAudioCapture *audioCapture;   // 1.音频采集
+@property (nonatomic, strong) FSAudioEncoder *audioEncoder;   // 2.音频编码
 @property (nonatomic, strong) FSMuxerConfig *muxerConfig;
-@property (nonatomic, strong) FSMP4Muxer *muxer;
+@property (nonatomic, strong) FSMP4Muxer *muxer;              // 3.封装
+@property (nonatomic, strong) FSDemuxerConfig *demuxerConfig;
+@property (nonatomic, strong) FSMP4Demuxer *demuxer;          // 4.解封装
+
 
 @property (nonatomic, strong) NSFileHandle *fileHandle;
 
@@ -53,16 +60,20 @@
 - (void)_initConfig {
     NSString *pathComponent = @"out.pcm";
     switch (self.opType) {
-        case FSMediaOpTypeAudioCapture: {
-            pathComponent = @"out.pcm";
+        case FSMediaOpTypeAudioCapture: {  // 采集
+            pathComponent = @"capture_out.pcm";
         }
             break;
-        case FSMediaOpTypeAudioEncoder: {
-            pathComponent = @"out.aac";
+        case FSMediaOpTypeAudioEncoder: {  // 编码
+            pathComponent = @"encoder_out.aac";
         }
             break;
-        case FSMediaOpTypeAudioMuxer: {
-            pathComponent = @"out.m4a";
+        case FSMediaOpTypeAudioMuxer: {   // 封装
+            pathComponent = @"muxer_out.m4a";
+        }
+            break;
+        case FSMediaOpTypeAudioDemuxer: { // 解封装
+            pathComponent = @"demuxer_out.aac";
         }
             break;
             
@@ -99,19 +110,43 @@
 #pragma mark - Action
 
 - (void)audioButtonAction:(UIButton *)sender {
+    switch (self.opType) {
+        case FSMediaOpTypeAudioDemuxer: { // 解封装
+            NSLog(@"FSMP4Demuxer start");
+            __weak typeof(self) weakSelf = self;
+            [self.demuxer startReading:^(BOOL success, NSError * _Nonnull error) {
+                if (success) {
+                    // Demuxer 启动成功后，就可以从它里面获取解封装后的数据了.
+                    [weakSelf fetchAndSaveDemuxedData];
+                } else {
+                    NSLog(@"FSMP4Demuxer error: %zi %@", error.code, error.localizedDescription);
+                }
+            }];
+        }
+            break;
+            
+        default: {
+            // 音频采集->编码->封装
+            [self _captureAction];
+        }
+            break;
+    }
+}
+
+- (void)_captureAction {
     if (!self.isRecording) {
         self.isRecording = YES;
         [self.audioButton setTitle:@"停止采集" forState:UIControlStateNormal];
-        // 启动采集器。
+        // 启动采集器.
         [self.audioCapture startRunning];
-        // 启动封装器。
+        // 启动封装器.
         [self.muxer startWriting];
     } else {
         self.isRecording = NO;
         [self.audioButton setTitle:@"开始采集" forState:UIControlStateNormal];
-        // 停止采集器。
+        // 停止采集器.
         [self.audioCapture stopRunning];
-        // 停止封装器。
+        // 停止封装器.
         [self.muxer stopWriting:^(BOOL success, NSError * _Nonnull error) {
             NSLog(@"FSMP4Muxer %@", success ? @"success" : [NSString stringWithFormat:@"error %zi %@", error.code, error.localizedDescription]);
         }];
@@ -146,6 +181,48 @@
         NSLog(@"AVAudioSession setActive error.");
         error = nil;
         return;
+    }
+}
+
+#pragma mark - Utility
+
+- (void)fetchAndSaveDemuxedData {
+    // 异步地从 Demuxer 获取解封装后的 AAC 编码数据.
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        while (self.demuxer.hasAudioSampleBuffer) {
+            CMSampleBufferRef audioBuffer = [self.demuxer copyNextAudioSampleBuffer];
+            if (audioBuffer) {
+                [self saveSampleBuffer:audioBuffer];
+                CFRelease(audioBuffer);
+            }
+        }
+        if (self.demuxer.demuxerStatus == FSMP4DemuxerStatusCompleted) {
+            NSLog(@"FSMP4Demuxer complete");
+        }
+    });
+}
+
+// 保存样本数据
+- (void)saveSampleBuffer:(CMSampleBufferRef)sampleBuffer {
+    // 将解封装后的数据存储为 AAC 文件.
+    if (sampleBuffer) {
+        // 获取解封装后的 AAC 编码裸数据.
+        AudioStreamBasicDescription streamBasicDescription = *CMAudioFormatDescriptionGetStreamBasicDescription(CMSampleBufferGetFormatDescription(sampleBuffer));
+        CMBlockBufferRef blockBuffer = CMSampleBufferGetDataBuffer(sampleBuffer);
+        size_t totolLength;
+        char *dataPointer = NULL;
+        CMBlockBufferGetDataPointer(blockBuffer, 0, NULL, &totolLength, &dataPointer);
+        if (totolLength == 0 || !dataPointer) {
+            return;
+        }
+        
+        // 将 AAC 编码裸数据存储为 AAC 文件，这时候需要在每个包前增加 ADTS 头信息.
+        for (NSInteger index = 0; index < CMSampleBufferGetNumSamples(sampleBuffer); index++) {
+            size_t sampleSize = CMSampleBufferGetSampleSize(sampleBuffer, index);
+            [self.fileHandle writeData:[FSAudioTools adtsDataWithChannels:streamBasicDescription.mChannelsPerFrame sampleRate:streamBasicDescription.mSampleRate rawDataLength:sampleSize]];
+            [self.fileHandle writeData:[NSData dataWithBytes:dataPointer length:sampleSize]];
+            dataPointer += sampleSize;
+        }
     }
 }
 
@@ -195,6 +272,7 @@
     return _audioCapture;
 }
 
+// 音频编码
 - (FSAudioEncoder *)audioEncoder {
     if (!_audioEncoder) {
         __weak typeof(self) weakSelf = self;
@@ -203,7 +281,7 @@
             NSLog(@"FSAudioEncoder error:%zi %@", error.code, error.localizedDescription);
         };
         // 音频编码数据回调:在这里将 AAC 数据写入文件.
-        // 音频编码数据回调:这里编码的 AAC 数据送给封装器。
+        // 音频编码数据回调:这里编码的 AAC 数据送给封装器.
         // 与之前将编码后的 AAC 数据存储为 AAC 文件不同的是，这里编码后送给封装器的 AAC 数据是没有添加 ADTS 头的，因为我们这里封装的是 M4A 格式，不需要 ADTS 头.
         _audioEncoder.sampleBufferOutputCallBack = ^(CMSampleBufferRef sampleBuffer) {
             __strong typeof(weakSelf) strongSelf = weakSelf;
@@ -212,7 +290,7 @@
                     // 1.获取音频编码参数信息.
                     AudioStreamBasicDescription audioFormat = *CMAudioFormatDescriptionGetStreamBasicDescription(CMSampleBufferGetFormatDescription(sampleBuffer));
                     
-                    // 2.获取音频编码数据。AAC 裸数据.
+                    // 2.获取音频编码数据.AAC 裸数据.
                     CMBlockBufferRef blockBuffer = CMSampleBufferGetDataBuffer(sampleBuffer);
                     size_t totolLength;
                     char *dataPointer = NULL;
@@ -246,6 +324,7 @@
     return _muxerConfig;
 }
 
+// 音频封装
 - (FSMP4Muxer *)muxer {
     if (!_muxer) {
         _muxer = [[FSMP4Muxer alloc] initWithConfig:self.muxerConfig];
@@ -255,6 +334,31 @@
     }
     
     return _muxer;
+}
+
+// 解封装
+- (FSDemuxerConfig *)demuxerConfig {
+    if (!_demuxerConfig) {
+        _demuxerConfig = [[FSDemuxerConfig alloc] init];
+        // 只解封装音频.
+        _demuxerConfig.demuxerType = FSMediaAudio;
+        // 待解封装的资源.
+        NSString *assetPath = [[NSBundle mainBundle] pathForResource:@"input" ofType:@"mp4"];
+        _demuxerConfig.asset = [AVAsset assetWithURL:[NSURL fileURLWithPath:assetPath]];
+    }
+    
+    return _demuxerConfig;
+}
+
+- (FSMP4Demuxer *)demuxer {
+    if (!_demuxer) {
+        _demuxer = [[FSMP4Demuxer alloc] initWithConfig:self.demuxerConfig];
+        _demuxer.errorCallBack = ^(NSError *error) {
+            NSLog(@"FSMP4Demuxer error:%zi %@", error.code, error.localizedDescription);
+        };
+    }
+    
+    return _demuxer;
 }
 
 @end

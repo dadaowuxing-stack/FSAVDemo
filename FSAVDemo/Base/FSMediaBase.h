@@ -15,13 +15,22 @@ typedef NS_ENUM(NSInteger, FSMediaType) {
     FSMediaAV = FSMediaAudio | FSMediaVideo, // 音视频都有.
 };
 
-// 封装器的状态机。
+// 封装器的状态机.
 typedef NS_ENUM(NSInteger, FSMP4MuxerStatus) {
     FSMP4MuxerStatusUnknown = 0,
     FSMP4MuxerStatusRunning = 1,
     FSMP4MuxerStatusFailed = 2,
     FSMP4MuxerStatusCompleted = 3,
     FSMP4MuxerStatusCancelled = 4,
+};
+
+// 解封装器的状态机.
+typedef NS_ENUM(NSInteger, FSMP4DemuxerStatus) {
+    FSMP4DemuxerStatusUnknown = 0,
+    FSMP4DemuxerStatusRunning = 1,
+    FSMP4DemuxerStatusFailed = 2,
+    FSMP4DemuxerStatusCompleted = 3,
+    FSMP4DemuxerStatusCancelled = 4,
 };
 
 // 操作

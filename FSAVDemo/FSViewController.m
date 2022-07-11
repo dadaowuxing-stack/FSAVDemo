@@ -69,6 +69,9 @@ static NSString * const FSMainTableCellIdentifier = @"FSMainTableCellIdentifier"
 @property (nonatomic, copy) NSArray *dataSource;
 @end
 
+/**
+ 采集(Capture) → 编码(Encoder) → 封装(Muxer) → 解封装(Demuxer) → 解码(Decoder) → 渲染(Render)
+ */
 @implementation FSViewController
 
 - (void)viewDidLoad {
@@ -108,6 +111,7 @@ static NSString * const FSMainTableCellIdentifier = @"FSMainTableCellIdentifier"
         [[FSItem alloc] initWithTitle:@"Audio Capture" subTitle:@"音频采集" path:@"FSAudioHandleVC" opType:FSMediaOpTypeAudioCapture],
         [[FSItem alloc] initWithTitle:@"Audio Encoder" subTitle:@"音频编码" path:@"FSAudioHandleVC" opType:FSMediaOpTypeAudioEncoder],
         [[FSItem alloc] initWithTitle:@"Audio Muxer" subTitle:@"音频封装" path:@"FSAudioHandleVC" opType:FSMediaOpTypeAudioMuxer],
+        [[FSItem alloc] initWithTitle:@"Audio Muxer" subTitle:@"音频解封装" path:@"FSAudioHandleVC" opType:FSMediaOpTypeAudioDemuxer],
     ];
 }
 
@@ -116,6 +120,7 @@ static NSString * const FSMainTableCellIdentifier = @"FSMainTableCellIdentifier"
         [[FSItem alloc] initWithTitle:@"Video Capture" subTitle:@"视频采集" path:@"FSVideoHandleVC" opType:FSMediaOpTypeVideoCapture],
         [[FSItem alloc] initWithTitle:@"Video Encoder" subTitle:@"视频编码" path:@"FSVideoHandleVC" opType:FSMediaOpTypeVideoEncoder],
         [[FSItem alloc] initWithTitle:@"Video Muxer" subTitle:@"视频封装" path:@"FSVideoHandleVC" opType:FSMediaOpTypeVideoMuxer],
+        [[FSItem alloc] initWithTitle:@"Video Muxer" subTitle:@"视频解封装" path:@"FSVideoHandleVC" opType:FSMediaOpTypeVideoDemuxer],
     ];
 }
 

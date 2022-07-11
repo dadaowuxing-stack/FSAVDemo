@@ -9,4 +9,13 @@
 
 @implementation FSDemuxerConfig
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _demuxerType = FSMediaAV; // 音视频都有
+    }
+    
+    return self;
+}
+
 @end

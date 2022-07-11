@@ -29,6 +29,7 @@
 		B2C7750A2859627800481615 /* FSDemuxerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C775092859627800481615 /* FSDemuxerConfig.m */; };
 		B2C7750E2859630000481615 /* FSAudioDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C7750D2859630000481615 /* FSAudioDecoder.m */; };
 		B2C775122859642D00481615 /* FSAudioRender.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C775112859642D00481615 /* FSAudioRender.m */; };
+		B3F722B3287C038800E1CDB2 /* input.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B3F722B2287C038800E1CDB2 /* input.mp4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +74,7 @@
 		B2C775102859642D00481615 /* FSAudioRender.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSAudioRender.h; sourceTree = "<group>"; };
 		B2C775112859642D00481615 /* FSAudioRender.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSAudioRender.m; sourceTree = "<group>"; };
 		B2C775142859672300481615 /* FSMediaBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMediaBase.h; sourceTree = "<group>"; };
+		B3F722B2287C038800E1CDB2 /* input.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = input.mp4; sourceTree = "<group>"; };
 		B43B142B74CD778284E7FC94 /* Pods-FSAVDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FSAVDemo.debug.xcconfig"; path = "Target Support Files/Pods-FSAVDemo/Pods-FSAVDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		E14148EDECE7C824EACC7D64 /* Pods_FSAVDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FSAVDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F813BB9C1E6A0785E829C839 /* Pods-FSAVDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FSAVDemo.release.xcconfig"; path = "Target Support Files/Pods-FSAVDemo/Pods-FSAVDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -120,18 +122,19 @@
 		B21489AB2840BE4600446FD4 /* FSAVDemo */ = {
 			isa = PBXGroup;
 			children = (
-				B21489ED2840D5D600446FD4 /* AudioDemo */,
-				B2C77513285966F700481615 /* Base */,
 				B21489F82840D8DB00446FD4 /* Capture */,
-				B2C7750B285962E700481615 /* Decoder */,
-				B2C775042859623E00481615 /* Demuxer */,
 				B24648C228508038001D1A6F /* Encoder */,
 				B2C774FD28595E8900481615 /* Muxer */,
+				B2C775042859623E00481615 /* Demuxer */,
+				B2C7750B285962E700481615 /* Decoder */,
 				B2C7750F2859641900481615 /* Render */,
+				B21489ED2840D5D600446FD4 /* AudioDemo */,
+				B2C77513285966F700481615 /* Base */,
 				B21489EA2840D2E400446FD4 /* FSNavigationController.h */,
 				B21489EB2840D2E400446FD4 /* FSNavigationController.m */,
 				B21489B22840BE4600446FD4 /* FSViewController.h */,
 				B21489B32840BE4600446FD4 /* FSViewController.m */,
+				B3F722B2287C038800E1CDB2 /* input.mp4 */,
 				B21489BD2840BE4700446FD4 /* Info.plist */,
 				B21489BA2840BE4700446FD4 /* LaunchScreen.storyboard */,
 				B21489BE2840BE4700446FD4 /* main.m */,
@@ -295,6 +298,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3F722B3287C038800E1CDB2 /* input.mp4 in Resources */,
 				B21489BC2840BE4700446FD4 /* LaunchScreen.storyboard in Resources */,
 				B21489B92840BE4700446FD4 /* Assets.xcassets in Resources */,
 				B21489B72840BE4600446FD4 /* Main.storyboard in Resources */,
