@@ -89,6 +89,7 @@
 }
 
 #pragma mark - Public Method
+
 - (void)startReading:(void (^)(BOOL success, NSError *error))completeHandler {
     __weak typeof(self) weakSelf = self;
     dispatch_async(_demuxerQueue, ^{
