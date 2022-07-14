@@ -83,12 +83,12 @@ typedef struct FSAudioUserData {
     
     // 1、设置音频解码器输出参数.其中一些参数与输入的音频数据参数一致.
     AudioStreamBasicDescription outputFormat = {0};
-    outputFormat.mSampleRate = inputFormat.mSampleRate; // 输出采样率与输入一致.
+    outputFormat.mSampleRate = inputFormat.mSampleRate; // 采样率.输出采样率与输入一致.
     outputFormat.mFormatID = kAudioFormatLinearPCM; // 输出的 PCM 格式.
     outputFormat.mFormatFlags = kAudioFormatFlagIsSignedInteger | kAudioFormatFlagsNativeEndian | kAudioFormatFlagIsPacked;
-    outputFormat.mChannelsPerFrame = (UInt32) inputFormat.mChannelsPerFrame; // 输出声道数与输入一致.
+    outputFormat.mChannelsPerFrame = (UInt32) inputFormat.mChannelsPerFrame; // 声道数.输出声道数与输入一致.
     outputFormat.mFramesPerPacket = 1; // 每个包的帧数.对于 PCM 这样的非压缩音频数据，设置为 1.
-    outputFormat.mBitsPerChannel = 16; // 对于 PCM，表示采样位深.
+    outputFormat.mBitsPerChannel = 16; // 数据帧中每个通道的采样位数.对于 PCM，表示采样位深.
     outputFormat.mBytesPerFrame = outputFormat.mChannelsPerFrame * outputFormat.mBitsPerChannel / 8; // 每帧字节数 (byte = bit / 8).
     outputFormat.mBytesPerPacket = outputFormat.mFramesPerPacket * outputFormat.mBytesPerFrame; // 每个包的字节数.
     outputFormat.mReserved = 0; // 对齐方式，0 表示 8 字节对齐.

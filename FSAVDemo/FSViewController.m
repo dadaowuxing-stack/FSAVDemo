@@ -113,6 +113,7 @@ static NSString * const FSMainTableCellIdentifier = @"FSMainTableCellIdentifier"
         [[FSItem alloc] initWithTitle:@"Audio Muxer" subTitle:@"音频封装" path:@"FSAudioHandleVC" opType:FSMediaOpTypeAudioMuxer],
         [[FSItem alloc] initWithTitle:@"Audio Muxer" subTitle:@"音频解封装" path:@"FSAudioHandleVC" opType:FSMediaOpTypeAudioDemuxer],
         [[FSItem alloc] initWithTitle:@"Audio Encoder" subTitle:@"音频解码" path:@"FSAudioHandleVC" opType:FSMediaOpTypeAudioDecoder],
+        [[FSItem alloc] initWithTitle:@"Audio Render" subTitle:@"音频渲染" path:@"FSAudioRenderVC" opType:FSMediaOpTypeAudioDecoder],
     ];
 }
 

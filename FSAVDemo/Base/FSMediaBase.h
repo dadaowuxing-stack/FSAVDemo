@@ -40,12 +40,14 @@ typedef NS_ENUM(NSInteger, FSMediaOpType) {
     FSMediaOpTypeAudioMuxer,
     FSMediaOpTypeAudioDemuxer,
     FSMediaOpTypeAudioDecoder,
+    FSMediaOpTypeAudioRender,
     
     FSMediaOpTypeVideoCapture,
     FSMediaOpTypeVideoEncoder,
     FSMediaOpTypeVideoMuxer,
     FSMediaOpTypeVideoDemuxer,
     FSMediaOpTypeVideoDecoder,
+    FSMediaOpTypeVideoRender,
 };
 
 #endif /* FSMediaBase_h */

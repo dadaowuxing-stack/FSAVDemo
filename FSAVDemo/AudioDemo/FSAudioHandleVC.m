@@ -8,6 +8,7 @@
 #import "FSAudioHandleVC.h"
 #import <AVFoundation/AVFoundation.h>
 #import "FSAudioTools.h"
+#import "FSWeakProxy.h"
 // 采集
 #import "FSAudioCapture.h"
 // 编码
@@ -32,7 +33,6 @@
 
 
 @property (nonatomic, strong) NSFileHandle *fileHandle;
-
 @property (nonatomic, strong) UIButton *audioButton;
 @property (nonatomic, assign) BOOL isRecording;
 
@@ -97,6 +97,7 @@
         }
             break;
             
+            
         default:
             break;
     }
@@ -105,12 +106,6 @@
     [[NSFileManager defaultManager] removeItemAtPath:self.audioPath error:nil];
     [[NSFileManager defaultManager] createFileAtPath:self.audioPath contents:nil attributes:nil];
     self.fileHandle = [NSFileHandle fileHandleForWritingAtPath:self.audioPath];
-}
-
-- (void)_setupUI {
-    
-    self.audioButton = [self buttonWithFrame:CGRectMake(100, 100, 150, 50) title:self.startTitle action:@selector(audioButtonAction:)];
-    [self.view addSubview:self.audioButton];
 }
 
 - (UIButton *)buttonWithFrame:(CGRect)frame title:(NSString *)title action:(SEL)action {
@@ -125,6 +120,13 @@
     [button addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
     
     return button;
+}
+
+
+- (void)_setupUI {
+    
+    self.audioButton = [self buttonWithFrame:CGRectMake(100, 100, 150, 50) title:self.startTitle action:@selector(audioButtonAction:)];
+    [self.view addSubview:self.audioButton];
 }
 
 #pragma mark - Action
@@ -152,6 +154,7 @@
             }];
             return;
         }
+        
         // 启动采集器.
         [self.audioCapture startRunning];
         // 启动封装器.
@@ -163,6 +166,7 @@
         if (self.opType == FSMediaOpTypeAudioDemuxer || self.opType == FSMediaOpTypeAudioDecoder) {
             return;
         }
+        
         // 停止采集器.
         [self.audioCapture stopRunning];
         // 停止封装器.
@@ -206,7 +210,7 @@
 #pragma mark - Utility
 
 - (void)fetchAndSaveDemuxedData {
-    // 异步地从 Demuxer 获取解封装后的 AAC 编码数据，送给解码器进行解码。
+    // 异步地从 Demuxer 获取解封装后的 AAC 编码数据，送给解码器进行解码.
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         while (weakSelf.demuxer.hasAudioSampleBuffer) {
@@ -255,7 +259,7 @@
 
 // 解码
 - (void)decodeSampleBuffer:(CMSampleBufferRef)sampleBuffer {
-    // 获取解封装后的 AAC 编码裸数据。
+    // 获取解封装后的 AAC 编码裸数据.
     CMBlockBufferRef blockBuffer = CMSampleBufferGetDataBuffer(sampleBuffer);
     size_t totolLength;
     char *dataPointer = NULL;
@@ -264,17 +268,17 @@
         return;
     }
     
-    // 目前 AudioDecoder 的解码接口实现的是单包（packet，1 packet 有 1024 帧）解码。而从 Demuxer 获取的一个 CMSampleBuffer 可能包含多个包，所以这里要拆一下包，再送给解码器。
+    // 目前 AudioDecoder 的解码接口实现的是单包（packet，1 packet 有 1024 帧）解码.而从 Demuxer 获取的一个 CMSampleBuffer 可能包含多个包，所以这里要拆一下包，再送给解码器.
     NSLog(@"SampleNum: %ld", CMSampleBufferGetNumSamples(sampleBuffer));
     for (NSInteger index = 0; index < CMSampleBufferGetNumSamples(sampleBuffer); index++) {
-        // 1、获取一个包的数据。
+        // 1、获取一个包的数据.
         size_t sampleSize = CMSampleBufferGetSampleSize(sampleBuffer, index);
         CMSampleTimingInfo timingInfo;
         CMSampleBufferGetSampleTimingInfo(sampleBuffer, index, &timingInfo);
         char *sampleDataPointer = malloc(sampleSize);
         memcpy(sampleDataPointer, dataPointer, sampleSize);
         
-        // 2、将数据封装到 CMBlockBuffer 中。
+        // 2、将数据封装到 CMBlockBuffer 中.
         CMBlockBufferRef packetBlockBuffer;
         OSStatus status = CMBlockBufferCreateWithMemoryBlock(kCFAllocatorDefault,
                                                               sampleDataPointer,
@@ -287,7 +291,7 @@
                                                               &packetBlockBuffer);
         
         if (status == noErr) {
-            // 3、将 CMBlockBuffer 封装到 CMSampleBuffer 中。
+            // 3、将 CMBlockBuffer 封装到 CMSampleBuffer 中.
             CMSampleBufferRef packetSampleBuffer = NULL;
             const size_t sampleSizeArray[] = {sampleSize};
             status = CMSampleBufferCreateReady(kCFAllocatorDefault,
@@ -301,7 +305,7 @@
                                                &packetSampleBuffer);
             CFRelease(packetBlockBuffer);
             
-            // 4、解码这个包的数据。
+            // 4、解码这个包的数据.
             if (packetSampleBuffer) {
                 [self.decoder decodeSampleBuffer:packetSampleBuffer];
                 CFRelease(packetSampleBuffer);
@@ -458,7 +462,8 @@
         _decoder.errorCallBack = ^(NSError *error) {
             NSLog(@"FSAudioDecoder error:%zi %@", error.code, error.localizedDescription);
         };
-        // 解码数据回调。在这里把解码后的音频 PCM 数据存储为文件。
+        // 解码数据回调.在这里把解码后的音频 PCM 数据存储为文件.
+        // 解码数据回调.在这里把解码后的音频 PCM 数据缓冲起来等待渲染.
         _decoder.sampleBufferOutputCallBack = ^(CMSampleBufferRef sampleBuffer) {
             if (sampleBuffer) {
                 CMBlockBufferRef blockBuffer = CMSampleBufferGetDataBuffer(sampleBuffer);
@@ -468,7 +473,7 @@
                 if (totolLength == 0 || !dataPointer) {
                     return;
                 }
-                
+                // 把数据存储为文件
                 [weakSelf.fileHandle writeData:[NSData dataWithBytes:dataPointer length:totolLength]];
             }
         };

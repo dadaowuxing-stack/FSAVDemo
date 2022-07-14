@@ -30,6 +30,8 @@
 		B2C7750E2859630000481615 /* FSAudioDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C7750D2859630000481615 /* FSAudioDecoder.m */; };
 		B2C775122859642D00481615 /* FSAudioRender.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C775112859642D00481615 /* FSAudioRender.m */; };
 		B3F722B3287C038800E1CDB2 /* input.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B3F722B2287C038800E1CDB2 /* input.mp4 */; };
+		B3F722B6287F984E00E1CDB2 /* FSWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = B3F722B5287F984E00E1CDB2 /* FSWeakProxy.m */; };
+		B3F722B9287FAD9B00E1CDB2 /* FSAudioRenderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B3F722B8287FAD9B00E1CDB2 /* FSAudioRenderVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +77,10 @@
 		B2C775112859642D00481615 /* FSAudioRender.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSAudioRender.m; sourceTree = "<group>"; };
 		B2C775142859672300481615 /* FSMediaBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMediaBase.h; sourceTree = "<group>"; };
 		B3F722B2287C038800E1CDB2 /* input.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = input.mp4; sourceTree = "<group>"; };
+		B3F722B4287F984E00E1CDB2 /* FSWeakProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSWeakProxy.h; sourceTree = "<group>"; };
+		B3F722B5287F984E00E1CDB2 /* FSWeakProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSWeakProxy.m; sourceTree = "<group>"; };
+		B3F722B7287FAD9B00E1CDB2 /* FSAudioRenderVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSAudioRenderVC.h; sourceTree = "<group>"; };
+		B3F722B8287FAD9B00E1CDB2 /* FSAudioRenderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSAudioRenderVC.m; sourceTree = "<group>"; };
 		B43B142B74CD778284E7FC94 /* Pods-FSAVDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FSAVDemo.debug.xcconfig"; path = "Target Support Files/Pods-FSAVDemo/Pods-FSAVDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		E14148EDECE7C824EACC7D64 /* Pods_FSAVDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FSAVDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F813BB9C1E6A0785E829C839 /* Pods-FSAVDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FSAVDemo.release.xcconfig"; path = "Target Support Files/Pods-FSAVDemo/Pods-FSAVDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -153,6 +159,8 @@
 			children = (
 				B21489EE2840D5F000446FD4 /* FSAudioHandleVC.h */,
 				B21489EF2840D5F000446FD4 /* FSAudioHandleVC.m */,
+				B3F722B7287FAD9B00E1CDB2 /* FSAudioRenderVC.h */,
+				B3F722B8287FAD9B00E1CDB2 /* FSAudioRenderVC.m */,
 				B24648CF28508376001D1A6F /* FSVideoHandleVC.h */,
 				B24648D028508376001D1A6F /* FSVideoHandleVC.m */,
 				B24648D8285087BC001D1A6F /* FSBaseVC.h */,
@@ -227,6 +235,8 @@
 			isa = PBXGroup;
 			children = (
 				B2C775142859672300481615 /* FSMediaBase.h */,
+				B3F722B4287F984E00E1CDB2 /* FSWeakProxy.h */,
+				B3F722B5287F984E00E1CDB2 /* FSWeakProxy.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -362,11 +372,13 @@
 				B2C775122859642D00481615 /* FSAudioRender.m in Sources */,
 				B24648C828508312001D1A6F /* FSAudioTools.m in Sources */,
 				B2C7750A2859627800481615 /* FSDemuxerConfig.m in Sources */,
+				B3F722B9287FAD9B00E1CDB2 /* FSAudioRenderVC.m in Sources */,
 				B21489EC2840D2E400446FD4 /* FSNavigationController.m in Sources */,
 				B21489FD2840D8DB00446FD4 /* FSAudioConfig.m in Sources */,
 				B24648C528508053001D1A6F /* FSAudioEncoder.m in Sources */,
 				B2C7750328595ECA00481615 /* FSMuxerConfig.m in Sources */,
 				B2C775072859625700481615 /* FSMP4Demuxer.m in Sources */,
+				B3F722B6287F984E00E1CDB2 /* FSWeakProxy.m in Sources */,
 				B24648D128508376001D1A6F /* FSVideoHandleVC.m in Sources */,
 				B21489AE2840BE4600446FD4 /* AppDelegate.m in Sources */,
 				B21489BF2840BE4700446FD4 /* main.m in Sources */,
