@@ -20,18 +20,14 @@
 @interface FSAudioRenderVC ()
 
 @property (nonatomic, strong) FSDemuxerConfig *demuxerConfig;
-@property (nonatomic, strong) FSMP4Demuxer *demuxer;
-@property (nonatomic, strong) FSAudioDecoder *decoder;
+@property (nonatomic, strong) FSMP4Demuxer *audioDemuxer;
+@property (nonatomic, strong) FSAudioDecoder *audioDecoder;
 @property (nonatomic, strong) FSAudioRender *audioRender;
+
 @property (nonatomic, strong) dispatch_semaphore_t semaphore;
 @property (nonatomic, strong) NSMutableData *pcmDataCache; // 解码数据缓冲区.
 @property (nonatomic, assign) NSInteger pcmDataCacheLength;
 @property (nonatomic, strong) CADisplayLink *timer;
-
-@property (nonatomic, strong) UIButton *audioButton;
-@property (nonatomic, assign) BOOL isRendering;
-@property (nonatomic, copy) NSString *startTitle;
-@property (nonatomic, copy) NSString *stopTitle;
 
 @end
 
@@ -46,55 +42,30 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
         
-    self.isRendering = NO;
     self.semaphore = dispatch_semaphore_create(1);
     self.pcmDataCache = [[NSMutableData alloc] init];
     
     [self _setupAudioSession];
-    [self _setupUI];
     
     // 通过一个 timer 来保证持续从文件中解封装和解码一定量的数据.
     self.timer = [CADisplayLink displayLinkWithTarget:[FSWeakProxy proxyWithTarget:self] selector:@selector(timerCallBack:)];
     [self.timer addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
     [self.timer setPaused:NO];
     
-    [self.demuxer startReading:^(BOOL success, NSError * _Nonnull error) {
+    [self.audioDemuxer startReading:^(BOOL success, NSError * _Nonnull error) {
         NSLog(@"FSMP4Demuxer start:%d", success);
     }];
 }
 
-- (UIButton *)buttonWithFrame:(CGRect)frame title:(NSString *)title action:(SEL)action {
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setFrame:frame];
-    button.layer.borderWidth = 1;
-    button.layer.cornerRadius = 8;
-    button.layer.borderColor = [UIColor redColor].CGColor;
-    [button setTitle:title forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    button.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:16.0];
-    [button addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
-    
-    return button;
-}
-
-#pragma mark - Setup
-
-- (void)_setupUI {
-    self.startTitle = @"开始渲染";
-    self.stopTitle = @"停止渲染";
-    self.audioButton = [self buttonWithFrame:CGRectMake(100, 100, 150, 50) title:self.startTitle action:@selector(audioButtonAction:)];
-    [self.view addSubview:self.audioButton];
-}
-
 #pragma mark - Action
 
-- (void)audioButtonAction:(UIButton *)sender {
-    if (!self.isRendering) {
-        self.isRendering = YES;
+- (void)buttonAction:(UIButton *)sender {
+    if (!self.isRecording) {
+        self.isRecording = YES;
         [self.audioButton setTitle:self.stopTitle forState:UIControlStateNormal];
         [self _startRender];
     } else {
-        self.isRendering = NO;
+        self.isRecording = NO;
         [self.audioButton setTitle:self.startTitle forState:UIControlStateNormal];
         [self _stopRender];
     }
@@ -132,8 +103,8 @@
 
 - (void)timerCallBack:(CADisplayLink *)timer {
     // 定时从文件中解封装和解码一定量（不超过 FSDecoderMaxCache）的数据.
-    if (self.pcmDataCacheLength <  FSDecoderMaxCache && self.demuxer.demuxerStatus == FSMP4DemuxerStatusRunning && self.demuxer.hasAudioSampleBuffer) {
-        CMSampleBufferRef audioBuffer = [self.demuxer copyNextAudioSampleBuffer];
+    if (self.pcmDataCacheLength <  FSDecoderMaxCache && self.audioDemuxer.demuxerStatus == FSMP4DemuxerStatusRunning && self.audioDemuxer.hasAudioSampleBuffer) {
+        CMSampleBufferRef audioBuffer = [self.audioDemuxer copyNextAudioSampleBuffer];
         if (audioBuffer) {
             [self decodeSampleBuffer:audioBuffer];
             CFRelease(audioBuffer);
@@ -190,7 +161,7 @@
             
             // 4、解码这个包的数据.
             if (packetSampleBuffer) {
-                [self.decoder decodeSampleBuffer:packetSampleBuffer];
+                [self.audioDecoder decodeSampleBuffer:packetSampleBuffer];
                 CFRelease(packetSampleBuffer);
             }
         }
@@ -211,26 +182,26 @@
     return _demuxerConfig;
 }
 
-- (FSMP4Demuxer *)demuxer {
-    if (!_demuxer) {
-        _demuxer = [[FSMP4Demuxer alloc] initWithConfig:self.demuxerConfig];
-        _demuxer.errorCallBack = ^(NSError *error) {
+- (FSMP4Demuxer *)audioDemuxer {
+    if (!_audioDemuxer) {
+        _audioDemuxer = [[FSMP4Demuxer alloc] initWithConfig:self.demuxerConfig];
+        _audioDemuxer.errorCallBack = ^(NSError *error) {
             NSLog(@"FSMP4Demuxer error:%zi %@", error.code, error.localizedDescription);
         };
     }
     
-    return _demuxer;
+    return _audioDemuxer;
 }
 
-- (FSAudioDecoder *)decoder {
-    if (!_decoder) {
+- (FSAudioDecoder *)audioDecoder {
+    if (!_audioDecoder) {
         __weak typeof(self) weakSelf = self;
-        _decoder = [[FSAudioDecoder alloc] init];
-        _decoder.errorCallBack = ^(NSError *error) {
+        _audioDecoder = [[FSAudioDecoder alloc] init];
+        _audioDecoder.errorCallBack = ^(NSError *error) {
             NSLog(@"FSAudioDecoder error:%zi %@", error.code, error.localizedDescription);
         };
         // 解码数据回调.在这里把解码后的音频 PCM 数据缓冲起来等待渲染.
-        _decoder.sampleBufferOutputCallBack = ^(CMSampleBufferRef sampleBuffer) {
+        _audioDecoder.sampleBufferOutputCallBack = ^(CMSampleBufferRef sampleBuffer) {
             if (sampleBuffer) {
                 CMBlockBufferRef blockBuffer = CMSampleBufferGetDataBuffer(sampleBuffer);
                 size_t totolLength;
@@ -247,7 +218,7 @@
         };
     }
     
-    return _decoder;
+    return _audioDecoder;
 }
 
 - (FSAudioRender *)audioRender {

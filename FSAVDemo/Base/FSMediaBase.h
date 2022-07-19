@@ -33,6 +33,23 @@ typedef NS_ENUM(NSInteger, FSMP4DemuxerStatus) {
     FSMP4DemuxerStatusCancelled = 4,
 };
 
+typedef NS_ENUM(NSInteger, FSVideoCaptureMirrorType) {
+    FSVideoCaptureMirrorNone = 0,
+    FSVideoCaptureMirrorFront = 1 << 0,
+    FSVideoCaptureMirrorBack = 1 << 1,
+    FSVideoCaptureMirrorAll = (FSVideoCaptureMirrorFront | FSVideoCaptureMirrorBack),
+};
+
+// 渲染画面填充模式。
+typedef NS_ENUM(NSInteger, FSMetalViewContentMode) {
+    // 自动填充满，可能会变形。
+    FSMetalViewContentModeStretch = 0,
+    // 按比例适配，可能会有黑边。
+    FSMetalViewContentModeFit = 1,
+    // 根据比例裁剪后填充满。
+    FSMetalViewContentModeFill = 2
+};
+
 // 操作
 typedef NS_ENUM(NSInteger, FSMediaOpType) {
     FSMediaOpTypeAudioCapture = 0,

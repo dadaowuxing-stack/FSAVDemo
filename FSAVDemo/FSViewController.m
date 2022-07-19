@@ -108,22 +108,23 @@ static NSString * const FSMainTableCellIdentifier = @"FSMainTableCellIdentifier"
 
 - (NSArray *)_audioItems {
     return @[
-        [[FSItem alloc] initWithTitle:@"Audio Capture" subTitle:@"音频采集" path:@"FSAudioHandleVC" opType:FSMediaOpTypeAudioCapture],
-        [[FSItem alloc] initWithTitle:@"Audio Encoder" subTitle:@"音频编码" path:@"FSAudioHandleVC" opType:FSMediaOpTypeAudioEncoder],
-        [[FSItem alloc] initWithTitle:@"Audio Muxer" subTitle:@"音频封装" path:@"FSAudioHandleVC" opType:FSMediaOpTypeAudioMuxer],
-        [[FSItem alloc] initWithTitle:@"Audio Muxer" subTitle:@"音频解封装" path:@"FSAudioHandleVC" opType:FSMediaOpTypeAudioDemuxer],
-        [[FSItem alloc] initWithTitle:@"Audio Encoder" subTitle:@"音频解码" path:@"FSAudioHandleVC" opType:FSMediaOpTypeAudioDecoder],
+        [[FSItem alloc] initWithTitle:@"Audio Capture" subTitle:@"音频采集" path:@"FSAudioCaptureVC" opType:FSMediaOpTypeAudioCapture],
+        [[FSItem alloc] initWithTitle:@"Audio Encoder" subTitle:@"音频编码" path:@"FSAudioEncoderVC" opType:FSMediaOpTypeAudioEncoder],
+        [[FSItem alloc] initWithTitle:@"Audio Muxer" subTitle:@"音频封装" path:@"FSAudioMuxerVC" opType:FSMediaOpTypeAudioMuxer],
+        [[FSItem alloc] initWithTitle:@"Audio Demuxer" subTitle:@"音频解封装" path:@"FSAudioDemuxerVC" opType:FSMediaOpTypeAudioDemuxer],
+        [[FSItem alloc] initWithTitle:@"Audio Decoder" subTitle:@"音频解码" path:@"FSAudioDecoderVC" opType:FSMediaOpTypeAudioDecoder],
         [[FSItem alloc] initWithTitle:@"Audio Render" subTitle:@"音频渲染" path:@"FSAudioRenderVC" opType:FSMediaOpTypeAudioDecoder],
     ];
 }
 
 - (NSArray *)_videoItems {
     return @[
-        [[FSItem alloc] initWithTitle:@"Video Capture" subTitle:@"视频采集" path:@"FSVideoHandleVC" opType:FSMediaOpTypeVideoCapture],
-        [[FSItem alloc] initWithTitle:@"Video Encoder" subTitle:@"视频编码" path:@"FSVideoHandleVC" opType:FSMediaOpTypeVideoEncoder],
-        [[FSItem alloc] initWithTitle:@"Video Muxer" subTitle:@"视频封装" path:@"FSVideoHandleVC" opType:FSMediaOpTypeVideoMuxer],
-        [[FSItem alloc] initWithTitle:@"Video Muxer" subTitle:@"视频解封装" path:@"FSVideoHandleVC" opType:FSMediaOpTypeVideoDemuxer],
-        [[FSItem alloc] initWithTitle:@"Video Encoder" subTitle:@"视频解码" path:@"FSVideoHandleVC" opType:FSMediaOpTypeVideoDecoder],
+        [[FSItem alloc] initWithTitle:@"Video Capture" subTitle:@"视频采集" path:@"FSVideoCaptureVC" opType:FSMediaOpTypeVideoCapture],
+        [[FSItem alloc] initWithTitle:@"Video Encoder" subTitle:@"视频编码" path:@"FSVideoEncoderVC" opType:FSMediaOpTypeVideoEncoder],
+        [[FSItem alloc] initWithTitle:@"Video Muxer" subTitle:@"视频封装" path:@"FSVideoMuxerVC" opType:FSMediaOpTypeVideoMuxer],
+        [[FSItem alloc] initWithTitle:@"Video Demuxer" subTitle:@"视频解封装" path:@"FSVideoDemuxerVC" opType:FSMediaOpTypeVideoDemuxer],
+        [[FSItem alloc] initWithTitle:@"Video Decoder" subTitle:@"视频解码" path:@"FSVideoDecoderVC" opType:FSMediaOpTypeVideoDecoder],
+        [[FSItem alloc] initWithTitle:@"Video Render" subTitle:@"视频渲染" path:@"FSVideoRenderVC" opType:FSMediaOpTypeVideoRender],
     ];
 }
 

@@ -1,15 +1,15 @@
 //
-//  FSAudioCaptureVC.h
+//  FSAudioEncoderVC.h
 //  FSAVDemo
 //
-//  Created by louis on 2022/5/27.
+//  Created by louis on 2022/7/14.
 //
 
 #import "FSBaseVC.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FSAudioHandleVC : FSBaseVC
+@interface FSAudioEncoderVC : FSBaseVC
 
 @end
 
