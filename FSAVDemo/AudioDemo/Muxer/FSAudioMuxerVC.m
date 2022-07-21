@@ -29,7 +29,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self _setupAudioSession];
 }
 
 #pragma mark - Action
@@ -58,37 +57,6 @@
         [self.audioMuxer stopWriting:^(BOOL success, NSError * _Nonnull error) {
             NSLog(@"FSMP4Muxer %@", success ? @"success" : [NSString stringWithFormat:@"error %zi %@", error.code, error.localizedDescription]);
         }];
-    }
-}
-
-- (void)_setupAudioSession {
-    NSError *error = nil;
-    
-    // 1.获取音频会话实例.
-    AVAudioSession *session = [AVAudioSession sharedInstance];
-    
-    // 2.设置分类和选项.
-    [session setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionMixWithOthers | AVAudioSessionCategoryOptionDefaultToSpeaker error:&error];
-    if (error) {
-        NSLog(@"AVAudioSession setCategory error.");
-        error = nil;
-        return;
-    }
-    
-    // 3.设置模式.
-    [session setMode:AVAudioSessionModeVideoRecording error:&error];
-    if (error) {
-        NSLog(@"AVAudioSession setMode error.");
-        error = nil;
-        return;
-    }
-    
-    // 4.激活会话.
-    [session setActive:YES error:&error];
-    if (error) {
-        NSLog(@"AVAudioSession setActive error.");
-        error = nil;
-        return;
     }
 }
 
@@ -132,7 +100,6 @@
         _audioEncoder.errorCallBack = ^(NSError* error) {
             NSLog(@"FSAudioEncoder error:%zi %@", error.code, error.localizedDescription);
         };
-        // 音频编码数据回调:在这里将 AAC 数据写入文件.
         // 音频编码数据回调:这里编码的 AAC 数据送给封装器.
         // 与之前将编码后的 AAC 数据存储为 AAC 文件不同的是，这里编码后送给封装器的 AAC 数据是没有添加 ADTS 头的，因为我们这里封装的是 M4A 格式，不需要 ADTS 头.
         _audioEncoder.sampleBufferOutputCallBack = ^(CMSampleBufferRef sampleBuffer) {

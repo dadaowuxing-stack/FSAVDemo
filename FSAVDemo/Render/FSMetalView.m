@@ -78,7 +78,7 @@ static const matrix_float3x3 FSColorMatrix709FullRange = (matrix_float3x3) {
         
         // 创建渲染线程.
         _semaphore = dispatch_semaphore_create(1);
-        _renderQueue = dispatch_queue_create("com.KeyFrameKit.metalView.renderQueue", DISPATCH_QUEUE_SERIAL);
+        _renderQueue = dispatch_queue_create("com.louis.metalView.renderQueue", DISPATCH_QUEUE_SERIAL);
         
         // 创建纹理缓存.
         CVMetalTextureCacheCreate(NULL, NULL, self.mtkView.device, NULL, &_textureCache);
@@ -112,6 +112,7 @@ static const matrix_float3x3 FSColorMatrix709FullRange = (matrix_float3x3) {
 }
 
 #pragma mark - Public Method
+
 - (void)renderPixelBuffer:(CVPixelBufferRef)pixelBuffer {
     if (!pixelBuffer) {
         return;
@@ -135,6 +136,7 @@ static const matrix_float3x3 FSColorMatrix709FullRange = (matrix_float3x3) {
 }
 
 #pragma mark - Private Method
+
 -(void)_setupPipeline:(BOOL)isYUV {
     // 根据本地 shader 文件初始化渲染管道与渲染指令队列.
     id<MTLLibrary> defaultLibrary = [self.mtkView.device newDefaultLibrary];

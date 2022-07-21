@@ -21,13 +21,14 @@
 @property (nonatomic, strong) AVAssetWriter *muxWriter; // 封装器实例.
 @property (nonatomic, strong) AVAssetWriterInput *writerVideoInput; // Muxer 的视频输入.
 @property (nonatomic, strong) AVAssetWriterInput *writerAudioInput; // Muxer 的音频输入.
-@property (nonatomic, strong) dispatch_queue_t muxerQueue;
-@property (nonatomic, strong) dispatch_semaphore_t semaphore;
+@property (nonatomic, strong) dispatch_queue_t muxerQueue;          // 封装队列
+@property (nonatomic, strong) dispatch_semaphore_t semaphore;       // 信号量
 @property (nonatomic, assign) FSMP4MuxerStatus muxerStatus;
 
 @end
 
 @implementation FSMP4Muxer
+
 #pragma mark - LifeCycle
 
 - (void)dealloc {
@@ -40,8 +41,12 @@
     self = [super init];
     if (self) {
         _config = config;
-        _muxerQueue = dispatch_queue_create("com.louis.muxerQueue", DISPATCH_QUEUE_SERIAL); // 封装任务队列(串行队列).
+        // 创建一个串行队列,一个任务执行完毕后，再执行下一个任务.
+        _muxerQueue = dispatch_queue_create("com.louis.muxerQueue", DISPATCH_QUEUE_SERIAL);
+        // 信号量的初始值，可以用来控制线程并发访问的最大数量
+        // 信号量的初始值为1，代表同时只允许1条线程访问资源，保证线程同步
         _semaphore = dispatch_semaphore_create(1);
+        
         CMSimpleQueueCreate(kCFAllocatorDefault, FSMP4MuxerMaxQueueCount, &_audioQueue);
         CMSimpleQueueCreate(kCFAllocatorDefault, FSMP4MuxerMaxQueueCount, &_videoQueue);
     }
@@ -50,14 +55,18 @@
 }
 
 #pragma mark - Public Method
+
 - (void)startWriting {
     _firstBuffer = YES;
     // 开始写入.
     __weak typeof(self) weakSelf = self;
     dispatch_async(self.muxerQueue, ^{
+        // 如果信号量的值<=0，当前线程就会进入休眠等待（直到信号量的值>0）
+        // 如果信号量的值>0，就减1，然后往下执行后面的代码
         dispatch_semaphore_wait(weakSelf.semaphore, DISPATCH_TIME_FOREVER);
         [weakSelf _reset]; // 清理.
         weakSelf.muxerStatus = FSMP4MuxerStatusRunning; // 标记状态.
+        // 让信号量的值加 1
         dispatch_semaphore_signal(weakSelf.semaphore);
     });
 }
@@ -84,10 +93,11 @@
     __weak typeof(self) weakSelf = self;
     CFRetain(sampleBuffer);
     dispatch_async(self.muxerQueue, ^{
-        
+        // 如果信号量的值<=0，当前线程就会进入休眠等待（直到信号量的值>0）
+        // 如果信号量的值>0，就减1，然后往下执行后面的代码
         dispatch_semaphore_wait(weakSelf.semaphore, DISPATCH_TIME_FOREVER);
         
-        // 1、添加数据到队列.
+        // 1、添加数据(音频数据,视频数据)到队列.
         [weakSelf _enqueueSampleBuffer:sampleBuffer];
         
         // 2、第一次添加数据时，创建 Muxer 实例并触发写数据操作.
@@ -95,6 +105,7 @@
             // 检查数据是否正常.队列里面有数据则表示对应的数据携带的音视频格式信息是正常的，这个在初始化 Muxer 的输入源时需要用到.
             if (![weakSelf _checkFormatDescriptionLoadSuccess]) {
                 CFRelease(sampleBuffer);
+                // 让信号量的值加 1
                 dispatch_semaphore_signal(weakSelf.semaphore);
                 return;
             }
@@ -105,6 +116,7 @@
             if (!success) {
                 weakSelf.muxerStatus = FSMP4MuxerStatusFailed;
                 CFRelease(sampleBuffer);
+                // 让信号量的值加 1
                 dispatch_semaphore_signal(weakSelf.semaphore);
                 [weakSelf _callBackError:error];
                 return;
@@ -122,6 +134,7 @@
         if (!weakSelf.muxWriter || weakSelf.muxWriter.status != AVAssetWriterStatusWriting) {
             weakSelf.muxerStatus = FSMP4MuxerStatusFailed;
             CFRelease(sampleBuffer);
+            // 让信号量的值加 1
             dispatch_semaphore_signal(weakSelf.semaphore);
             [weakSelf _callBackError:weakSelf.muxWriter.error];
             return;
@@ -131,6 +144,7 @@
         [weakSelf _avInterLeavedSample];
         
         CFRelease(sampleBuffer);
+        // 让信号量的值加 1
         dispatch_semaphore_signal(weakSelf.semaphore);
     });
 }
@@ -151,6 +165,7 @@
 }
 
 #pragma mark - Private Method
+
 - (BOOL)_setupMuxWriter:(NSError **)error {
     if (!self.config.outputURL) {
         *error = [NSError errorWithDomain:NSStringFromClass([FSMP4Muxer class]) code:40003 userInfo:nil];

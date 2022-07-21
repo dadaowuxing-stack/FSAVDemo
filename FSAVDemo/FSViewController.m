@@ -123,6 +123,7 @@ static NSString * const FSMainTableCellIdentifier = @"FSMainTableCellIdentifier"
         [[FSItem alloc] initWithTitle:@"Video Encoder" subTitle:@"视频编码" path:@"FSVideoEncoderVC" opType:FSMediaOpTypeVideoEncoder],
         [[FSItem alloc] initWithTitle:@"Video Muxer" subTitle:@"视频封装" path:@"FSVideoMuxerVC" opType:FSMediaOpTypeVideoMuxer],
         [[FSItem alloc] initWithTitle:@"Video Demuxer" subTitle:@"视频解封装" path:@"FSVideoDemuxerVC" opType:FSMediaOpTypeVideoDemuxer],
+        [[FSItem alloc] initWithTitle:@"AV Demuxer" subTitle:@"音视频解封装" path:@"FSAVDemuxerVC" opType:FSMediaOpTypeAVDemuxer],
         [[FSItem alloc] initWithTitle:@"Video Decoder" subTitle:@"视频解码" path:@"FSVideoDecoderVC" opType:FSMediaOpTypeVideoDecoder],
         [[FSItem alloc] initWithTitle:@"Video Render" subTitle:@"视频渲染" path:@"FSVideoRenderVC" opType:FSMediaOpTypeVideoRender],
     ];

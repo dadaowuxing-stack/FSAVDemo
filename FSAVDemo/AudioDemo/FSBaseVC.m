@@ -27,7 +27,6 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.isRecording = NO;
-    
     [self _setupUI];
     [self _initConfig];
 }
@@ -110,6 +109,7 @@
         default:
             break;
     }
+    [self.audioButton setTitle:self.startTitle forState:UIControlStateNormal];
     if (pathComponent.length) {
         self.path = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:pathComponent];
         NSLog(@"opType: %ld ------ file path: %@", self.opType, self.path);

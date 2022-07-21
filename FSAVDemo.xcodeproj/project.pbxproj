@@ -27,6 +27,7 @@
 		B2C7750A2859627800481615 /* FSDemuxerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C775092859627800481615 /* FSDemuxerConfig.m */; };
 		B2C7750E2859630000481615 /* FSAudioDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C7750D2859630000481615 /* FSAudioDecoder.m */; };
 		B2C775122859642D00481615 /* FSAudioRender.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C775112859642D00481615 /* FSAudioRender.m */; };
+		B3EA513128892C7C002D2BB4 /* FSAVDemuxerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B3EA513028892C7C002D2BB4 /* FSAVDemuxerVC.m */; };
 		B3F722B3287C038800E1CDB2 /* input.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B3F722B2287C038800E1CDB2 /* input.mp4 */; };
 		B3F722B6287F984E00E1CDB2 /* FSWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = B3F722B5287F984E00E1CDB2 /* FSWeakProxy.m */; };
 		B3F722D8287FF80200E1CDB2 /* FSAudioRenderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B3F722CB287FF80200E1CDB2 /* FSAudioRenderVC.m */; };
@@ -89,6 +90,8 @@
 		B2C775102859642D00481615 /* FSAudioRender.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSAudioRender.h; sourceTree = "<group>"; };
 		B2C775112859642D00481615 /* FSAudioRender.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSAudioRender.m; sourceTree = "<group>"; };
 		B2C775142859672300481615 /* FSMediaBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMediaBase.h; sourceTree = "<group>"; };
+		B3EA512F28892C7C002D2BB4 /* FSAVDemuxerVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSAVDemuxerVC.h; sourceTree = "<group>"; };
+		B3EA513028892C7C002D2BB4 /* FSAVDemuxerVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSAVDemuxerVC.m; sourceTree = "<group>"; };
 		B3F722B2287C038800E1CDB2 /* input.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = input.mp4; sourceTree = "<group>"; };
 		B3F722B4287F984E00E1CDB2 /* FSWeakProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSWeakProxy.h; sourceTree = "<group>"; };
 		B3F722B5287F984E00E1CDB2 /* FSWeakProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSWeakProxy.m; sourceTree = "<group>"; };
@@ -390,6 +393,8 @@
 			children = (
 				B3F722EE2880088800E1CDB2 /* FSVideoMuxerVC.h */,
 				B3F722EF2880088800E1CDB2 /* FSVideoMuxerVC.m */,
+				B3EA512F28892C7C002D2BB4 /* FSAVDemuxerVC.h */,
+				B3EA513028892C7C002D2BB4 /* FSAVDemuxerVC.m */,
 			);
 			path = Muxer;
 			sourceTree = "<group>";
@@ -560,6 +565,7 @@
 				B3F722F32880089600E1CDB2 /* FSVideoDemuxerVC.m in Sources */,
 				B3F722DB287FF80200E1CDB2 /* FSAudioCaptureVC.m in Sources */,
 				B3F722DA287FF80200E1CDB2 /* FSAudioDemuxerVC.m in Sources */,
+				B3EA513128892C7C002D2BB4 /* FSAVDemuxerVC.m in Sources */,
 				B21489B42840BE4600446FD4 /* FSViewController.m in Sources */,
 				B2C7750E2859630000481615 /* FSAudioDecoder.m in Sources */,
 				B3F722ED2880087700E1CDB2 /* FSVideoEncoderVC.m in Sources */,

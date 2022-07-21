@@ -21,7 +21,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
 #pragma mark - Action
@@ -44,37 +43,6 @@
         
         // 停止采集器.
         [self.audioCapture stopRunning];
-    }
-}
-
-- (void)_setupAudioSession {
-    NSError *error = nil;
-    
-    // 1.获取音频会话实例.
-    AVAudioSession *session = [AVAudioSession sharedInstance];
-
-    // 2.设置分类和选项.
-    [session setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionMixWithOthers | AVAudioSessionCategoryOptionDefaultToSpeaker error:&error];
-    if (error) {
-        NSLog(@"AVAudioSession setCategory error.");
-        error = nil;
-        return;
-    }
-    
-    // 3.设置模式.
-    [session setMode:AVAudioSessionModeVideoRecording error:&error];
-    if (error) {
-        NSLog(@"AVAudioSession setMode error.");
-        error = nil;
-        return;
-    }
-
-    // 4.激活会话.
-    [session setActive:YES error:&error];
-    if (error) {
-        NSLog(@"AVAudioSession setActive error.");
-        error = nil;
-        return;
     }
 }
 
@@ -109,6 +77,7 @@
                 char *dataPointer;
                 
                 // 2.从 CMBlockBuffer 中获取 PCM 数据存储到文件中.
+                // 将数据复制到 dataPointer 中
                 CMBlockBufferGetDataPointer(blockBuffer, 0, &lengthAtOffsetOutput, &totalLengthOutput, &dataPointer);
                 [strongSelf.fileHandle writeData:[NSData dataWithBytes:dataPointer length:totalLengthOutput]];
             }

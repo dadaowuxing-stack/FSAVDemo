@@ -9,17 +9,17 @@
 #import <AudioToolbox/AudioToolbox.h>
 
 @interface FSAudioEncoder () {
-    char *_leftBuffer;       // 待编码缓冲区。
-    NSInteger _leftLength;   // 待编码缓冲区的长度，动态。
-    char *_aacBuffer;        // 编码缓冲区。
-    NSInteger _bufferLength; // 每次送给编码器的数据长度。
+    char *_leftBuffer;       // 待编码缓冲区.
+    NSInteger _leftLength;   // 待编码缓冲区的长度，动态.
+    char *_aacBuffer;        // 编码缓冲区.
+    NSInteger _bufferLength; // 每次送给编码器的数据长度.
 }
 
-@property (nonatomic, assign) AudioConverterRef audioEncoderInstance; // 音频编码器实例。
-@property (nonatomic, assign) CMFormatDescriptionRef aacFormat;       // 音频编码参数。
-@property (nonatomic, assign, readwrite) NSInteger audioBitrate;      // 音频编码码率。
+@property (nonatomic, assign) AudioConverterRef audioEncoderInstance; // 音频编码器实例.
+@property (nonatomic, assign) CMFormatDescriptionRef aacFormat;       // 音频编码参数.
+@property (nonatomic, assign, readwrite) NSInteger audioBitrate;      // 音频编码码率.
+@property (nonatomic, strong) dispatch_queue_t encoderQueue;          // 编码队列
 @property (nonatomic, assign) BOOL isError;
-@property (nonatomic, strong) dispatch_queue_t encoderQueue;
 
 @end
 
@@ -28,7 +28,7 @@
 #pragma mark - Lifecycle
 
 - (void)dealloc {
-    // 清理编码器。
+    // 清理编码器.
     if (_audioEncoderInstance) {
         AudioConverterDispose(_audioEncoderInstance);
         _audioEncoderInstance = nil;
@@ -38,7 +38,7 @@
         _aacFormat = NULL;
     }
     
-    // 清理缓冲区。
+    // 清理缓冲区.
     if (_aacBuffer) {
         free(_aacBuffer);
         _aacBuffer = NULL;
@@ -52,8 +52,9 @@
 - (instancetype)initWithAudioBitrate:(NSInteger)audioBitrate {
     self = [super init];
     if (self) {
+        // 设置音频编码码率
         _audioBitrate = audioBitrate;
-        // 创建音频编码串行队列
+        // 创建音频编码串行队列,一个任务执行完毕后，再执行下一个任务
         _encoderQueue = dispatch_queue_create("com.louis.audioEncoder", DISPATCH_QUEUE_SERIAL);
     }
 
@@ -62,7 +63,9 @@
 
 #pragma mark - Utility
 
-// 编码
+
+/// 音频编码工具
+/// @param buffer 采集的音频样本数据
 - (void)encodeSampleBuffer:(CMSampleBufferRef)buffer {
     if (!buffer || !CMSampleBufferGetDataBuffer(buffer) || self.isError) {
         return;
@@ -80,9 +83,9 @@
     });
 }
 
-/**
- 音频编码步骤:
- */
+
+/// 音频编码工具
+/// @param buffer 采集的音频样本数据
 - (void)encodeSampleBufferInternal:(CMSampleBufferRef)buffer {
     // 1.从输入数据中获取音频格式信息.
     CMAudioFormatDescriptionRef audioFormatRef = CMSampleBufferGetFormatDescription(buffer);
@@ -94,7 +97,7 @@
 
     // 2.根据音频参数创建编码器实例.
     NSError *error = nil;
-    // 第一次编码时创建编码器。
+    // 第一次编码时创建编码器.
     if (!_audioEncoderInstance) {
         [self setupAudioEncoderInstanceWithInputAudioFormat:audioFormat error:&error];
         if (error) {
@@ -110,6 +113,7 @@
     CMBlockBufferRef blockBuffer = CMSampleBufferGetDataBuffer(buffer);
     size_t audioLength;
     char *dataPointer = NULL;
+    // 将数据复制到dataPointer中
     CMBlockBufferGetDataPointer(blockBuffer, 0, NULL, &audioLength, &dataPointer);
     if (audioLength == 0 || !dataPointer) {
         return;
@@ -122,16 +126,19 @@
     if (_leftLength + audioLength >= _bufferLength) {
         // 当待编码缓冲区遗留数据加上新来的数据长度(_leftLength + audioLength)大于每次给编码器的数据长度(_bufferLength)时，则进行循环编码，每次送给编码器长度为 _bufferLength 的数据量.
         
-        // 拷贝待编码的数据到缓冲区 totalBuffer。
+        // 拷贝待编码的数据到缓冲区 totalBuffer.
         NSInteger totalSize = _leftLength + audioLength; // 当前总数据长度.
         NSInteger encodeCount = totalSize / _bufferLength; // 计算给编码器送数据的次数.
+        
         char *totalBuffer = malloc(totalSize);
         char *p = totalBuffer;
-        memset(totalBuffer, 0, (int) totalSize);
+        
+        memset(totalBuffer, 0, (int) totalSize); // 初始化缓冲区数据
+        // void    *memcpy(void *__dst, const void *__src, size_t __n);
         memcpy(totalBuffer, _leftBuffer, _leftLength); // 拷贝上次遗留的数据.
         memcpy(totalBuffer + _leftLength, dataPointer, audioLength); // 拷贝这次新来的数据.
         
-        // 分 encodeCount 次给编码器送数据.
+        // 分 encodeCount 次给编码器送数据, 每次编码数据长度_bufferLength.
         for (NSInteger index = 0; index < encodeCount; index++) {
             [self encodeBuffer:p timing:timingInfo]; // 调用编码方法.
             p += _bufferLength;
@@ -142,10 +149,10 @@
         memset(_leftBuffer, 0, _bufferLength);
         memcpy(_leftBuffer, totalBuffer + (totalSize - _leftLength), _leftLength);
         
-        // 清理。
+        // 清理.
         free(totalBuffer);
     } else {
-        // 否则，就先存到待编码缓冲区，等下一次数据够了再送给编码器。
+        // 否则，就先存到待编码缓冲区，等下一次数据够了再送给编码器.
         memcpy(_leftBuffer + _leftLength, dataPointer, audioLength);
         _leftLength = _leftLength + audioLength;
     }
@@ -159,7 +166,7 @@
     outputFormat.mFormatID = kAudioFormatMPEG4AAC; // AAC 编码格式. 常用的 AAC 编码格式：kAudioFormatMPEG4AAC、kAudioFormatMPEG4AAC_HE_V2.
     outputFormat.mFormatFlags = kMPEG4Object_AAC_Main; // AAC 编码 Profile. 注意要设置这个，因为这个枚举值是从 1 开始的，不设置确定值很容易出问题.
     outputFormat.mChannelsPerFrame = (UInt32) inputFormat.mChannelsPerFrame; // 输出声道数与输入一致.
-    outputFormat.mFramesPerPacket = 1024; // 每个包的帧数. AAC 固定是 1024，这个是由 AAC 编码规范规定的。对于未压缩数据设置为 1.
+    outputFormat.mFramesPerPacket = 1024; // 每个包的帧数. AAC 固定是 1024，这个是由 AAC 编码规范规定的.对于未压缩数据设置为 1.
     outputFormat.mBytesPerPacket = 0; // 每个包的大小. 动态大小设置为 0.
     outputFormat.mBytesPerFrame = 0; // 每帧的大小. 压缩格式设置为 0.
     outputFormat.mBitsPerChannel = 0; // 压缩格式设置为 0.
@@ -203,17 +210,18 @@
 }
 
 - (void)encodeBuffer:(char *)buffer timing:(CMSampleTimingInfo)timing {
-    // 1.创建编码器接口对应的待编码缓冲区 AudioBufferList，填充待编码的数据.
     AudioBuffer inBuffer;
     AudioStreamBasicDescription audioFormat = *CMAudioFormatDescriptionGetStreamBasicDescription(_aacFormat);
     inBuffer.mNumberChannels = (UInt32) audioFormat.mChannelsPerFrame;
     inBuffer.mData = buffer; // 填充待编码数据.
     inBuffer.mDataByteSize = (UInt32) _bufferLength; // 设置待编码数据长度.
+    
+    // 1.创建编码器接口对应的待编码缓冲区 AudioBufferList，填充待编码的数据. 输入缓冲区
     AudioBufferList inBufferList;
     inBufferList.mNumberBuffers = 1;
     inBufferList.mBuffers[0] = inBuffer;
     
-    //  2.创建编码输出缓冲区 AudioBufferList 接收编码后的数据.
+    //  2.创建编码输出缓冲区 AudioBufferList 接收编码后的数据. 输出缓冲区
     AudioBufferList outBufferList;
     outBufferList.mNumberBuffers = 1;
     outBufferList.mBuffers[0].mNumberChannels = inBuffer.mNumberChannels;
@@ -221,8 +229,8 @@
     outBufferList.mBuffers[0].mData = _aacBuffer; // 绑定缓冲区空间.
     
     // 3.编码.
-    UInt32 outputDataPacketSize = 1; // 每次编码 1 个包。1 个包有 1024 个帧，这个对应创建编码器实例时设置的 mFramesPerPacket.
-    // 需要在回调方法 inputDataProcess 中将待编码的数据拷贝到编码器的缓冲区的对应位置。这里把我们自己创建的待编码缓冲区 AudioBufferList 作为 inInputDataProcUserData 传入，在回调方法中直接拷贝它.
+    UInt32 outputDataPacketSize = 1; // 每次编码 1 个包.1 个包有 1024 个帧，这个对应创建编码器实例时设置的 mFramesPerPacket.
+    // 需要在回调方法 inputDataProcess 中将待编码的数据拷贝到编码器的缓冲区的对应位置.这里把我们自己创建的待编码缓冲区 AudioBufferList 作为 inInputDataProcUserData 传入，在回调方法中直接拷贝它.
     OSStatus status = AudioConverterFillComplexBuffer(_audioEncoderInstance, inputDataProcess, &inBufferList, &outputDataPacketSize, &outBufferList, NULL);
     if (status != noErr) {
         [self callBackError:[NSError errorWithDomain:NSStringFromClass(self.class) code:status userInfo:nil]];

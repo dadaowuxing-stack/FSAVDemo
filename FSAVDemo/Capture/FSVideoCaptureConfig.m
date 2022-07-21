@@ -19,8 +19,8 @@
         _mirrorType = FSVideoCaptureMirrorFront;
 
         // 设置颜色空间格式，这里要注意了：
-        // 1、一般我们采集图像用于后续的编码时，这里设置 kCVPixelFormatType_420YpCbCr8BiPlanarFullRange 即可。
-        // 2、如果想支持 HDR 时（iPhone12 及之后设备才支持），这里设置为：kCVPixelFormatType_420YpCbCr10BiPlanarVideoRange。
+        // 1、一般我们采集图像用于后续的编码时，这里设置 kCVPixelFormatType_420YpCbCr8BiPlanarFullRange 即可.
+        // 2、如果想支持 HDR 时（iPhone12 及之后设备才支持），这里设置为：kCVPixelFormatType_420YpCbCr10BiPlanarVideoRange.
         _pixelFormatType = kCVPixelFormatType_420YpCbCr8BiPlanarFullRange;
     }
     

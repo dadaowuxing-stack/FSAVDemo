@@ -9,7 +9,7 @@
 
 @implementation FSAudioConfig
 /**
- 命令行播放: ffplay -ar 44100 -ac 2 -f s16le out.pcm
+ 命令播放: ffplay -ar 44100 -ac 2 -f s16le out.pcm
  */
 + (instancetype)defaultConfig {
     FSAudioConfig *config = [[self alloc] init];
