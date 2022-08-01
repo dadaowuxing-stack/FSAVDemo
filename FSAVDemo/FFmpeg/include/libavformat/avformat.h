@@ -2041,7 +2041,7 @@ const char *avformat_license(void);
 /**
  * Initialize libavformat and register all the muxers, demuxers and
  * protocols. If you do not call this function, then you can select
- * exactly which formats you want to support.
+ * exactly which formats you want to support. 注册所有编解码器
  *
  * @see av_register_input_format()
  * @see av_register_output_format()

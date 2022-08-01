@@ -3480,17 +3480,20 @@ struct AVSubtitle;
  */
 typedef struct AVCodec {
     /**
-     * Name of the codec implementation.
+     * Name of the codec implementation. 编解码器名字, 比较短
      * The name is globally unique among encoders and among decoders (but an
      * encoder and a decoder can share the same name).
      * This is the primary way to find a codec from the user perspective.
      */
     const char *name;
     /**
-     * Descriptive name for the codec, meant to be more human readable than name.
+     * Descriptive name for the codec, meant to be more human readable than name. 编解码器名字, 全称, 比较长
      * You should use the NULL_IF_CONFIG_SMALL() macro to define it.
      */
     const char *long_name;
+    /**
+     * 类型，是视频，音频，还是字幕...
+     */
     enum AVMediaType type;
     enum AVCodecID id;
     /**
@@ -3498,11 +3501,11 @@ typedef struct AVCodec {
      * see AV_CODEC_CAP_*
      */
     int capabilities;
-    const AVRational *supported_framerates; ///< array of supported framerates, or NULL if any, array is terminated by {0,0}
-    const enum AVPixelFormat *pix_fmts;     ///< array of supported pixel formats, or NULL if unknown, array is terminated by -1
-    const int *supported_samplerates;       ///< array of supported audio samplerates, or NULL if unknown, array is terminated by 0
-    const enum AVSampleFormat *sample_fmts; ///< array of supported sample formats, or NULL if unknown, array is terminated by -1
-    const uint64_t *channel_layouts;         ///< array of support channel layouts, or NULL if unknown. array is terminated by 0
+    const AVRational *supported_framerates; ///< array of supported framerates, or NULL if any, array is terminated by {0,0}    支持的帧率（仅视频）
+    const enum AVPixelFormat *pix_fmts;     ///< array of supported pixel formats, or NULL if unknown, array is terminated by -1    支持的像素格式（仅视频）
+    const int *supported_samplerates;       ///< array of supported audio samplerates, or NULL if unknown, array is terminated by 0     支持的采样率（仅音频）
+    const enum AVSampleFormat *sample_fmts; ///< array of supported sample formats, or NULL if unknown, array is terminated by -1   支持的采样格式（仅音频）
+    const uint64_t *channel_layouts;         ///< array of support channel layouts, or NULL if unknown. array is terminated by 0    支持的声道数（仅音频）
     uint8_t max_lowres;                     ///< maximum value for lowres supported by the decoder
     const AVClass *priv_class;              ///< AVClass for the private context
     const AVProfile *profiles;              ///< array of recognized profiles, or NULL if unknown, array is terminated by {FF_PROFILE_UNKNOWN}
@@ -3520,7 +3523,7 @@ typedef struct AVCodec {
     const char *wrapper_name;
 
     /*****************************************************************
-     * No fields below this line are part of the public API. They
+     * No fields below this line are part of the public API. They   私有数据的大小
      * may not be used outside of libavcodec and can be changed and
      * removed at will.
      * New public fields should be added right above.
