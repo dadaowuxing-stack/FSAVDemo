@@ -31,7 +31,6 @@
 		B36FFE1928951BFE005D0164 /* FSAudioRender.m in Sources */ = {isa = PBXBuildFile; fileRef = B36FFDD328951BFE005D0164 /* FSAudioRender.m */; };
 		B36FFE1A28951BFE005D0164 /* FSMP4Demuxer.m in Sources */ = {isa = PBXBuildFile; fileRef = B36FFDD728951BFE005D0164 /* FSMP4Demuxer.m */; };
 		B36FFE1B28951BFE005D0164 /* FSDemuxerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = B36FFDD828951BFE005D0164 /* FSDemuxerConfig.m */; };
-		B36FFE1C28951BFE005D0164 /* 封装相关对象和函数介绍.md in Resources */ = {isa = PBXBuildFile; fileRef = B36FFDDE28951BFE005D0164 /* 封装相关对象和函数介绍.md */; };
 		B36FFE1D28951BFE005D0164 /* FSMuxerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = B36FFDDF28951BFE005D0164 /* FSMuxerConfig.m */; };
 		B36FFE1E28951BFE005D0164 /* FSMP4Muxer.m in Sources */ = {isa = PBXBuildFile; fileRef = B36FFDE028951BFE005D0164 /* FSMP4Muxer.m */; };
 		B36FFE1F28951BFE005D0164 /* FSAudioCaptureVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B36FFDE328951BFE005D0164 /* FSAudioCaptureVC.m */; };
@@ -116,7 +115,6 @@
 		B36FFDDA28951BFE005D0164 /* FSDemuxerConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSDemuxerConfig.h; sourceTree = "<group>"; };
 		B36FFDDC28951BFE005D0164 /* FSMuxerConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSMuxerConfig.h; sourceTree = "<group>"; };
 		B36FFDDD28951BFE005D0164 /* FSMP4Muxer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSMP4Muxer.h; sourceTree = "<group>"; };
-		B36FFDDE28951BFE005D0164 /* 封装相关对象和函数介绍.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "封装相关对象和函数介绍.md"; sourceTree = "<group>"; };
 		B36FFDDF28951BFE005D0164 /* FSMuxerConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSMuxerConfig.m; sourceTree = "<group>"; };
 		B36FFDE028951BFE005D0164 /* FSMP4Muxer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSMP4Muxer.m; sourceTree = "<group>"; };
 		B36FFDE328951BFE005D0164 /* FSAudioCaptureVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSAudioCaptureVC.m; sourceTree = "<group>"; };
@@ -456,7 +454,6 @@
 				B36FFDE028951BFE005D0164 /* FSMP4Muxer.m */,
 				B36FFDDC28951BFE005D0164 /* FSMuxerConfig.h */,
 				B36FFDDF28951BFE005D0164 /* FSMuxerConfig.m */,
-				B36FFDDE28951BFE005D0164 /* 封装相关对象和函数介绍.md */,
 			);
 			path = Muxer;
 			sourceTree = "<group>";
@@ -795,6 +792,7 @@
 		B36FFEB628951E89005D0164 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				B36FFECE2897553C005D0164 /* cppcode */,
 				B36FFEB728951E89005D0164 /* common */,
 			);
 			path = src;
@@ -831,6 +829,13 @@
 				B36FFECC28967E37005D0164 /* FSFileManager.m */,
 			);
 			path = FSUtil;
+			sourceTree = "<group>";
+		};
+		B36FFECE2897553C005D0164 /* cppcode */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = cppcode;
 			sourceTree = "<group>";
 		};
 		E10ECA1E5B0513F218284CF0 /* Frameworks */ = {
@@ -901,7 +906,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B36FFEC528967D0E005D0164 /* 44100_s16le_2.aac in Resources */,
-				B36FFE1C28951BFE005D0164 /* 封装相关对象和函数介绍.md in Resources */,
 				B36FFEC628967D0E005D0164 /* input_1280x720.mp4 in Resources */,
 				B36FFEC828967D0E005D0164 /* 44100_s16le_2.pcm in Resources */,
 				B36FFEC928967D0E005D0164 /* in.pcm in Resources */,
