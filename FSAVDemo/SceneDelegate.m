@@ -6,8 +6,7 @@
 //
 
 #import "SceneDelegate.h"
-#include "FSViewController.h"
-#import "FSNavigationController.h"
+#import "FSAVDemo-Swift.h"
 
 @interface SceneDelegate ()
 
@@ -23,7 +22,7 @@
     UIWindowScene *windowScene = (UIWindowScene *)scene;
     self.window = [[UIWindow alloc] initWithWindowScene:windowScene];
     self.window.frame = windowScene.coordinateSpace.bounds;
-    FSViewController *vc = [[FSViewController alloc] init];
+    FSAVDemoVC *vc = [[FSAVDemoVC alloc] init];
     FSNavigationController *nav = [[FSNavigationController alloc] initWithRootViewController:vc];
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];

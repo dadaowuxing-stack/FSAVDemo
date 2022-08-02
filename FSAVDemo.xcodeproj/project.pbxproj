@@ -10,12 +10,19 @@
 		2AB4F7F5E019AE83C6CB7D41 /* Pods_FSAVDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E14148EDECE7C824EACC7D64 /* Pods_FSAVDemo.framework */; };
 		B21489AE2840BE4600446FD4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B21489AD2840BE4600446FD4 /* AppDelegate.m */; };
 		B21489B12840BE4600446FD4 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B21489B02840BE4600446FD4 /* SceneDelegate.m */; };
-		B21489B42840BE4600446FD4 /* FSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B21489B32840BE4600446FD4 /* FSViewController.m */; };
 		B21489B72840BE4600446FD4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B21489B52840BE4600446FD4 /* Main.storyboard */; };
 		B21489B92840BE4700446FD4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B21489B82840BE4700446FD4 /* Assets.xcassets */; };
 		B21489BC2840BE4700446FD4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B21489BA2840BE4700446FD4 /* LaunchScreen.storyboard */; };
 		B21489BF2840BE4700446FD4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B21489BE2840BE4700446FD4 /* main.m */; };
-		B21489EC2840D2E400446FD4 /* FSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B21489EB2840D2E400446FD4 /* FSNavigationController.m */; };
+		B30CC8B52898AACD00328473 /* audio_record.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B30CC8B32898AACD00328473 /* audio_record.cpp */; };
+		B30CC8B82898B25500328473 /* audio_encode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B30CC8B62898B25500328473 /* audio_encode.cpp */; };
+		B30CC8D62898D2F000328473 /* FSAVFoundationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30CC8CC2898D2F000328473 /* FSAVFoundationVC.swift */; };
+		B30CC8D72898D2F000328473 /* FSAVDemoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30CC8CD2898D2F000328473 /* FSAVDemoVC.swift */; };
+		B30CC8D82898D2F000328473 /* FSAVBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30CC8CE2898D2F000328473 /* FSAVBaseVC.swift */; };
+		B30CC8D92898D2F000328473 /* FSFFmpegVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30CC8CF2898D2F000328473 /* FSFFmpegVC.swift */; };
+		B30CC8DA2898D2F000328473 /* FSNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30CC8D12898D2F000328473 /* FSNavigationController.swift */; };
+		B30CC8DB2898D2F000328473 /* FSSectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30CC8D32898D2F000328473 /* FSSectionItem.swift */; };
+		B30CC8DC2898D2F000328473 /* FSItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30CC8D42898D2F000328473 /* FSItem.swift */; };
 		B36FFE0D28951BFE005D0164 /* FSAudioConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = B36FFDBB28951BFE005D0164 /* FSAudioConfig.m */; };
 		B36FFE0E28951BFE005D0164 /* FSVideoCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = B36FFDBC28951BFE005D0164 /* FSVideoCapture.m */; };
 		B36FFE0F28951BFE005D0164 /* FSVideoCaptureConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = B36FFDBD28951BFE005D0164 /* FSVideoCaptureConfig.m */; };
@@ -73,16 +80,25 @@
 		B21489AD2840BE4600446FD4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B21489AF2840BE4600446FD4 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
 		B21489B02840BE4600446FD4 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
-		B21489B22840BE4600446FD4 /* FSViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSViewController.h; sourceTree = "<group>"; };
-		B21489B32840BE4600446FD4 /* FSViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSViewController.m; sourceTree = "<group>"; };
 		B21489B62840BE4600446FD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B21489B82840BE4700446FD4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B21489BB2840BE4700446FD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B21489BD2840BE4700446FD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B21489BE2840BE4700446FD4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		B21489EA2840D2E400446FD4 /* FSNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSNavigationController.h; sourceTree = "<group>"; };
-		B21489EB2840D2E400446FD4 /* FSNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSNavigationController.m; sourceTree = "<group>"; };
 		B2C775142859672300481615 /* FSMediaBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMediaBase.h; sourceTree = "<group>"; };
+		B30CC8B32898AACD00328473 /* audio_record.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = audio_record.cpp; sourceTree = "<group>"; };
+		B30CC8B42898AACD00328473 /* audio_record.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = audio_record.hpp; sourceTree = "<group>"; };
+		B30CC8B62898B25500328473 /* audio_encode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = audio_encode.cpp; sourceTree = "<group>"; };
+		B30CC8B72898B25500328473 /* audio_encode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = audio_encode.hpp; sourceTree = "<group>"; };
+		B30CC8B92898B34600328473 /* FSAVDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FSAVDemo-Bridging-Header.h"; sourceTree = "<group>"; };
+		B30CC8BE2898BF3300328473 /* FSDebug-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FSDebug-Bridging-Header.h"; sourceTree = "<group>"; };
+		B30CC8CC2898D2F000328473 /* FSAVFoundationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSAVFoundationVC.swift; sourceTree = "<group>"; };
+		B30CC8CD2898D2F000328473 /* FSAVDemoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSAVDemoVC.swift; sourceTree = "<group>"; };
+		B30CC8CE2898D2F000328473 /* FSAVBaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSAVBaseVC.swift; sourceTree = "<group>"; };
+		B30CC8CF2898D2F000328473 /* FSFFmpegVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSFFmpegVC.swift; sourceTree = "<group>"; };
+		B30CC8D12898D2F000328473 /* FSNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSNavigationController.swift; sourceTree = "<group>"; };
+		B30CC8D32898D2F000328473 /* FSSectionItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSSectionItem.swift; sourceTree = "<group>"; };
+		B30CC8D42898D2F000328473 /* FSItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSItem.swift; sourceTree = "<group>"; };
 		B36FFDB928951BFE005D0164 /* FSVideoCaptureConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSVideoCaptureConfig.h; sourceTree = "<group>"; };
 		B36FFDBA28951BFE005D0164 /* FSAudioCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSAudioCapture.h; sourceTree = "<group>"; };
 		B36FFDBB28951BFE005D0164 /* FSAudioConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSAudioConfig.m; sourceTree = "<group>"; };
@@ -340,19 +356,20 @@
 				B36FFE2E28951D0B005D0164 /* FFmpeg */,
 				B36FFDB728951BFE005D0164 /* AVFoundation */,
 				B2C77513285966F700481615 /* Base */,
-				B21489EA2840D2E400446FD4 /* FSNavigationController.h */,
-				B21489EB2840D2E400446FD4 /* FSNavigationController.m */,
-				B21489B22840BE4600446FD4 /* FSViewController.h */,
-				B21489B32840BE4600446FD4 /* FSViewController.m */,
-				B21489BD2840BE4700446FD4 /* Info.plist */,
+				B30CC8D22898D2F000328473 /* Model */,
+				B30CC8C92898D2F000328473 /* View */,
+				B30CC8CA2898D2F000328473 /* ViewController */,
 				B21489BA2840BE4700446FD4 /* LaunchScreen.storyboard */,
 				B21489BE2840BE4700446FD4 /* main.m */,
+				B21489BD2840BE4700446FD4 /* Info.plist */,
 				B21489B52840BE4600446FD4 /* Main.storyboard */,
 				B21489B82840BE4700446FD4 /* Assets.xcassets */,
 				B21489AC2840BE4600446FD4 /* AppDelegate.h */,
 				B21489AD2840BE4600446FD4 /* AppDelegate.m */,
 				B21489AF2840BE4600446FD4 /* SceneDelegate.h */,
 				B21489B02840BE4600446FD4 /* SceneDelegate.m */,
+				B30CC8BE2898BF3300328473 /* FSDebug-Bridging-Header.h */,
+				B30CC8B92898B34600328473 /* FSAVDemo-Bridging-Header.h */,
 			);
 			path = FSAVDemo;
 			sourceTree = "<group>";
@@ -365,6 +382,34 @@
 				B3F722B5287F984E00E1CDB2 /* FSWeakProxy.m */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		B30CC8C92898D2F000328473 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B30CC8CA2898D2F000328473 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B30CC8CE2898D2F000328473 /* FSAVBaseVC.swift */,
+				B30CC8CD2898D2F000328473 /* FSAVDemoVC.swift */,
+				B30CC8CC2898D2F000328473 /* FSAVFoundationVC.swift */,
+				B30CC8CF2898D2F000328473 /* FSFFmpegVC.swift */,
+				B30CC8D12898D2F000328473 /* FSNavigationController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		B30CC8D22898D2F000328473 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B30CC8D32898D2F000328473 /* FSSectionItem.swift */,
+				B30CC8D42898D2F000328473 /* FSItem.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		B36FFDB728951BFE005D0164 /* AVFoundation */ = {
@@ -834,6 +879,10 @@
 		B36FFECE2897553C005D0164 /* cppcode */ = {
 			isa = PBXGroup;
 			children = (
+				B30CC8B32898AACD00328473 /* audio_record.cpp */,
+				B30CC8B42898AACD00328473 /* audio_record.hpp */,
+				B30CC8B62898B25500328473 /* audio_encode.cpp */,
+				B30CC8B72898B25500328473 /* audio_encode.hpp */,
 			);
 			path = cppcode;
 			sourceTree = "<group>";
@@ -879,6 +928,7 @@
 				TargetAttributes = {
 					B21489A82840BE4600446FD4 = {
 						CreatedOnToolsVersion = 13.4;
+						LastSwiftMigration = 1340;
 					};
 				};
 			};
@@ -969,12 +1019,10 @@
 				B36FFE1128951BFE005D0164 /* FSAudioEncoder.m in Sources */,
 				B36FFE2628951BFE005D0164 /* FSVideoCaptureVC.m in Sources */,
 				B36FFE1828951BFE005D0164 /* render.metal in Sources */,
-				B21489B42840BE4600446FD4 /* FSViewController.m in Sources */,
 				B36FFE0F28951BFE005D0164 /* FSVideoCaptureConfig.m in Sources */,
 				B36FFE2128951BFE005D0164 /* FSAudioEncoderVC.m in Sources */,
 				B36FFE1028951BFE005D0164 /* FSAudioCapture.m in Sources */,
 				B36FFE2B28951BFE005D0164 /* FSVideoDemuxerVC.m in Sources */,
-				B21489EC2840D2E400446FD4 /* FSNavigationController.m in Sources */,
 				B3F722B6287F984E00E1CDB2 /* FSWeakProxy.m in Sources */,
 				B36FFE2028951BFE005D0164 /* FSBaseVC.m in Sources */,
 				B36FFE0D28951BFE005D0164 /* FSAudioConfig.m in Sources */,
@@ -982,14 +1030,18 @@
 				B36FFE1A28951BFE005D0164 /* FSMP4Demuxer.m in Sources */,
 				B36FFECD28967E37005D0164 /* FSFileManager.m in Sources */,
 				B21489BF2840BE4700446FD4 /* main.m in Sources */,
+				B30CC8B52898AACD00328473 /* audio_record.cpp in Sources */,
 				B36FFE2528951BFE005D0164 /* FSAudioMuxerVC.m in Sources */,
 				B36FFE2A28951BFE005D0164 /* FSVideoRenderVC.m in Sources */,
+				B30CC8D62898D2F000328473 /* FSAVFoundationVC.swift in Sources */,
 				B36FFE1428951BFE005D0164 /* FSVideoEncoder.m in Sources */,
+				B30CC8D92898D2F000328473 /* FSFFmpegVC.swift in Sources */,
 				B36FFE1F28951BFE005D0164 /* FSAudioCaptureVC.m in Sources */,
 				B36FFEBE2895312E005D0164 /* CLog.c in Sources */,
 				B36FFE1328951BFE005D0164 /* FSAudioTools.m in Sources */,
 				B21489B12840BE4600446FD4 /* SceneDelegate.m in Sources */,
 				B36FFE1728951BFE005D0164 /* FSMetalView.m in Sources */,
+				B30CC8DC2898D2F000328473 /* FSItem.swift in Sources */,
 				B36FFE2228951BFE005D0164 /* FSAudioDecoderVC.m in Sources */,
 				B36FFE2928951BFE005D0164 /* FSVideoDecoderVC.m in Sources */,
 				B36FFE2728951BFE005D0164 /* FSVideoEncoderVC.m in Sources */,
@@ -1001,11 +1053,16 @@
 				B36FFE1528951BFE005D0164 /* FSVideoDecoder.m in Sources */,
 				B36FFE2328951BFE005D0164 /* FSAudioRenderVC.m in Sources */,
 				B36FFE1928951BFE005D0164 /* FSAudioRender.m in Sources */,
+				B30CC8B82898B25500328473 /* audio_encode.cpp in Sources */,
+				B30CC8DA2898D2F000328473 /* FSNavigationController.swift in Sources */,
 				B36FFE1228951BFE005D0164 /* FSVideoEncoderConfig.m in Sources */,
 				B36FFEBA28951EAA005D0164 /* CodecUtil.c in Sources */,
 				B36FFE2D28951BFE005D0164 /* FSAVDemuxerVC.m in Sources */,
 				B36FFE2828951BFE005D0164 /* FSVideoPacketExtraData.m in Sources */,
+				B30CC8DB2898D2F000328473 /* FSSectionItem.swift in Sources */,
+				B30CC8D72898D2F000328473 /* FSAVDemoVC.swift in Sources */,
 				B36FFE1B28951BFE005D0164 /* FSDemuxerConfig.m in Sources */,
+				B30CC8D82898D2F000328473 /* FSAVBaseVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1081,7 +1138,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1133,7 +1190,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1147,6 +1204,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = J9QNPWJA7V;
@@ -1174,6 +1232,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.fengshuo.FSAVDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "FSAVDemo/FSAVDemo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/FSAVDemo/FFmpeg/include";
 			};
@@ -1185,6 +1246,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = J9QNPWJA7V;
@@ -1212,6 +1274,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.fengshuo.FSAVDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "FSAVDemo/FSAVDemo-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/FSAVDemo/FFmpeg/include";
 			};

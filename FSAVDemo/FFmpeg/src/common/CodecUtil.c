@@ -84,3 +84,28 @@ int64_t select_channel_layout(AVCodec *codec, int64_t ch_layout) {
     
     return retch;
 }
+
+// 支持的像素格式（仅视频）
+enum AVPixelFormat select_pixel_format(AVCodec *codec, enum AVPixelFormat fmt) {
+    enum AVPixelFormat ret_pix_fmt = AV_PIX_FMT_NONE;
+    enum AVPixelFormat def_pix_fmt = AV_PIX_FMT_YUV420P;
+    
+    const enum AVPixelFormat *pix_fmts = codec->pix_fmts;
+    
+    if (!pix_fmts) {
+        return def_pix_fmt;
+    }
+    
+    while (*pix_fmts) {
+        ret_pix_fmt = *pix_fmts;
+        if (*pix_fmts == fmt) {
+            break;
+        }
+    }
+    
+    if (ret_pix_fmt != fmt && ret_pix_fmt != AV_PIX_FMT_NONE && ret_pix_fmt != def_pix_fmt) {
+        return def_pix_fmt;
+    }
+    
+    return ret_pix_fmt;
+}
