@@ -23,6 +23,9 @@
 		B30CC8DA2898D2F000328473 /* FSNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30CC8D12898D2F000328473 /* FSNavigationController.swift */; };
 		B30CC8DB2898D2F000328473 /* FSSectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30CC8D32898D2F000328473 /* FSSectionItem.swift */; };
 		B30CC8DC2898D2F000328473 /* FSItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30CC8D42898D2F000328473 /* FSItem.swift */; };
+		B3198E52289A2CA1009A3130 /* BridgeFFmpeg.mm in Sources */ = {isa = PBXBuildFile; fileRef = B3198E51289A2CA1009A3130 /* BridgeFFmpeg.mm */; };
+		B3198E54289A44C9009A3130 /* FSDropdownListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3198E53289A44C9009A3130 /* FSDropdownListView.swift */; };
+		B3198E56289A44D9009A3130 /* FSDropdownListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3198E55289A44D9009A3130 /* FSDropdownListItem.swift */; };
 		B36FFE0D28951BFE005D0164 /* FSAudioConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = B36FFDBB28951BFE005D0164 /* FSAudioConfig.m */; };
 		B36FFE0E28951BFE005D0164 /* FSVideoCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = B36FFDBC28951BFE005D0164 /* FSVideoCapture.m */; };
 		B36FFE0F28951BFE005D0164 /* FSVideoCaptureConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = B36FFDBD28951BFE005D0164 /* FSVideoCaptureConfig.m */; };
@@ -99,6 +102,10 @@
 		B30CC8D12898D2F000328473 /* FSNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSNavigationController.swift; sourceTree = "<group>"; };
 		B30CC8D32898D2F000328473 /* FSSectionItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSSectionItem.swift; sourceTree = "<group>"; };
 		B30CC8D42898D2F000328473 /* FSItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSItem.swift; sourceTree = "<group>"; };
+		B3198E50289A2CA1009A3130 /* BridgeFFmpeg.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgeFFmpeg.h; sourceTree = "<group>"; };
+		B3198E51289A2CA1009A3130 /* BridgeFFmpeg.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = BridgeFFmpeg.mm; sourceTree = "<group>"; };
+		B3198E53289A44C9009A3130 /* FSDropdownListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSDropdownListView.swift; sourceTree = "<group>"; };
+		B3198E55289A44D9009A3130 /* FSDropdownListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSDropdownListItem.swift; sourceTree = "<group>"; };
 		B36FFDB928951BFE005D0164 /* FSVideoCaptureConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSVideoCaptureConfig.h; sourceTree = "<group>"; };
 		B36FFDBA28951BFE005D0164 /* FSAudioCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSAudioCapture.h; sourceTree = "<group>"; };
 		B36FFDBB28951BFE005D0164 /* FSAudioConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSAudioConfig.m; sourceTree = "<group>"; };
@@ -368,6 +375,8 @@
 				B21489AD2840BE4600446FD4 /* AppDelegate.m */,
 				B21489AF2840BE4600446FD4 /* SceneDelegate.h */,
 				B21489B02840BE4600446FD4 /* SceneDelegate.m */,
+				B3198E50289A2CA1009A3130 /* BridgeFFmpeg.h */,
+				B3198E51289A2CA1009A3130 /* BridgeFFmpeg.mm */,
 				B30CC8BE2898BF3300328473 /* FSDebug-Bridging-Header.h */,
 				B30CC8B92898B34600328473 /* FSAVDemo-Bridging-Header.h */,
 			);
@@ -387,6 +396,7 @@
 		B30CC8C92898D2F000328473 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B3198E53289A44C9009A3130 /* FSDropdownListView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -408,6 +418,7 @@
 			children = (
 				B30CC8D32898D2F000328473 /* FSSectionItem.swift */,
 				B30CC8D42898D2F000328473 /* FSItem.swift */,
+				B3198E55289A44D9009A3130 /* FSDropdownListItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1031,10 +1042,13 @@
 				B36FFECD28967E37005D0164 /* FSFileManager.m in Sources */,
 				B21489BF2840BE4700446FD4 /* main.m in Sources */,
 				B30CC8B52898AACD00328473 /* audio_record.cpp in Sources */,
+				B3198E54289A44C9009A3130 /* FSDropdownListView.swift in Sources */,
 				B36FFE2528951BFE005D0164 /* FSAudioMuxerVC.m in Sources */,
 				B36FFE2A28951BFE005D0164 /* FSVideoRenderVC.m in Sources */,
 				B30CC8D62898D2F000328473 /* FSAVFoundationVC.swift in Sources */,
+				B3198E56289A44D9009A3130 /* FSDropdownListItem.swift in Sources */,
 				B36FFE1428951BFE005D0164 /* FSVideoEncoder.m in Sources */,
+				B3198E52289A2CA1009A3130 /* BridgeFFmpeg.mm in Sources */,
 				B30CC8D92898D2F000328473 /* FSFFmpegVC.swift in Sources */,
 				B36FFE1F28951BFE005D0164 /* FSAudioCaptureVC.m in Sources */,
 				B36FFEBE2895312E005D0164 /* CLog.c in Sources */,

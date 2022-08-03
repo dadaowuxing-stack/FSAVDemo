@@ -17,15 +17,8 @@
 #include <math.h>
 
 #ifdef __cplusplus
-
 extern "C" {
-
 #endif
-
-#ifdef __cplusplus
-
-} // extern "C"
-
 
 // 输出当前时间的字符串 格式:YYYY-MM-DD HH:MM:SS
 extern char* getTimeFormatForDebug(void);
@@ -55,8 +48,9 @@ extern void printUint8toHex(uint8_t val);
 
 // 打印二进制串
 void printHex(uint8_t* buff,int len);
-
-
+    
+#ifdef __cplusplus
+} // extern "C"
 #endif
 
 #endif /* CLog_h */
