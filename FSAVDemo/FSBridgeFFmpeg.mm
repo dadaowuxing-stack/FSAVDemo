@@ -1,16 +1,16 @@
 //
-//  BridgeFFmpeg.m
+//  FSBridgeFFmpeg.m
 //  FSAVDemo
 //
 //  Created by louis on 2022/8/3.
 //
 
-#import "BridgeFFmpeg.h"
+#import "FSBridgeFFmpeg.h"
 #include <string>
 
 #include "audio_encode.hpp"
 
-@implementation BridgeFFmpeg
+@implementation FSBridgeFFmpeg
 
 
 /// OC 字符串转 C 字符串

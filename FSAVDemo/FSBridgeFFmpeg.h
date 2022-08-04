@@ -1,5 +1,5 @@
 //
-//  BridgeFFmpeg.h
+//  FSBridgeFFmpeg.h
 //  FSAVDemo
 //
 //  Created by louis on 2022/8/3.
@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BridgeFFmpeg : NSObject
+@interface FSBridgeFFmpeg : NSObject
 
 +(void)doEncodePCM2AAC:(NSString*)src dst:(NSString*)dst;
 

@@ -8,6 +8,8 @@
 #ifndef FSDebug_Bridging_Header_h
 #define FSDebug_Bridging_Header_h
 
+#import "FSBridgeFFmpeg.h"
+#import "FSFileManager.h"
 #import "FSBaseVC.h"
 
 #endif /* FSDebug_Bridging_Header_h */

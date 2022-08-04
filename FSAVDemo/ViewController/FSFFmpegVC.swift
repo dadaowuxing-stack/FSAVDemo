@@ -25,7 +25,9 @@ class FSFFmpegVC : FSAVBaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let barItem = UIBarButtonItem(title: "开始", style: .plain, target: self, action: #selector(start))
+        let startBarItem = UIBarButtonItem(title: "开始", style: .plain, target: self, action: #selector(start))
+        let stopBarItem = UIBarButtonItem(title: "结束", style: .plain, target: self, action: #selector(stop))
+        navigationItem.rightBarButtonItems = [stopBarItem, startBarItem]
         
         var selectedItems: [FSDropdownListItem] = []
         for item in itemsForFFmpeg {
@@ -44,12 +46,48 @@ class FSFFmpegVC : FSAVBaseVC {
     }
     
     @objc func start() {
+        
+        let path = FSFileManager.documentsDirectory()
+        
         let index = listView?.selectedIndex
         switch index {
-        case 0: 
+        case 0: // 音频采集
+            
+            break
+        case 1: // 音频重采样
+            
+            break
+        case 2: // 音频编码(pcm -> aac)
+            let srcpath = Bundle.main.path(forResource: "44100_s16le_2.pcm", ofType: nil) ?? ""
+            let dstpath = path.appending("/44100_s16le_2.aac")
+            let isSuccess = FSFileManager.createFile(atPath: dstpath)
+            if (isSuccess) {
+                let queue = DispatchQueue.global()
+                queue.async {
+                    FSBridgeFFmpeg.doEncodePCM2AAC(srcpath, dst: dstpath)
+                }
+            }
+            break
+        case 3: // 音频封装
+            
+            break
+        case 4: // 音频解封装
+            
+            break
+        case 5: // 音频解码
+            
+            break
+        case 6: // pcm 播放
+            
+            break
+        case 7: // wav 播放
+            
             break
         default:
             break
         }
+    }
+    @objc func stop() {
+        
     }
 }
