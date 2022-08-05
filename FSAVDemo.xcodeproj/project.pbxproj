@@ -74,6 +74,10 @@
 		B36FFEC828967D0E005D0164 /* 44100_s16le_2.pcm in Resources */ = {isa = PBXBuildFile; fileRef = B36FFEC328967D0E005D0164 /* 44100_s16le_2.pcm */; };
 		B36FFEC928967D0E005D0164 /* in.pcm in Resources */ = {isa = PBXBuildFile; fileRef = B36FFEC428967D0E005D0164 /* in.pcm */; };
 		B36FFECD28967E37005D0164 /* FSFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B36FFECC28967E37005D0164 /* FSFileManager.m */; };
+		B3A219C5289B964600CA9FB2 /* libfdk-aac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B3A219C4289B964600CA9FB2 /* libfdk-aac.a */; };
+		B3A219D0289B9BF900CA9FB2 /* libiconv.2.4.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B3A219CF289B9BF000CA9FB2 /* libiconv.2.4.0.tbd */; };
+		B3A219D2289B9C1400CA9FB2 /* libz.1.2.5.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B3A219D1289B9C0C00CA9FB2 /* libz.1.2.5.tbd */; };
+		B3A219D4289BA08B00CA9FB2 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B3A219D3289BA08400CA9FB2 /* libbz2.tbd */; };
 		B3F722B6287F984E00E1CDB2 /* FSWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = B3F722B5287F984E00E1CDB2 /* FSWeakProxy.m */; };
 /* End PBXBuildFile section */
 
@@ -301,6 +305,11 @@
 		B36FFEC428967D0E005D0164 /* in.pcm */ = {isa = PBXFileReference; lastKnownFileType = file; path = in.pcm; sourceTree = "<group>"; };
 		B36FFECB28967E37005D0164 /* FSFileManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSFileManager.h; sourceTree = "<group>"; };
 		B36FFECC28967E37005D0164 /* FSFileManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSFileManager.m; sourceTree = "<group>"; };
+		B3A219C4289B964600CA9FB2 /* libfdk-aac.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libfdk-aac.a"; sourceTree = "<group>"; };
+		B3A219CD289B9A5100CA9FB2 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		B3A219CF289B9BF000CA9FB2 /* libiconv.2.4.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.2.4.0.tbd; path = usr/lib/libiconv.2.4.0.tbd; sourceTree = SDKROOT; };
+		B3A219D1289B9C0C00CA9FB2 /* libz.1.2.5.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.5.tbd; path = usr/lib/libz.1.2.5.tbd; sourceTree = SDKROOT; };
+		B3A219D3289BA08400CA9FB2 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
 		B3F722B4287F984E00E1CDB2 /* FSWeakProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSWeakProxy.h; sourceTree = "<group>"; };
 		B3F722B5287F984E00E1CDB2 /* FSWeakProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSWeakProxy.m; sourceTree = "<group>"; };
 		B43B142B74CD778284E7FC94 /* Pods-FSAVDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FSAVDemo.debug.xcconfig"; path = "Target Support Files/Pods-FSAVDemo/Pods-FSAVDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -314,12 +323,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				B36FFEAF28951D0C005D0164 /* libavfilter.a in Frameworks */,
+				B3A219D4289BA08B00CA9FB2 /* libbz2.tbd in Frameworks */,
 				B36FFEAE28951D0C005D0164 /* libavutil.a in Frameworks */,
 				B36FFEB528951D0C005D0164 /* libx264.a in Frameworks */,
 				2AB4F7F5E019AE83C6CB7D41 /* Pods_FSAVDemo.framework in Frameworks */,
 				B36FFEB228951D0C005D0164 /* libmp3lame.a in Frameworks */,
 				B36FFEB428951D0C005D0164 /* libswscale.a in Frameworks */,
+				B3A219D2289B9C1400CA9FB2 /* libz.1.2.5.tbd in Frameworks */,
 				B36FFEB128951D0C005D0164 /* libavformat.a in Frameworks */,
+				B3A219D0289B9BF900CA9FB2 /* libiconv.2.4.0.tbd in Frameworks */,
+				B3A219C5289B964600CA9FB2 /* libfdk-aac.a in Frameworks */,
 				B36FFEB328951D0C005D0164 /* libswresample.a in Frameworks */,
 				B36FFEB028951D0C005D0164 /* libavcodec.a in Frameworks */,
 			);
@@ -833,6 +846,7 @@
 		B36FFEA528951D0C005D0164 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				B3A219C4289B964600CA9FB2 /* libfdk-aac.a */,
 				B36FFEA628951D0C005D0164 /* libavutil.a */,
 				B36FFEA728951D0C005D0164 /* libavfilter.a */,
 				B36FFEA828951D0C005D0164 /* libavcodec.a */,
@@ -901,6 +915,10 @@
 		E10ECA1E5B0513F218284CF0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B3A219D3289BA08400CA9FB2 /* libbz2.tbd */,
+				B3A219D1289B9C0C00CA9FB2 /* libz.1.2.5.tbd */,
+				B3A219CF289B9BF000CA9FB2 /* libiconv.2.4.0.tbd */,
+				B3A219CD289B9A5100CA9FB2 /* libiconv.tbd */,
 				E14148EDECE7C824EACC7D64 /* Pods_FSAVDemo.framework */,
 			);
 			name = Frameworks;

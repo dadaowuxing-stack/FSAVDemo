@@ -30,7 +30,11 @@ std::string jstring2string(NSString *jsStr) {
     string dstpath = jstring2string(dst);
 
     AudioEncode aEncode(srcpath, dstpath);
-    aEncode.doEncode(CodecFormatAAC, false);
+    AudioEncodeSpec in_spec;
+    in_spec.sample_fmt = AV_SAMPLE_FMT_S16;
+    in_spec.sample_rate = 44100;
+    in_spec.channel_layout = AV_CH_LAYOUT_STEREO;
+    aEncode.doEncode(in_spec, CodecFormatAAC, true);
 }
 
 @end

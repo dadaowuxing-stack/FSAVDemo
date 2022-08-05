@@ -151,6 +151,6 @@ void printHex(uint8_t* buff,int len){
             sprintf(&str[i * 2], "%02X", (unsigned char) buff[i]);
         }
     }
-
+    
     LOGD("\n%s",str);
 }
