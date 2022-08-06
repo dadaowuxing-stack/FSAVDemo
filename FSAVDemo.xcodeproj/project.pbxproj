@@ -82,6 +82,9 @@
 		B3AB2333289E4589000C05A1 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3AB2332289E4589000C05A1 /* VideoToolbox.framework */; };
 		B3AB2335289E4594000C05A1 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3AB2334289E4594000C05A1 /* AudioToolbox.framework */; };
 		B3AB2337289E45B9000C05A1 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3AB2336289E45B9000C05A1 /* CoreMedia.framework */; };
+		B3AB233A289E5189000C05A1 /* audio_resample.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3AB2338289E5189000C05A1 /* audio_resample.cpp */; };
+		B3AB233D289E51D9000C05A1 /* play_pcm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3AB233B289E51D9000C05A1 /* play_pcm.cpp */; };
+		B3AB2340289E51FD000C05A1 /* play_wav.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3AB233E289E51FD000C05A1 /* play_wav.cpp */; };
 		B3BFAAA9289D151B003B5D85 /* audio_muxer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3BFAAA7289D151B003B5D85 /* audio_muxer.cpp */; };
 		B3BFAAAC289D153F003B5D85 /* audio_demuxer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3BFAAAA289D153F003B5D85 /* audio_demuxer.cpp */; };
 		B3F722B6287F984E00E1CDB2 /* FSWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = B3F722B5287F984E00E1CDB2 /* FSWeakProxy.m */; };
@@ -322,6 +325,12 @@
 		B3AB2332289E4589000C05A1 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		B3AB2334289E4594000C05A1 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		B3AB2336289E45B9000C05A1 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		B3AB2338289E5189000C05A1 /* audio_resample.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = audio_resample.cpp; sourceTree = "<group>"; };
+		B3AB2339289E5189000C05A1 /* audio_resample.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = audio_resample.hpp; sourceTree = "<group>"; };
+		B3AB233B289E51D9000C05A1 /* play_pcm.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = play_pcm.cpp; sourceTree = "<group>"; };
+		B3AB233C289E51D9000C05A1 /* play_pcm.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = play_pcm.hpp; sourceTree = "<group>"; };
+		B3AB233E289E51FD000C05A1 /* play_wav.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = play_wav.cpp; sourceTree = "<group>"; };
+		B3AB233F289E51FD000C05A1 /* play_wav.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = play_wav.hpp; sourceTree = "<group>"; };
 		B3BFAAA7289D151B003B5D85 /* audio_muxer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = audio_muxer.cpp; sourceTree = "<group>"; };
 		B3BFAAA8289D151B003B5D85 /* audio_muxer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = audio_muxer.hpp; sourceTree = "<group>"; };
 		B3BFAAAA289D153F003B5D85 /* audio_demuxer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = audio_demuxer.cpp; sourceTree = "<group>"; };
@@ -930,10 +939,16 @@
 				B30CC8B42898AACD00328473 /* audio_record.hpp */,
 				B30CC8B62898B25500328473 /* audio_encode.cpp */,
 				B30CC8B72898B25500328473 /* audio_encode.hpp */,
+				B3AB2338289E5189000C05A1 /* audio_resample.cpp */,
+				B3AB2339289E5189000C05A1 /* audio_resample.hpp */,
 				B3BFAAA7289D151B003B5D85 /* audio_muxer.cpp */,
 				B3BFAAA8289D151B003B5D85 /* audio_muxer.hpp */,
 				B3BFAAAA289D153F003B5D85 /* audio_demuxer.cpp */,
 				B3BFAAAB289D153F003B5D85 /* audio_demuxer.hpp */,
+				B3AB233B289E51D9000C05A1 /* play_pcm.cpp */,
+				B3AB233C289E51D9000C05A1 /* play_pcm.hpp */,
+				B3AB233E289E51FD000C05A1 /* play_wav.cpp */,
+				B3AB233F289E51FD000C05A1 /* play_wav.hpp */,
 			);
 			path = cppcode;
 			sourceTree = "<group>";
@@ -1103,6 +1118,7 @@
 				B36FFE2528951BFE005D0164 /* FSAudioMuxerVC.m in Sources */,
 				B36FFE2A28951BFE005D0164 /* FSVideoRenderVC.m in Sources */,
 				B30CC8D62898D2F000328473 /* FSAVFoundationVC.swift in Sources */,
+				B3AB233D289E51D9000C05A1 /* play_pcm.cpp in Sources */,
 				B3198E56289A44D9009A3130 /* FSDropdownListItem.swift in Sources */,
 				B36FFE1428951BFE005D0164 /* FSVideoEncoder.m in Sources */,
 				B3198E52289A2CA1009A3130 /* FSBridgeFFmpeg.mm in Sources */,
@@ -1123,11 +1139,13 @@
 				B36FFE0E28951BFE005D0164 /* FSVideoCapture.m in Sources */,
 				B36FFE1528951BFE005D0164 /* FSVideoDecoder.m in Sources */,
 				B36FFE2328951BFE005D0164 /* FSAudioRenderVC.m in Sources */,
+				B3AB233A289E5189000C05A1 /* audio_resample.cpp in Sources */,
 				B36FFE1928951BFE005D0164 /* FSAudioRender.m in Sources */,
 				B30CC8B82898B25500328473 /* audio_encode.cpp in Sources */,
 				B3BFAAA9289D151B003B5D85 /* audio_muxer.cpp in Sources */,
 				B30CC8DA2898D2F000328473 /* FSNavigationController.swift in Sources */,
 				B36FFE1228951BFE005D0164 /* FSVideoEncoderConfig.m in Sources */,
+				B3AB2340289E51FD000C05A1 /* play_wav.cpp in Sources */,
 				B36FFEBA28951EAA005D0164 /* CodecUtil.c in Sources */,
 				B36FFE2D28951BFE005D0164 /* FSAVDemuxerVC.m in Sources */,
 				B36FFE2828951BFE005D0164 /* FSVideoPacketExtraData.m in Sources */,
