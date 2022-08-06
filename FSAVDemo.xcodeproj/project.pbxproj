@@ -78,6 +78,12 @@
 		B3A219D0289B9BF900CA9FB2 /* libiconv.2.4.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B3A219CF289B9BF000CA9FB2 /* libiconv.2.4.0.tbd */; };
 		B3A219D2289B9C1400CA9FB2 /* libz.1.2.5.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B3A219D1289B9C0C00CA9FB2 /* libz.1.2.5.tbd */; };
 		B3A219D4289BA08B00CA9FB2 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B3A219D3289BA08400CA9FB2 /* libbz2.tbd */; };
+		B3AB2331289E2E47000C05A1 /* libavdevice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B3AB2330289E2E47000C05A1 /* libavdevice.a */; };
+		B3AB2333289E4589000C05A1 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3AB2332289E4589000C05A1 /* VideoToolbox.framework */; };
+		B3AB2335289E4594000C05A1 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3AB2334289E4594000C05A1 /* AudioToolbox.framework */; };
+		B3AB2337289E45B9000C05A1 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3AB2336289E45B9000C05A1 /* CoreMedia.framework */; };
+		B3BFAAA9289D151B003B5D85 /* audio_muxer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3BFAAA7289D151B003B5D85 /* audio_muxer.cpp */; };
+		B3BFAAAC289D153F003B5D85 /* audio_demuxer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3BFAAAA289D153F003B5D85 /* audio_demuxer.cpp */; };
 		B3F722B6287F984E00E1CDB2 /* FSWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = B3F722B5287F984E00E1CDB2 /* FSWeakProxy.m */; };
 /* End PBXBuildFile section */
 
@@ -310,6 +316,16 @@
 		B3A219CF289B9BF000CA9FB2 /* libiconv.2.4.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.2.4.0.tbd; path = usr/lib/libiconv.2.4.0.tbd; sourceTree = SDKROOT; };
 		B3A219D1289B9C0C00CA9FB2 /* libz.1.2.5.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.5.tbd; path = usr/lib/libz.1.2.5.tbd; sourceTree = SDKROOT; };
 		B3A219D3289BA08400CA9FB2 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
+		B3AB232E289E2E2D000C05A1 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
+		B3AB232F289E2E2D000C05A1 /* avdevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = avdevice.h; sourceTree = "<group>"; };
+		B3AB2330289E2E47000C05A1 /* libavdevice.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libavdevice.a; sourceTree = "<group>"; };
+		B3AB2332289E4589000C05A1 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
+		B3AB2334289E4594000C05A1 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		B3AB2336289E45B9000C05A1 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		B3BFAAA7289D151B003B5D85 /* audio_muxer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = audio_muxer.cpp; sourceTree = "<group>"; };
+		B3BFAAA8289D151B003B5D85 /* audio_muxer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = audio_muxer.hpp; sourceTree = "<group>"; };
+		B3BFAAAA289D153F003B5D85 /* audio_demuxer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = audio_demuxer.cpp; sourceTree = "<group>"; };
+		B3BFAAAB289D153F003B5D85 /* audio_demuxer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = audio_demuxer.hpp; sourceTree = "<group>"; };
 		B3F722B4287F984E00E1CDB2 /* FSWeakProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSWeakProxy.h; sourceTree = "<group>"; };
 		B3F722B5287F984E00E1CDB2 /* FSWeakProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSWeakProxy.m; sourceTree = "<group>"; };
 		B43B142B74CD778284E7FC94 /* Pods-FSAVDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FSAVDemo.debug.xcconfig"; path = "Target Support Files/Pods-FSAVDemo/Pods-FSAVDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -322,7 +338,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3AB2331289E2E47000C05A1 /* libavdevice.a in Frameworks */,
 				B36FFEAF28951D0C005D0164 /* libavfilter.a in Frameworks */,
+				B3AB2333289E4589000C05A1 /* VideoToolbox.framework in Frameworks */,
+				B3AB2337289E45B9000C05A1 /* CoreMedia.framework in Frameworks */,
 				B3A219D4289BA08B00CA9FB2 /* libbz2.tbd in Frameworks */,
 				B36FFEAE28951D0C005D0164 /* libavutil.a in Frameworks */,
 				B36FFEB528951D0C005D0164 /* libx264.a in Frameworks */,
@@ -331,6 +350,7 @@
 				B36FFEB428951D0C005D0164 /* libswscale.a in Frameworks */,
 				B3A219D2289B9C1400CA9FB2 /* libz.1.2.5.tbd in Frameworks */,
 				B36FFEB128951D0C005D0164 /* libavformat.a in Frameworks */,
+				B3AB2335289E4594000C05A1 /* AudioToolbox.framework in Frameworks */,
 				B3A219D0289B9BF900CA9FB2 /* libiconv.2.4.0.tbd in Frameworks */,
 				B3A219C5289B964600CA9FB2 /* libfdk-aac.a in Frameworks */,
 				B36FFEB328951D0C005D0164 /* libswresample.a in Frameworks */,
@@ -680,6 +700,7 @@
 		B36FFE2F28951D0B005D0164 /* include */ = {
 			isa = PBXGroup;
 			children = (
+				B3AB232D289E2E2D000C05A1 /* libavdevice */,
 				B36FFE3028951D0B005D0164 /* libavfilter */,
 				B36FFE3528951D0B005D0164 /* libavutil */,
 				B36FFE8828951D0B005D0164 /* libavformat */,
@@ -846,6 +867,7 @@
 		B36FFEA528951D0C005D0164 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				B3AB2330289E2E47000C05A1 /* libavdevice.a */,
 				B3A219C4289B964600CA9FB2 /* libfdk-aac.a */,
 				B36FFEA628951D0C005D0164 /* libavutil.a */,
 				B36FFEA728951D0C005D0164 /* libavfilter.a */,
@@ -908,13 +930,29 @@
 				B30CC8B42898AACD00328473 /* audio_record.hpp */,
 				B30CC8B62898B25500328473 /* audio_encode.cpp */,
 				B30CC8B72898B25500328473 /* audio_encode.hpp */,
+				B3BFAAA7289D151B003B5D85 /* audio_muxer.cpp */,
+				B3BFAAA8289D151B003B5D85 /* audio_muxer.hpp */,
+				B3BFAAAA289D153F003B5D85 /* audio_demuxer.cpp */,
+				B3BFAAAB289D153F003B5D85 /* audio_demuxer.hpp */,
 			);
 			path = cppcode;
+			sourceTree = "<group>";
+		};
+		B3AB232D289E2E2D000C05A1 /* libavdevice */ = {
+			isa = PBXGroup;
+			children = (
+				B3AB232E289E2E2D000C05A1 /* version.h */,
+				B3AB232F289E2E2D000C05A1 /* avdevice.h */,
+			);
+			path = libavdevice;
 			sourceTree = "<group>";
 		};
 		E10ECA1E5B0513F218284CF0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B3AB2336289E45B9000C05A1 /* CoreMedia.framework */,
+				B3AB2334289E4594000C05A1 /* AudioToolbox.framework */,
+				B3AB2332289E4589000C05A1 /* VideoToolbox.framework */,
 				B3A219D3289BA08400CA9FB2 /* libbz2.tbd */,
 				B3A219D1289B9C0C00CA9FB2 /* libz.1.2.5.tbd */,
 				B3A219CF289B9BF000CA9FB2 /* libiconv.2.4.0.tbd */,
@@ -1053,6 +1091,7 @@
 				B36FFE1028951BFE005D0164 /* FSAudioCapture.m in Sources */,
 				B36FFE2B28951BFE005D0164 /* FSVideoDemuxerVC.m in Sources */,
 				B3F722B6287F984E00E1CDB2 /* FSWeakProxy.m in Sources */,
+				B3BFAAAC289D153F003B5D85 /* audio_demuxer.cpp in Sources */,
 				B36FFE2028951BFE005D0164 /* FSBaseVC.m in Sources */,
 				B36FFE0D28951BFE005D0164 /* FSAudioConfig.m in Sources */,
 				B21489AE2840BE4600446FD4 /* AppDelegate.m in Sources */,
@@ -1086,6 +1125,7 @@
 				B36FFE2328951BFE005D0164 /* FSAudioRenderVC.m in Sources */,
 				B36FFE1928951BFE005D0164 /* FSAudioRender.m in Sources */,
 				B30CC8B82898B25500328473 /* audio_encode.cpp in Sources */,
+				B3BFAAA9289D151B003B5D85 /* audio_muxer.cpp in Sources */,
 				B30CC8DA2898D2F000328473 /* FSNavigationController.swift in Sources */,
 				B36FFE1228951BFE005D0164 /* FSVideoEncoderConfig.m in Sources */,
 				B36FFEBA28951EAA005D0164 /* CodecUtil.c in Sources */,

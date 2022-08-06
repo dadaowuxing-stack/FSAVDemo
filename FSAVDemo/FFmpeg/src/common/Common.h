@@ -8,7 +8,15 @@
 #ifndef Common_h
 #define Common_h
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "CLog.h"
 #include "CodecUtil.h"
+
+#ifdef __cplusplus
+} // extern "C"
+#endif
 
 #endif /* Common_h */

@@ -11,7 +11,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FSBridgeFFmpeg : NSObject
 
-+(void)doEncodePCM2AAC:(NSString*)src dst:(NSString*)dst;
+/// 测试FFmpeg库是否可用
++ (void)testLib;
+
++ (void)doAudioCapture:(NSString *)path;
+
+/// pcm 转 aac
+/// @param src 输入文件路径
+/// @param dst 输出文件路径
++(void)doEncodePCM2AAC:(NSString *)src dst:(NSString *)dst;
 
 @end
 

@@ -52,7 +52,14 @@ class FSFFmpegVC : FSAVBaseVC {
         let index = listView?.selectedIndex
         switch index {
         case 0: // 音频采集
-            
+            let file_path = path.appending("/record_out.pcm")
+            let isSuccess = FSFileManager.createFile(atPath: file_path)
+            if (isSuccess) {
+                let queue = DispatchQueue.global()
+                queue.async {
+                    FSBridgeFFmpeg.doAudioCapture(file_path)
+                }
+            }
             break
         case 1: // 音频重采样
             
@@ -88,6 +95,35 @@ class FSFFmpegVC : FSAVBaseVC {
         }
     }
     @objc func stop() {
-        
+        FSBridgeFFmpeg.testLib();
+        let index = listView?.selectedIndex
+        switch index {
+        case 0: // 音频采集
+            
+            break
+        case 1: // 音频重采样
+            
+            break
+        case 2: // 音频编码(pcm -> aac)
+
+            break
+        case 3: // 音频封装
+            
+            break
+        case 4: // 音频解封装
+            
+            break
+        case 5: // 音频解码
+            
+            break
+        case 6: // pcm 播放
+            
+            break
+        case 7: // wav 播放
+            
+            break
+        default:
+            break
+        }
     }
 }
