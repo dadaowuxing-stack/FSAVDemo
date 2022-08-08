@@ -98,14 +98,15 @@ std::string jstring2string(NSString *jsStr) {
 
 + (void)doAudioCapture:(NSString *)path {
     
+    string fmt_name = "avfoundation";
+    string device_name = ":0";
     string file_path = jstring2string(path);
-    
-    AudioRecordSpec spec;
-    spec.fmt_name = "avfoundation";
-    spec.device_name = ":0";
-    spec.file_path = file_path;
-    AudioRecord aRecord(spec);
-    aRecord.doStartRecord();
+    AudioRecord *audioRecord = AudioRecord::GetInstance();
+    if (audioRecord->isRecording) {
+        audioRecord->doStopRecord();
+    } else {
+        audioRecord->doStartRecord(fmt_name, device_name, file_path);
+    }
 }
 
 /// PCM 转 AAC

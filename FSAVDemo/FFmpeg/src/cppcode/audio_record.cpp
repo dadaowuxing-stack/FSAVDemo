@@ -34,28 +34,52 @@ void showSpec(AVFormatContext *ctx) {
     LOGD("每一个样本的一个声道占用多少个字节 av_get_bytes_per_sample((AVSampleFormat) params->format): %d", av_get_bytes_per_sample((AVSampleFormat) params->format));
 }
 
-AudioRecord::AudioRecord(AudioRecordSpec &spec):m_spec(spec) {
-    isRecording = false;
+AudioRecord *AudioRecord::m_SingleInstance = nullptr;
+std::mutex AudioRecord::m_Mutex;
+
+AudioRecord *&AudioRecord::GetInstance() {
+    
+    if (m_SingleInstance == nullptr) {
+        std::unique_lock<std::mutex> lock(m_Mutex); // 加锁
+        if (m_SingleInstance == nullptr) {
+            m_SingleInstance = new (std::nothrow) AudioRecord;
+        }
+    }
+    
+    return m_SingleInstance;
+}
+
+void AudioRecord::deleteInstance() {
+    std::unique_lock<std::mutex> lock(m_Mutex); // 加锁
+    if (m_SingleInstance) {
+        delete m_SingleInstance;
+        m_SingleInstance = nullptr;
+    }
+}
+
+AudioRecord::AudioRecord() {
+    
 }
 
 AudioRecord::~AudioRecord() {
     
 }
 
-void AudioRecord::doStartRecord() {
+void AudioRecord::doStartRecord(string fmt_name, string device_name, string file_path) {
+    LOGD("开始录制");
     isRecording = true;
     // 获取输入格式对象
-    AVInputFormat *fmt = av_find_input_format(m_spec.fmt_name.c_str());
+    AVInputFormat *fmt = av_find_input_format(fmt_name.c_str());
     if (!fmt) {
-        LOGD("av_find_input_format error: %s", m_spec.fmt_name.c_str());
+        LOGD("av_find_input_format error: %s", fmt_name.c_str());
         return;
     }
     // 格式上下文（将来可以利用上下文操作设备）
     AVFormatContext *ctx = nullptr;
     // 打开设备
-    int ret = avformat_open_input(&ctx, m_spec.device_name.c_str(), fmt, nullptr);
+    int ret = avformat_open_input(&ctx, device_name.c_str(), fmt, nullptr);
     if (ret < 0) {
-        LOGD("avformat_open_input error: %s", m_spec.device_name.c_str());
+        LOGD("avformat_open_input error: %s", device_name.c_str());
         return;
     }
     
@@ -63,9 +87,9 @@ void AudioRecord::doStartRecord() {
     showSpec(ctx);
     
     // 打开文件
-    FILE *file = fopen(m_spec.file_path.c_str(), "wb+");
+    FILE *file = fopen(file_path.c_str(), "wb+");
     if (!file) {
-        LOGD("file fopen error: %s", m_spec.file_path.c_str());
+        LOGD("file fopen error: %s", file_path.c_str());
         // 关闭设备
         avformat_close_input(&ctx);
         return;
@@ -99,4 +123,5 @@ void AudioRecord::doStartRecord() {
 
 void AudioRecord::doStopRecord() {
     isRecording = false;
+    LOGD("结束录制");
 }

@@ -10,31 +10,34 @@
 
 #include <stdio.h>
 #include <string>
+#include <mutex>
 
 using namespace std;
-
-typedef struct {
-    string fmt_name;    // 格式名称
-    string device_name; // 设备名称
-    string file_path;   // 文件路径
-} AudioRecordSpec;
 
 class AudioRecord {
     
 public:
+    
+    static AudioRecord *&GetInstance();
+    static void deleteInstance();
+    
     bool isRecording;
-    /// 构造函数
-    /// @param spec 录制信息
-    AudioRecord(AudioRecordSpec &spec);
     
-    /// 析构
-    ~AudioRecord();
-    
-    void doStartRecord();
+    void doStartRecord(string fmt_name, string device_name, string file_path);
     void doStopRecord();
     
 private:
-    AudioRecordSpec m_spec;
+    /// 构造函数
+    AudioRecord();
+    /// 析构
+    ~AudioRecord();
+    
+    AudioRecord(const AudioRecord &singal);
+    const AudioRecord &operator=(const AudioRecord &singal);
+    
+private:
+    static AudioRecord *m_SingleInstance;
+    static std::mutex m_Mutex;
 };
 
 #endif /* audio_record_hpp */
