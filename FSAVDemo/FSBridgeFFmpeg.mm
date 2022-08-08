@@ -25,6 +25,7 @@ extern "C" {
 
 #include "audio_encode.hpp"
 #include "audio_record.hpp"
+#include "audio_resample.hpp"
 
 @interface FSBridgeFFmpeg() {}
 
@@ -123,6 +124,26 @@ std::string jstring2string(NSString *jsStr) {
     in_spec.sample_rate = 44100;
     in_spec.channel_layout = AV_CH_LAYOUT_STEREO;
     aEncode.doEncode(in_spec, CodecFormatAAC, true);
+}
+
++ (void)doResample:(NSString*)src dst:(NSString*)dst {
+    string srcpath = jstring2string(src);
+    string dstpath = jstring2string(dst);
+
+    AudioResampleSpec spec1;
+    spec1.filePath = srcpath;
+    spec1.sampleFmt = AV_SAMPLE_FMT_S16;
+    spec1.sampleRate = 44100;
+    spec1.chLayout = AV_CH_LAYOUT_STEREO;
+    
+    AudioResampleSpec spec2;
+    spec2.filePath = dstpath;
+    spec2.sampleFmt = AV_SAMPLE_FMT_FLT;
+    spec2.sampleRate = 48000;
+    spec2.chLayout = AV_CH_LAYOUT_MONO;
+    
+    AudioResample aResample;
+    aResample.doResample(spec1, spec2);
 }
 
 @end

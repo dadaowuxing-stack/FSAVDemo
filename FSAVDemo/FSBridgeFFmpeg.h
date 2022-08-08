@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param dst 输出文件路径
 +(void)doEncodePCM2AAC:(NSString *)src dst:(NSString *)dst;
 
++ (void)doResample:(NSString*)src dst:(NSString*)dst;
+
 @end
 
 NS_ASSUME_NONNULL_END

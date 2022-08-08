@@ -62,7 +62,15 @@ class FSFFmpegVC : FSAVBaseVC {
             }
             break
         case 1: // 音频重采样
-            
+            let srcpath = Bundle.main.path(forResource: "44100_s16le_2.pcm", ofType: nil) ?? ""
+            let dstpath = path.appending("/48000_f32le_1.pcm")
+            let isSuccess = FSFileManager.createFile(atPath: dstpath)
+            if (isSuccess) {
+                let queue = DispatchQueue.global()
+                queue.async {
+                    FSBridgeFFmpeg.doResample(srcpath, dst: dstpath);
+                }
+            }
             break
         case 2: // 音频编码(pcm -> aac)
             let srcpath = Bundle.main.path(forResource: "44100_s16le_2.pcm", ofType: nil) ?? ""
