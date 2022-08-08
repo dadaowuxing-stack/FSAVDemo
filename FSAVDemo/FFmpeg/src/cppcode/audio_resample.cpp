@@ -141,16 +141,25 @@ void AudioResample::doResample(string inFilepath,
             LOGD("swr_convert error: %s", errbuf);
             goto end;
         }
-        
-        // 将转换后的数据写入输出文件(packet格式)
-        fwrite(out_data[0], 1, ret * outBytesPerSample, outFile);
+        // planner方式，而pcm文件写入时一般都是packet方式，所以这里要注意转换一下
+        if (av_sample_fmt_is_planar(outSampleFmt)) {
+            
+        } else {
+            // 将转换后的数据写入输出文件(packet格式)
+            fwrite(out_data[0], 1, ret * outBytesPerSample, outFile);
+        }
     }
     
     // 检查输出缓冲区是否还有残留样本(已重采样过的,转换过的)
     while ((ret = swr_convert(ctx,
                               out_data, outSamples,
                               nullptr, 0)) > 0) {
-        fwrite(out_data[0], 1, ret * outBytesPerSample, outFile);
+        // planner方式，而pcm文件写入时一般都是packet方式，所以这里要注意转换一下
+        if (av_sample_fmt_is_planar(outSampleFmt)) {
+            
+        } else {
+            fwrite(out_data[0], 1, ret * outBytesPerSample, outFile);
+        }
     }
     
 end:
