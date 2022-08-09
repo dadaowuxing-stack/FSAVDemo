@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)doResample:(NSString*)src dst:(NSString*)dst;
 
++ (void)doPlayPCM:(NSString*)src;
+
 @end
 
 NS_ASSUME_NONNULL_END

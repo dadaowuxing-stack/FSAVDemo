@@ -26,6 +26,9 @@ extern "C" {
 #include "audio_encode.hpp"
 #include "audio_record.hpp"
 #include "audio_resample.hpp"
+#include "play_pcm.hpp"
+#include "pcm_to_wav.hpp"
+#include "play_wav.hpp"
 
 @interface FSBridgeFFmpeg() {}
 
@@ -144,6 +147,24 @@ std::string jstring2string(NSString *jsStr) {
     
     AudioResample aResample;
     aResample.doResample(spec1, spec2);
+}
+
++ (void)doPlayPCM:(NSString*)src {
+    
+    string srcpath = jstring2string(src);
+    
+    AudioPlaySpec spec;
+    spec.sampleRate = 44100;
+    spec.format = AUDIO_S16LSB;
+    spec.channels = 2;
+    spec.samples = 1024;
+    
+    AudioPlayPCM *aPlayPCM = AudioPlayPCM::GetInstance();
+    if (aPlayPCM->isPlaying) {
+        aPlayPCM->doStopPlay();
+    } else {
+        aPlayPCM->doStartPlay(srcpath, spec);
+    }
 }
 
 @end

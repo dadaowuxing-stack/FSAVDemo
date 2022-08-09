@@ -19,7 +19,8 @@ class FSFFmpegVC : FSAVBaseVC {
         "audio demuxer 4",
         "audio decode 5",
         "play pcm 6",
-        "play wav 7",
+        "pcm to wav 7",
+        "play wav 8",
     ]
     
     override func viewDidLoad() {
@@ -93,9 +94,16 @@ class FSFFmpegVC : FSAVBaseVC {
             
             break
         case 6: // pcm 播放
+            let srcpath = Bundle.main.path(forResource: "44100_s16le_2.pcm", ofType: nil) ?? ""
+            let queue = DispatchQueue.global()
+            queue.async {
+                FSBridgeFFmpeg.doPlayPCM(srcpath);
+            }
+            break
+        case 7: // pcm to wav
             
             break
-        case 7: // wav 播放
+        case 8: // wav 播放
             
             break
         default:
@@ -127,7 +135,10 @@ class FSFFmpegVC : FSAVBaseVC {
         case 6: // pcm 播放
             
             break
-        case 7: // wav 播放
+        case 7: // pcm to wav
+            
+            break
+        case 8: // wav 播放
             
             break
         default:
