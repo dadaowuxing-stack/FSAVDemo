@@ -6,6 +6,7 @@
 //
 
 #import "FSBridgeFFmpeg.h"
+#import "FSFileManager.h"
 #include <string>
 #include "Common.h"
 
@@ -100,33 +101,79 @@ std::string jstring2string(NSString *jsStr) {
     return str;
 }
 
-+ (void)doAudioCapture:(NSString *)path {
-    
-    string fmt_name = "avfoundation";
-    string device_name = ":0";
-    string file_path = jstring2string(path);
++ (void)doRecord {
     AudioRecord *audioRecord = AudioRecord::GetInstance();
     if (audioRecord->isRecording) {
         audioRecord->doStopRecord();
     } else {
-        audioRecord->doStartRecord(fmt_name, device_name, file_path);
+        string fmt_name = "avfoundation";
+        string device_name = ":0";
+        NSString  *path = [[FSFileManager documentsDirectory] stringByAppendingPathComponent:@"audio_record_out.pcm"];
+        string filepath = jstring2string(path);
+        BOOL isSuccess = [FSFileManager createFileAtPath:path];
+        if (isSuccess) {
+            audioRecord->doStartRecord(fmt_name, device_name, filepath);
+        }
     }
 }
 
-/// PCM 转 AAC
-/// @param src 源文件路径
-/// @param dst 目标文件路径
-+ (void)doEncodePCM2AAC:(NSString *)src dst:(NSString *)dst {
++ (void)doPlayPcm {
+    
+    NSString *path = [[FSFileManager documentsDirectory] stringByAppendingPathComponent:@"audio_record_out.pcm"];
+    BOOL isExists = [FSFileManager isExistsAtPath:path];
+    if (!isExists) {
+        path = [[NSBundle mainBundle] pathForResource:@"44100_s16le_2" ofType:@"pcm"];
+    }
+    string srcpath = jstring2string(path);
+    
+    AudioPlaySpec spec;
+    spec.sampleRate = 44100;
+    spec.format = AUDIO_S16LSB;
+    spec.channels = 2;
+    spec.samples = 1024;
+    
+    AudioPlayPCM *aPlayPCM = AudioPlayPCM::GetInstance();
+    if (aPlayPCM->isPlaying) {
+        aPlayPCM->doStopPlay();
+    } else {
+        aPlayPCM->doStartPlay(srcpath, spec);
+    }
+}
+
+/// PCM to AAC
++ (void)doPcm2AAC {
+    NSString *src = [[NSBundle mainBundle] pathForResource:@"44100_s16le_2" ofType:@"pcm"];
+    NSString *dst = [[FSFileManager documentsDirectory] stringByAppendingPathComponent:@"pcm2aac_out.pcm"];
     
     string srcpath = jstring2string(src);
     string dstpath = jstring2string(dst);
+    
+    BOOL isSuccess = [FSFileManager createFileAtPath:dst];
+    if (isSuccess) {
+        AudioEncode aEncode(srcpath, dstpath);
+        AudioEncodeSpec in_spec;
+        in_spec.sample_fmt = AV_SAMPLE_FMT_S16;
+        in_spec.sample_rate = 44100;
+        in_spec.channel_layout = AV_CH_LAYOUT_STEREO;
+        aEncode.doEncode(in_spec, CodecFormatAAC, true);
+    }
+}
 
-    AudioEncode aEncode(srcpath, dstpath);
-    AudioEncodeSpec in_spec;
-    in_spec.sample_fmt = AV_SAMPLE_FMT_S16;
-    in_spec.sample_rate = 44100;
-    in_spec.channel_layout = AV_CH_LAYOUT_STEREO;
-    aEncode.doEncode(in_spec, CodecFormatAAC, true);
++ (void)doPcm2Wav {
+    AudioPcmToWav *pcm2wav = AudioPcmToWav::GetInstance();
+    if (pcm2wav->isRecording) {
+        pcm2wav->doStop();
+    } else {
+        NSString *pcm = [[FSFileManager documentsDirectory] stringByAppendingPathComponent:@"pcm2wav_out.pcm"];
+        NSString *wav = [[FSFileManager documentsDirectory] stringByAppendingPathComponent:@"pcm2wav_out.wav"];
+        string pcmpath = jstring2string(pcm);
+        string wavpath = jstring2string(wav);
+        BOOL isPcmSuccess = [FSFileManager createFileAtPath:pcm];
+        BOOL isWavSuccess = [FSFileManager createFileAtPath:wav];
+        if (isPcmSuccess && isWavSuccess) {
+            pcm2wav->doPcm2Wav(pcmpath, wavpath);
+        }
+    }
 }
 
 + (void)doResample:(NSString*)src dst:(NSString*)dst {
@@ -147,24 +194,6 @@ std::string jstring2string(NSString *jsStr) {
     
     AudioResample aResample;
     aResample.doResample(spec1, spec2);
-}
-
-+ (void)doPlayPCM:(NSString*)src {
-    
-    string srcpath = jstring2string(src);
-    
-    AudioPlaySpec spec;
-    spec.sampleRate = 44100;
-    spec.format = AUDIO_S16LSB;
-    spec.channels = 2;
-    spec.samples = 1024;
-    
-    AudioPlayPCM *aPlayPCM = AudioPlayPCM::GetInstance();
-    if (aPlayPCM->isPlaying) {
-        aPlayPCM->doStopPlay();
-    } else {
-        aPlayPCM->doStartPlay(srcpath, spec);
-    }
 }
 
 @end

@@ -14,16 +14,19 @@ NS_ASSUME_NONNULL_BEGIN
 /// 测试FFmpeg库是否可用
 + (void)testLib;
 
-+ (void)doAudioCapture:(NSString *)path;
+/// 录制->pcm
++ (void)doRecord;
 
-/// pcm 转 aac
-/// @param src 输入文件路径
-/// @param dst 输出文件路径
-+(void)doEncodePCM2AAC:(NSString *)src dst:(NSString *)dst;
+/// 播放->pcm
++ (void)doPlayPcm;
+
+/// pcm -> aac
++(void)doPcm2AAC;
+
+/// pcm -> wav
++ (void)doPcm2Wav;
 
 + (void)doResample:(NSString*)src dst:(NSString*)dst;
-
-+ (void)doPlayPCM:(NSString*)src;
 
 @end
 

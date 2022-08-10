@@ -53,13 +53,9 @@ class FSFFmpegVC : FSAVBaseVC {
         let index = listView?.selectedIndex
         switch index {
         case 0: // 音频采集
-            let file_path = path.appending("/record_out.pcm")
-            let isSuccess = FSFileManager.createFile(atPath: file_path)
-            if (isSuccess) {
-                let queue = DispatchQueue.global()
-                queue.async {
-                    FSBridgeFFmpeg.doAudioCapture(file_path)
-                }
+            let queue = DispatchQueue.global()
+            queue.async {
+                FSBridgeFFmpeg.doRecord()
             }
             break
         case 1: // 音频重采样
@@ -74,14 +70,9 @@ class FSFFmpegVC : FSAVBaseVC {
             }
             break
         case 2: // 音频编码(pcm -> aac)
-            let srcpath = Bundle.main.path(forResource: "44100_s16le_2.pcm", ofType: nil) ?? ""
-            let dstpath = path.appending("/44100_s16le_2.aac")
-            let isSuccess = FSFileManager.createFile(atPath: dstpath)
-            if (isSuccess) {
-                let queue = DispatchQueue.global()
-                queue.async {
-                    FSBridgeFFmpeg.doEncodePCM2AAC(srcpath, dst: dstpath)
-                }
+            let queue = DispatchQueue.global()
+            queue.async {
+                FSBridgeFFmpeg.doPcm2AAC()
             }
             break
         case 3: // 音频封装
@@ -94,14 +85,16 @@ class FSFFmpegVC : FSAVBaseVC {
             
             break
         case 6: // pcm 播放
-            let srcpath = Bundle.main.path(forResource: "44100_s16le_2.pcm", ofType: nil) ?? ""
             let queue = DispatchQueue.global()
             queue.async {
-                FSBridgeFFmpeg.doPlayPCM(srcpath);
+                FSBridgeFFmpeg.doPlayPcm()
             }
             break
         case 7: // pcm to wav
-            
+            let queue = DispatchQueue.global()
+            queue.async {
+                FSBridgeFFmpeg.doPcm2Wav()
+            }
             break
         case 8: // wav 播放
             
@@ -121,7 +114,7 @@ class FSFFmpegVC : FSAVBaseVC {
             
             break
         case 2: // 音频编码(pcm -> aac)
-
+            
             break
         case 3: // 音频封装
             
