@@ -37,8 +37,9 @@ class FSAVFoundationVC: FSAVBaseVC {
     func configData() {
         let audioItems = FSSectionItem(title: "Audio Demos", items: audioItems())
         let videoItems = FSSectionItem(title: "Video Demos", items: videoItems())
+        let recorderPlayerItems = FSSectionItem(title: "Recorder Player Demos", items: recorderPlayerItems())
         
-        dataSource = [audioItems, videoItems]
+        dataSource = [audioItems, videoItems, recorderPlayerItems]
     }
     
     func setupUI() {
@@ -66,6 +67,13 @@ class FSAVFoundationVC: FSAVBaseVC {
         let render = FSItem(title: "Video Render", subTitle: "视频采集", path: "FSVideoRenderVC", opType: .videoRender)
         
         return [capture, encoder, muxer, demuxer, avDemuxer, decoder, render]
+    }
+    
+    func recorderPlayerItems() -> [FSItem] {
+        let recorder = FSItem(title: "Video Recorder", subTitle: "视频录制器", path: "FSVideoRecorderVC", opType: .videoRecorder)
+        let player = FSItem(title: "Video Player", subTitle: "视频播放器", path: "FSVideoPlayerVC", opType: .videoPlayer)
+        
+        return [recorder, player]
     }
 }
 
@@ -106,8 +114,10 @@ extension FSAVFoundationVC: UITableViewDataSource, UITableViewDelegate {
         if let items = sectionItem.items {
             let item = items[indexPath.row]
             guard let name = item.path else { return }
-            let aClass = NSClassFromString(name) as! FSBaseVC.Type
-            let vc = aClass.init()
+            let aClass = NSClassFromString(name) as? FSBaseVC.Type
+            guard let vc = aClass?.init() else {
+                return
+            }
             vc.title = item.title
             vc.opType = item.opType
             navigationController?.pushViewController(vc, animated: true)

@@ -49,7 +49,7 @@ Android: AudioTrack.
 
 **音频**：采样率，声道，波形图，采样格式，编码格式：mp4,aac,opus 封装格式：mp3,m4a
 
-**视频:**帧率，码率，分辨率，像素格式，颜色空间，IPB帧，pts，dts，yuv与RGB，位深与色深，封装格式：mp4,flv,hls. 编码格式：h264/h265
+**视频**：帧率，码率，分辨率，像素格式，颜色空间，IPB帧，pts，dts，yuv与RGB，位深与色深，封装格式：mp4,flv,hls. 编码格式：h264/h265
 
 **熟练ffmpeg等基本工具的使用**
 
