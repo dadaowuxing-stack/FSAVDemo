@@ -70,6 +70,8 @@ typedef NS_ENUM(NSInteger, FSMediaOpType) {
     FSMediaOpTypeVideoPlayer,
     
     FSMediaOpTypeAVDemuxer,
+    
+    FSMediaOpTypeOpenGLRender,
 };
 
 #endif /* FSMediaBase_h */

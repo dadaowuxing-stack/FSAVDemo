@@ -43,6 +43,21 @@ class FSAVDemoVC : FSAVBaseVC {
         return button;
     }()
     
+    lazy var openGLButton: UIButton = {
+        let button: UIButton = UIButton(type: .custom)
+        button.frame = CGRect(x: 100, y: 240, width: 180, height: 50)
+        button.setTitle("OpenGL Demo", for: .normal)
+        button.backgroundColor = .green
+        button.titleLabel?.textColor = .white
+        
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = 8
+        
+        button.addTarget(self, action: #selector(gotoOpenGL(sender:)), for: .touchUpInside)
+        
+        return button;
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -55,6 +70,7 @@ class FSAVDemoVC : FSAVBaseVC {
         
         view.addSubview(avButton)
         view.addSubview(ffmpegButton)
+        view.addSubview(openGLButton)
     }
     
     @objc private func gotoAVFoundation(sender: UIButton) {
@@ -66,6 +82,12 @@ class FSAVDemoVC : FSAVBaseVC {
     @objc private func gotoFFmpeg(sender: UIButton) {
         let vc = FSFFmpegVC()
         vc.title = "FFmpeg Demo"
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc private func gotoOpenGL(sender: UIButton) {
+        let vc = FSOpenGLVC()
+        vc.title = "OpenGL Demo"
         navigationController?.pushViewController(vc, animated: true)
     }
 }

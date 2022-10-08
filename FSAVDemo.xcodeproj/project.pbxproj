@@ -74,6 +74,8 @@
 		B36FFEC828967D0E005D0164 /* 44100_s16le_2.pcm in Resources */ = {isa = PBXBuildFile; fileRef = B36FFEC328967D0E005D0164 /* 44100_s16le_2.pcm */; };
 		B36FFEC928967D0E005D0164 /* in.pcm in Resources */ = {isa = PBXBuildFile; fileRef = B36FFEC428967D0E005D0164 /* in.pcm */; };
 		B36FFECD28967E37005D0164 /* FSFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B36FFECC28967E37005D0164 /* FSFileManager.m */; };
+		B374BF1328F182AF000BE8D5 /* FSOpenGLVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B374BF1228F182AF000BE8D5 /* FSOpenGLVC.swift */; };
+		B374BF1728F184AE000BE8D5 /* FSOpenGLRenderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B374BF1628F184AE000BE8D5 /* FSOpenGLRenderVC.m */; };
 		B3A1075B28A22B1B0089C10A /* libSDL2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B3A1075A28A22B1B0089C10A /* libSDL2.a */; };
 		B3A107BB28A22BA20089C10A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3A107BA28A22BA20089C10A /* CoreGraphics.framework */; };
 		B3A107BD28A22BB20089C10A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3A107BC28A22BB20089C10A /* QuartzCore.framework */; };
@@ -322,6 +324,9 @@
 		B36FFEC428967D0E005D0164 /* in.pcm */ = {isa = PBXFileReference; lastKnownFileType = file; path = in.pcm; sourceTree = "<group>"; };
 		B36FFECB28967E37005D0164 /* FSFileManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSFileManager.h; sourceTree = "<group>"; };
 		B36FFECC28967E37005D0164 /* FSFileManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSFileManager.m; sourceTree = "<group>"; };
+		B374BF1228F182AF000BE8D5 /* FSOpenGLVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSOpenGLVC.swift; sourceTree = "<group>"; };
+		B374BF1528F184AE000BE8D5 /* FSOpenGLRenderVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSOpenGLRenderVC.h; sourceTree = "<group>"; };
+		B374BF1628F184AE000BE8D5 /* FSOpenGLRenderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSOpenGLRenderVC.m; sourceTree = "<group>"; };
 		B3A1075A28A22B1B0089C10A /* libSDL2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSDL2.a; sourceTree = "<group>"; };
 		B3A107BA28A22BA20089C10A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		B3A107BC28A22BB20089C10A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -479,6 +484,7 @@
 		B21489AB2840BE4600446FD4 /* FSAVDemo */ = {
 			isa = PBXGroup;
 			children = (
+				B374BF1428F1848A000BE8D5 /* OpenGL */,
 				B36FFECA28967E1E005D0164 /* FSUtil */,
 				B36FFEBF28967D0E005D0164 /* FileSource */,
 				B36FFE2E28951D0B005D0164 /* FFmpeg */,
@@ -529,6 +535,7 @@
 				B30CC8CD2898D2F000328473 /* FSAVDemoVC.swift */,
 				B30CC8CC2898D2F000328473 /* FSAVFoundationVC.swift */,
 				B30CC8CF2898D2F000328473 /* FSFFmpegVC.swift */,
+				B374BF1228F182AF000BE8D5 /* FSOpenGLVC.swift */,
 				B30CC8D12898D2F000328473 /* FSNavigationController.swift */,
 			);
 			path = ViewController;
@@ -1038,6 +1045,16 @@
 			path = cppcode;
 			sourceTree = "<group>";
 		};
+		B374BF1428F1848A000BE8D5 /* OpenGL */ = {
+			isa = PBXGroup;
+			children = (
+				B374BF1528F184AE000BE8D5 /* FSOpenGLRenderVC.h */,
+				B374BF1628F184AE000BE8D5 /* FSOpenGLRenderVC.m */,
+			);
+			name = OpenGL;
+			path = AVFoundation/OpenGL;
+			sourceTree = "<group>";
+		};
 		B3A1081F28A24AC20089C10A /* SDL2 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1289,6 +1306,7 @@
 				B36FFE2C28951BFE005D0164 /* FSVideoMuxerVC.m in Sources */,
 				B36FFE2428951BFE005D0164 /* FSAudioDemuxerVC.m in Sources */,
 				B36FFE1628951BFE005D0164 /* FSAudioDecoder.m in Sources */,
+				B374BF1328F182AF000BE8D5 /* FSOpenGLVC.swift in Sources */,
 				B36FFE0E28951BFE005D0164 /* FSVideoCapture.m in Sources */,
 				B36FFE1528951BFE005D0164 /* FSVideoDecoder.m in Sources */,
 				B36FFE2328951BFE005D0164 /* FSAudioRenderVC.m in Sources */,
@@ -1296,6 +1314,7 @@
 				B36FFE1928951BFE005D0164 /* FSAudioRender.m in Sources */,
 				B30CC8B82898B25500328473 /* audio_encode.cpp in Sources */,
 				B3BFAAA9289D151B003B5D85 /* audio_muxer.cpp in Sources */,
+				B374BF1728F184AE000BE8D5 /* FSOpenGLRenderVC.m in Sources */,
 				B30CC8DA2898D2F000328473 /* FSNavigationController.swift in Sources */,
 				B36FFE1228951BFE005D0164 /* FSVideoEncoderConfig.m in Sources */,
 				B3AB2340289E51FD000C05A1 /* play_wav.cpp in Sources */,
