@@ -1,5 +1,5 @@
 //
-//  FSOpenGLRenderVC.h
+//  FSOpenGLTriangleRenderVC.h
 //  FSAVDemo
 //
 //  Created by louis on 2022/10/8.
@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FSOpenGLRenderVC : FSBaseVC
+@interface FSOpenGLTriangleRenderVC : FSBaseVC
 
 @end
 
