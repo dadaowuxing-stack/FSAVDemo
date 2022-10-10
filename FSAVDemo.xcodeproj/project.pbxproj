@@ -27,6 +27,8 @@
 		B3198E54289A44C9009A3130 /* FSDropdownListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3198E53289A44C9009A3130 /* FSDropdownListView.swift */; };
 		B3198E56289A44D9009A3130 /* FSDropdownListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3198E55289A44D9009A3130 /* FSDropdownListItem.swift */; };
 		B3461F9B28F401C1008555E4 /* FSTriangleRenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3461F9A28F401C1008555E4 /* FSTriangleRenderView.m */; };
+		B3461F9D28F41C08008555E4 /* simple.fsh in Resources */ = {isa = PBXBuildFile; fileRef = B3461F9C28F41C08008555E4 /* simple.fsh */; };
+		B3461F9F28F41C1C008555E4 /* simple.vsh in Resources */ = {isa = PBXBuildFile; fileRef = B3461F9E28F41C1C008555E4 /* simple.vsh */; };
 		B36FFE0D28951BFE005D0164 /* FSAudioConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = B36FFDBB28951BFE005D0164 /* FSAudioConfig.m */; };
 		B36FFE0E28951BFE005D0164 /* FSVideoCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = B36FFDBC28951BFE005D0164 /* FSVideoCapture.m */; };
 		B36FFE0F28951BFE005D0164 /* FSVideoCaptureConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = B36FFDBD28951BFE005D0164 /* FSVideoCaptureConfig.m */; };
@@ -132,6 +134,8 @@
 		B3198E55289A44D9009A3130 /* FSDropdownListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSDropdownListItem.swift; sourceTree = "<group>"; };
 		B3461F9928F401C1008555E4 /* FSTriangleRenderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSTriangleRenderView.h; sourceTree = "<group>"; };
 		B3461F9A28F401C1008555E4 /* FSTriangleRenderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSTriangleRenderView.m; sourceTree = "<group>"; };
+		B3461F9C28F41C08008555E4 /* simple.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = simple.fsh; sourceTree = "<group>"; };
+		B3461F9E28F41C1C008555E4 /* simple.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = simple.vsh; sourceTree = "<group>"; };
 		B36FFDB928951BFE005D0164 /* FSVideoCaptureConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSVideoCaptureConfig.h; sourceTree = "<group>"; };
 		B36FFDBA28951BFE005D0164 /* FSAudioCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSAudioCapture.h; sourceTree = "<group>"; };
 		B36FFDBB28951BFE005D0164 /* FSAudioConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSAudioConfig.m; sourceTree = "<group>"; };
@@ -1055,6 +1059,8 @@
 				B374BF1628F184AE000BE8D5 /* FSOpenGLTriangleRenderVC.m */,
 				B3461F9928F401C1008555E4 /* FSTriangleRenderView.h */,
 				B3461F9A28F401C1008555E4 /* FSTriangleRenderView.m */,
+				B3461F9C28F41C08008555E4 /* simple.fsh */,
+				B3461F9E28F41C1C008555E4 /* simple.vsh */,
 			);
 			name = OpenGL;
 			path = AVFoundation/OpenGL;
@@ -1213,6 +1219,8 @@
 			files = (
 				B36FFEC528967D0E005D0164 /* 44100_s16le_2.aac in Resources */,
 				B36FFEC628967D0E005D0164 /* input_1280x720.mp4 in Resources */,
+				B3461F9D28F41C08008555E4 /* simple.fsh in Resources */,
+				B3461F9F28F41C1C008555E4 /* simple.vsh in Resources */,
 				B36FFEC828967D0E005D0164 /* 44100_s16le_2.pcm in Resources */,
 				B36FFEC928967D0E005D0164 /* in.pcm in Resources */,
 				B21489BC2840BE4700446FD4 /* LaunchScreen.storyboard in Resources */,

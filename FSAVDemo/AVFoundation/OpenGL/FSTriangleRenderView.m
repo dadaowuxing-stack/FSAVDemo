@@ -8,7 +8,7 @@
 #import "FSTriangleRenderView.h"
 #import <OpenGLES/ES2/gl.h>
 
-// 定义顶点的数据结构：包括顶点坐标和颜色维度。
+// 定义顶点的数据结构：包括顶点坐标和颜色维度
 #define PositionDimension 3 // 顶点坐标
 #define ColorDimension 4    // 颜色维度
 typedef struct {
@@ -86,16 +86,125 @@ typedef struct {
     glViewport(0, 0, _width, _height); // 设置渲染窗口区域
     
     // 6.加载和编译 shader，并链接到着色器程序
+    if (_simpleProgram) {
+        glDeleteProgram(_simpleProgram);
+        _simpleProgram = 0;
+    }
+    // 加载和编译 shader
+    NSString *simpleVSH = [[NSBundle mainBundle] pathForResource:@"simple" ofType:@"vsh"];
+    NSString *simpleFSH = [[NSBundle mainBundle] pathForResource:@"simple" ofType:@"fsh"];
+    _simpleProgram = [self loadShaderWithVertexShader:simpleVSH fragmentShader:simpleFSH];
+    // 链接 shader program
+    glLinkProgram(_simpleProgram);
+    // 打印链接日志
+    GLint linkStatus;
+    glGetProgramiv(_simpleProgram, GL_LINK_STATUS, &linkStatus);
+    if (linkStatus == GL_FALSE) {
+        GLint infoLength;
+        glGetProgramiv(_simpleProgram, GL_INFO_LOG_LENGTH, &infoLength);
+        if (infoLength > 0) {
+            GLchar *infoLog = malloc(sizeof(GLchar) * infoLength);
+            glGetProgramInfoLog(_simpleProgram, infoLength, NULL, infoLog);
+            NSLog(@"%s", infoLog);
+            free(infoLog);
+        }
+    }
+    glUseProgram(_simpleProgram);
     
     // 7.根据三角形顶点信息申请顶点缓冲区对象 VBO 和拷贝顶点数据
+    // 设置三角形 3 个顶点数据，包括坐标信息和颜色信息
+    const SceneVertex vertices[] = {
+        {{-0.5,  0.5, 0.0}, { 1.0, 0.0, 0.0, 1.000}}, // 左下 // 红色
+        {{-0.5, -0.5, 0.0}, { 0.0, 1.0, 0.0, 1.000}}, // 右下 // 绿色
+        {{ 0.5, -0.5, 0.0}, { 0.0, 0.0, 1.0, 1.000}}, // 左上 // 蓝色
+    };
+    // 申请并绑定 VBO VBO 的作用是在显存中提前开辟好一块内存，用于缓存顶点数据，从而避免每次绘制时的 CPU 与 GPU 之间的内存拷贝，可以提升渲染性能
+    GLuint vertexBufferID;
+    glGenBuffers(1, &vertexBufferID); // 创建 VBO
+    glBindBuffer(GL_ARRAY_BUFFER, vertexBufferID); // 绑定 VBO 到 OpenGL 渲染管线
+    // 将顶点数据 (CPU 内存) 拷贝到 VBO（GPU 显存）
+    glBufferData(GL_ARRAY_BUFFER, // 缓存块类型
+                 sizeof(vertices), // 创建的缓存块尺寸
+                 vertices, // 要绑定的顶点数据
+                 GL_STATIC_DRAW); // 缓存块用途
     
     // 8.绘制三角形
+    // 获取与 Shader 中对应的参数信息：
+    GLuint vertexPositionLocation = glGetAttribLocation(_simpleProgram, "v_position");
+    GLuint vertexColorLocation = glGetAttribLocation(_simpleProgram, "v_color");
+    // 顶点位置属性
+    glEnableVertexAttribArray(vertexPositionLocation); // 启用顶点位置属性通道
+    // 关联顶点位置数据
+    glVertexAttribPointer(vertexPositionLocation, // attribute 变量的下标，范围是 [0, GL_MAX_VERTEX_ATTRIBS - 1]
+                          PositionDimension, // 指顶点数组中，一个 attribute 元素变量的坐标分量是多少（如：position, 程序提供的就是 {x, y, z} 点就是 3 个坐标分量）
+                          GL_FLOAT, // 数据的类型
+                          GL_FALSE, // 是否进行数据类型转换
+                          sizeof(SceneVertex), // 每一个数据在内存中的偏移量，如果填 0 就是每一个数据紧紧相挨着
+                          (const GLvoid*) offsetof(SceneVertex, position)); // 数据的内存首地址
+    // 顶点颜色属性
+    glEnableVertexAttribArray(vertexColorLocation);
+    // 关联顶点颜色数据
+    glVertexAttribPointer(vertexColorLocation,
+                          ColorDimension,
+                          GL_FLOAT,
+                          GL_FALSE,
+                          sizeof(SceneVertex),
+                          (const GLvoid*) offsetof(SceneVertex, color));
+    // 绘制所有图元
+    glDrawArrays(GL_TRIANGLES, // 绘制的图元方式
+                 0, // 从第几个顶点下标开始绘制
+                 sizeof(vertices) / sizeof(vertices[0])); // 有多少个顶点下标需要绘制
+    // 把 Renderbuffer 的内容显示到窗口系统 (CAEAGLLayer) 中
+    [_eaglContext presentRenderbuffer:GL_RENDERBUFFER];
     
     // 9.关闭 | 解绑
-    
+    glDisableVertexAttribArray(vertexColorLocation); // 关闭顶点颜色属性通道
+    glDisableVertexAttribArray(vertexPositionLocation); // 关闭顶点位置属性通道
+    glBindBuffer(GL_ARRAY_BUFFER, 0); // 解绑 VBO
+    glBindFramebuffer(GL_FRAMEBUFFER, 0); // 解绑 FBO
+    glBindRenderbuffer(GL_RENDERBUFFER, 0); // 解绑 RBO
 }
 
 #pragma mark - Utility
+
+- (GLuint)loadShaderWithVertexShader:(NSString *)vert fragmentShader:(NSString *)frag {
+    GLuint verShader, fragShader;
+    GLuint program = glCreateProgram(); // 创建 Shader Program 对象
+    
+    [self compileShader:&verShader type:GL_VERTEX_SHADER file:vert];
+    [self compileShader:&fragShader type:GL_FRAGMENT_SHADER file:frag];
+    
+    // 装载 Vertex Shader 和 Fragment Shader
+    glAttachShader(program, verShader);
+    glAttachShader(program, fragShader);
+    
+    glDeleteShader(verShader);
+    glDeleteShader(fragShader);
+    
+    return program;
+}
+
+- (void)compileShader:(GLuint *)shader type:(GLenum)type file:(NSString *)file {
+    NSString *content = [NSString stringWithContentsOfFile:file encoding:NSUTF8StringEncoding error:nil];
+    const GLchar *source = (GLchar *) [content UTF8String];
+    *shader = glCreateShader(type); // 创建一个着色器对象
+    glShaderSource(*shader, 1, &source, NULL); // 关联顶点、片元着色器的代码
+    glCompileShader(*shader); // 编译着色器代码
+    
+    // 打印编译日志
+    GLint compileStatus;
+    glGetShaderiv(*shader, GL_COMPILE_STATUS, &compileStatus);
+    if (compileStatus == GL_FALSE) {
+        GLint infoLength;
+        glGetShaderiv(*shader, GL_INFO_LOG_LENGTH, &infoLength);
+        if (infoLength > 0) {
+            GLchar *infoLog = malloc(sizeof(GLchar) * infoLength);
+            glGetShaderInfoLog(*shader, infoLength, NULL, infoLog);
+            NSLog(@"%s -> %s", (type == GL_VERTEX_SHADER) ? "vertex shader" : "fragment shader", infoLog);
+            free(infoLog);
+        }
+    }
+}
 
 #pragma mark - Override
 
