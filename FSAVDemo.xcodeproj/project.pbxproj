@@ -491,6 +491,8 @@
 		B21489AB2840BE4600446FD4 /* FSAVDemo */ = {
 			isa = PBXGroup;
 			children = (
+				B32EAD6F28F53BD00042C86F /* VideoPlayer */,
+				B32EAD6E28F53BD00042C86F /* VideoRecorder */,
 				B374BF1428F1848A000BE8D5 /* OpenGL */,
 				B36FFECA28967E1E005D0164 /* FSUtil */,
 				B36FFEBF28967D0E005D0164 /* FileSource */,
@@ -556,6 +558,20 @@
 				B3198E55289A44D9009A3130 /* FSDropdownListItem.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		B32EAD6E28F53BD00042C86F /* VideoRecorder */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = VideoRecorder;
+			sourceTree = "<group>";
+		};
+		B32EAD6F28F53BD00042C86F /* VideoPlayer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = VideoPlayer;
 			sourceTree = "<group>";
 		};
 		B36FFDB728951BFE005D0164 /* AVFoundation */ = {

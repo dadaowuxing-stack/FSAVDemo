@@ -1,3 +1,4 @@
+// Vertex Shader
 attribute vec4 v_position;
 attribute vec4 v_color;
 
