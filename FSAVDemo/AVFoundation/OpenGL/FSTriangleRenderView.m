@@ -90,12 +90,27 @@ typedef struct {
         glDeleteProgram(_simpleProgram);
         _simpleProgram = 0;
     }
+    
+    /**
+     创建显卡执行程序
+     1.创建 Shader（着色器）
+     2.创建 Program
+     */
     // 加载和编译 shader
     NSString *simpleVSH = [[NSBundle mainBundle] pathForResource:@"simple" ofType:@"vsh"];
     NSString *simpleFSH = [[NSBundle mainBundle] pathForResource:@"simple" ofType:@"fsh"];
     _simpleProgram = [self loadShaderWithVertexShader:simpleVSH fragmentShader:simpleFSH];
+    
+    // 当顶点着色器和片元着色器都被附加到程序中之后，最后一步就是链接程序
     // 链接 shader program
     glLinkProgram(_simpleProgram);
+    
+    /**
+     检查这个程序的状态使用 glGetProgramiv 函数
+     第一个参数就是传入程序容器的句柄，
+     第二个参数代表要检查这个程序的哪一个状态，这里面传入 GL_LINK_STATUS，
+     最后一个参数就是返回值. 返回值是 1 则代表链接成功，如果返回值是 0 则代表链接失败. 类似于编译 Shader 的操作，如果链接失败了，可以获取错误信息，以便修改程序.
+     */
     // 打印链接日志
     GLint linkStatus;
     glGetProgramiv(_simpleProgram, GL_LINK_STATUS, &linkStatus);
@@ -110,6 +125,16 @@ typedef struct {
         }
     }
     glUseProgram(_simpleProgram);
+    
+    /**
+     OpenGL ES 渲染管线分为哪几个步骤呢？
+     阶段一:指定几何对象
+     阶段二:顶点变换   可以自己编写着色器
+     阶段三:图元组装
+     阶段四:栅格化操作
+     阶段五:片元处理   可以自己编写着色器
+     阶段六:帧缓冲操作
+     */
     
     // 7.根据三角形顶点信息申请顶点缓冲区对象 VBO 和拷贝顶点数据
     // 设置三角形 3 个顶点数据，包括坐标信息和颜色信息
@@ -169,11 +194,22 @@ typedef struct {
 
 - (GLuint)loadShaderWithVertexShader:(NSString *)vert fragmentShader:(NSString *)frag {
     GLuint verShader, fragShader;
-    GLuint program = glCreateProgram(); // 创建 Shader Program 对象
     
+    /**
+     1.创建 Shader（着色器）
+     */
     [self compileShader:&verShader type:GL_VERTEX_SHADER file:vert];
     [self compileShader:&fragShader type:GL_FRAGMENT_SHADER file:frag];
     
+    /**
+     2.创建 Program
+     */
+    // 首先创建一个程序的实例作为程序的容器，这个函数返回程序的句柄
+    GLuint program = glCreateProgram(); // 创建 Shader Program 对象
+    // 紧接着将把上面部分编译的 shader 附加（Attach）到刚刚创建的程序中
+    // 第一个参数 GLuint program 就是传入在上面一步返回的程序容器的句柄，
+    // 第二个参数 GLuint shader 就是编译的 Shader 的句柄，
+    // 当然要为每一个 shader 都调用一次这个方法才能把两个 Shader 都关联到 Program 中去。
     // 装载 Vertex Shader 和 Fragment Shader
     glAttachShader(program, verShader);
     glAttachShader(program, fragShader);
@@ -184,13 +220,34 @@ typedef struct {
     return program;
 }
 
+/**
+ 创建 Shader（着色器）
+ */
 - (void)compileShader:(GLuint *)shader type:(GLenum)type file:(NSString *)file {
     NSString *content = [NSString stringWithContentsOfFile:file encoding:NSUTF8StringEncoding error:nil];
     const GLchar *source = (GLchar *) [content UTF8String];
-    *shader = glCreateShader(type); // 创建一个着色器对象
+    /**
+     第一步:创建一个着色器对象，作为 Shader 的容器，这个函数返回一个容器的句柄
+     函数原型中的参数 type 有两种类型：
+     一是 GL_VERTEX_SHADER，创建顶点着色器时开发者应传入的类型；
+     二是 GL_FRAGMENT_SHADER，创建片元着色器时开发者应传入的类型。
+     */
+    *shader = glCreateShader(type);
+    /**
+     第二步:给创建的这个 Shader 添加源代码
+     */
     glShaderSource(*shader, 1, &source, NULL); // 关联顶点、片元着色器的代码
+    /**
+     最后一步:编译这个 Shader
+     */
     glCompileShader(*shader); // 编译着色器代码
     
+    /**
+     验证 shader 是否被编译成功 使用 glGetShaderiv 函数来验证
+     第一个参数 GLuint shader 就是我们要验证的 Shader 句柄；
+     第二个参数 GLenum pname 是我们要验证的这个 Shader 的状态值，一般在这里验证是否编译成功，这个状态值选择 GL_COMPILE_STATUS
+     第三个参数 GLint* params 就是返回值，当返回值是 1 的时候，说明这个 Shader 编译成功了；如果是 0，就说明这个 shader 没有被编译成功。
+     */
     // 打印编译日志
     GLint compileStatus;
     glGetShaderiv(*shader, GL_COMPILE_STATUS, &compileStatus);
