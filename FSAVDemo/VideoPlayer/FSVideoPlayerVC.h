@@ -6,6 +6,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FSAudioOutput.h"
+#import "FSAVSynchronizer.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

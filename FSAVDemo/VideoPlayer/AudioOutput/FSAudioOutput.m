@@ -7,6 +7,7 @@
 
 #import "FSAudioOutput.h"
 #import <AudioToolbox/AudioToolbox.h>
+#import "FSAudioSession.h"
 
 /**
  * AudioOutput(音频输出模块)的职责:
@@ -23,12 +24,15 @@ static OSStatus InputRenderCallback(void *inRefCon,
                                     AudioBufferList *ioData);
 static void CheckStatus(OSStatus status, NSString *message, BOOL fatal);
 
-@interface FSAudioOutput ()
+@interface FSAudioOutput (){
+    SInt16 *_outData;
+}
 
 /// 采样率
 @property(nonatomic, assign) Float64 sampleRate;
 /// 声道数
 @property(nonatomic, assign) Float64 channels;
+
 @property(nonatomic, assign) AUGraph            inGraph;
 @property(nonatomic, assign) AUNode             ioNode;
 @property(nonatomic, assign) AudioUnit          ioUnit;
@@ -41,21 +45,85 @@ static void CheckStatus(OSStatus status, NSString *message, BOOL fatal);
 
 @implementation FSAudioOutput
 
+- (void)dealloc {
+    if (_outData) {
+        free(_outData);
+        _outData = NULL;
+    }
+    
+    [self destroyAudioUnitGraph];
+    [self removeAudioSessionInterruptedObserver];
+}
+
+
 - (instancetype)initWithChannels:(NSInteger)channels sampleRate:(NSInteger)sampleRate bytesPerSample:(NSInteger)bytePerSample filleDataDelegate:(id<FSFillDataDelegate>)fillAudioDataDelegate {
     self = [super init];
     if (self) {
+        [[FSAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord];
+        [[FSAudioSession sharedInstance] setPreferredSampleRate:sampleRate];
+        [[FSAudioSession sharedInstance] setActive:YES];
+        [[FSAudioSession sharedInstance] addRouteChangeListener];
+        [self addAudioSessionInterruptedObserver];
+        _outData = (SInt16 *)calloc(8192, sizeof(SInt16));
+        self.channels = channels;
+        self.sampleRate = sampleRate;
+        self.fillAudioDataDelegate = fillAudioDataDelegate;
         // 构建AudioUnit
         [self createAudioUnitByGraph];
     }
     return self;
 }
 
-- (BOOL)play {
+- (BOOL)play{
+    OSStatus status = AUGraphStart(_inGraph);
+    CheckStatus(status, @"AUGraphStart: Could not start AUGraph", YES);
     return YES;
 }
 
 - (void)stop {
-    
+    OSStatus status = AUGraphStop(_inGraph);
+    CheckStatus(status, @"AUGraphStop: Could not stop AUGraph", YES);
+}
+
+#pragma mark - AudioSession 被打断的通知
+
+- (void)addAudioSessionInterruptedObserver {
+    [self removeAudioSessionInterruptedObserver];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onNotificationAudioInterrupted:)
+                                                 name:AVAudioSessionInterruptionNotification
+                                               object:[AVAudioSession sharedInstance]];
+}
+
+- (void)removeAudioSessionInterruptedObserver {
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:AVAudioSessionInterruptionNotification
+                                                  object:nil];
+}
+
+- (void)onNotificationAudioInterrupted:(NSNotification *)sender {
+    AVAudioSessionInterruptionType interruptionType = [[[sender userInfo] objectForKey:AVAudioSessionInterruptionTypeKey] unsignedIntegerValue];
+    switch (interruptionType) {
+        case AVAudioSessionInterruptionTypeBegan:
+            [self stop];
+            break;
+        case AVAudioSessionInterruptionTypeEnded:
+            [self play];
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)destroyAudioUnitGraph {
+    AUGraphStop(_inGraph);
+    AUGraphUninitialize(_inGraph);
+    AUGraphClose(_inGraph);
+    AUGraphRemoveNode(_inGraph, _ioNode);
+    DisposeAUGraph(_inGraph);
+    _ioUnit = NULL;
+    _ioNode = 0;
+    _inGraph = NULL;
 }
 
 /**
@@ -79,6 +147,17 @@ static void CheckStatus(OSStatus status, NSString *message, BOOL fatal);
     
     // 4.在 AUGraph 中的某个 Node 里面获得 AudioUnit 的引用
     [self getUnitsFromNodes];
+    
+    // 设置属性
+    [self setAudioUnitProperties];
+    
+    // AUNode 连接
+    [self makeNodeConnections];
+    
+    CAShow(_inGraph);
+    
+    status = AUGraphInitialize(_inGraph);
+    CheckStatus(status, @"Could not initialize AUGraph", YES);
 }
 
 /// 2.利用 AudioUnit 的描述在 AUGraph 中按照描述增加一个 AUNode
@@ -136,11 +215,16 @@ static void CheckStatus(OSStatus status, NSString *message, BOOL fatal);
 /**
  AudioUnit 或者说 AUNode 是进行连接有什么方式:
  1.直接将 AUNode 连接起来
+ AUGraphConnectNodeInput(mPlayerGraph, mPlayerNode, 0, mPlayerIONode, 0);
  2.通过回调把两个 AUNode 连接起来
+ AURenderCallbackStruct renderProc;
+ renderProc.inputProc = &inputAvailableCallback;
+ renderProc.inputProcRefCon = (__bridge void *)self;
+ AUGraphSetNodeInputCallback(mGraph, ioNode, 0, &finalRenderProc);
  */
 - (void)makeNodeConnections {
     OSStatus status = noErr;
-    
+    // 1.直接连接的方式
     status = AUGraphConnectNodeInput(_inGraph, _convertNode, 0, _ioNode, 0);
     CheckStatus(status, @"AUGraphConnectNodeInput: Could not connect I/O node input to mixer node input", YES);
     
@@ -167,7 +251,7 @@ static void CheckStatus(OSStatus status, NSString *message, BOOL fatal);
     
     AudioStreamBasicDescription asbd;
     bzero(&asbd, sizeof(asbd));
-    asbd.mSampleRate = _sampleRate; // 采样率
+    asbd.mSampleRate = self.sampleRate; // 采样率
     asbd.mFormatID = kAudioFormatLinearPCM; // 采样格式
     asbd.mFormatFlags = kAudioFormatFlagsNativeFloatPacked | kAudioFormatFlagIsNonInterleaved;
     asbd.mBitsPerChannel = 8 * bytesPerSample; // 每个声道的位数
@@ -186,17 +270,51 @@ static void CheckStatus(OSStatus status, NSString *message, BOOL fatal);
     bzero(&clientFormat16Int, sizeof(clientFormat16Int));
     clientFormat16Int.mFormatID          = kAudioFormatLinearPCM;
     clientFormat16Int.mFormatFlags       = kLinearPCMFormatFlagIsSignedInteger | kLinearPCMFormatFlagIsPacked;
-    clientFormat16Int.mBytesPerPacket    = bytesPerSample * _channels;
+    clientFormat16Int.mBytesPerPacket    = bytesPerSample * self.channels;
     clientFormat16Int.mFramesPerPacket   = 1;
-    clientFormat16Int.mBytesPerFrame     = bytesPerSample * _channels;
-    clientFormat16Int.mChannelsPerFrame  = _channels;
+    clientFormat16Int.mBytesPerFrame     = bytesPerSample * self.channels;
+    clientFormat16Int.mChannelsPerFrame  = self.channels;
     clientFormat16Int.mBitsPerChannel    = 8 * bytesPerSample;
-    clientFormat16Int.mSampleRate        = _sampleRate;
+    clientFormat16Int.mSampleRate        = self.sampleRate;
     
     return clientFormat16Int;
 }
 
+- (OSStatus)renderData:(AudioBufferList *)ioData
+           atTimeStamp:(const AudioTimeStamp *)timeStamp
+            forElement:(UInt32)element
+          numberFrames:(UInt32)numFrames
+                 flags:(AudioUnitRenderActionFlags *)flags {
+    @autoreleasepool {
+        for (int iBuffer = 0; iBuffer < ioData->mNumberBuffers; ++iBuffer) {
+            memset(ioData->mBuffers[iBuffer].mData, 0, ioData->mBuffers[iBuffer].mDataByteSize);
+        }
+        if(self.fillAudioDataDelegate) {
+            [self.fillAudioDataDelegate fillAudioData:_outData numFrames:numFrames numChannels:self.channels];
+            for (int iBuffer = 0; iBuffer < ioData->mNumberBuffers; ++iBuffer) {
+                memcpy((SInt16 *)ioData->mBuffers[iBuffer].mData, _outData, ioData->mBuffers[iBuffer].mDataByteSize);
+            }
+        }
+        return noErr;
+    }
+    return noErr;
+}
+
 @end
+
+static OSStatus InputRenderCallback(void *inRefCon,
+                                    AudioUnitRenderActionFlags *ioActionFlags,
+                                    const AudioTimeStamp *inTimeStamp,
+                                    UInt32 inBusNumber,
+                                    UInt32 inNumberFrames,
+                                    AudioBufferList *ioData) {
+    FSAudioOutput *audioOutput = (__bridge id)inRefCon;
+    return [audioOutput renderData:ioData
+                       atTimeStamp:inTimeStamp
+                        forElement:inBusNumber
+                      numberFrames:inNumberFrames
+                             flags:ioActionFlags];
+}
 
 static void CheckStatus(OSStatus status, NSString *message, BOOL fatal) {
     if(status != noErr) {
@@ -213,13 +331,4 @@ static void CheckStatus(OSStatus status, NSString *message, BOOL fatal) {
             exit(-1);
         }
     }
-}
-
-static OSStatus InputRenderCallback(void *inRefCon,
-                                    AudioUnitRenderActionFlags *ioActionFlags,
-                                    const AudioTimeStamp *inTimeStamp,
-                                    UInt32 inBusNumber,
-                                    UInt32 inNumberFrames,
-                                    AudioBufferList *ioData) {
-    return noErr;
 }

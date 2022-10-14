@@ -9,7 +9,23 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSInteger, FSOpenState) {
+    OPEN_SUCCESS,
+    OPEN_FAILED,
+    CLIENT_CANCEL,
+};
+
+@protocol FSPlayerStateDelegate <NSObject>
+
+@end
+
 @interface FSAVSynchronizer : NSObject
+
+- (id)initWithPlayerStateDelegate:(id<FSPlayerStateDelegate>)playerStateDelegate;
+
+- (FSOpenState)openFile:(NSString *)path
+            parameters:(NSDictionary*)parameters
+                  error:(NSError **)error;
 
 @end
 
