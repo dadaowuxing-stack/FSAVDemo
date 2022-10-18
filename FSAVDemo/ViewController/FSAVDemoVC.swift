@@ -58,6 +58,22 @@ class FSAVDemoVC : FSAVBaseVC {
         return button;
     }()
     
+    
+    lazy var videoPlayButton: UIButton = {
+        let button: UIButton = UIButton(type: .custom)
+        button.frame = CGRect(x: 100, y: 320, width: 180, height: 50)
+        button.setTitle("video play Demo", for: .normal)
+        button.backgroundColor = .green
+        button.titleLabel?.textColor = .white
+        
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = 8
+        
+        button.addTarget(self, action: #selector(gotoVideoPlay(sender:)), for: .touchUpInside)
+        
+        return button;
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -71,6 +87,7 @@ class FSAVDemoVC : FSAVBaseVC {
         view.addSubview(avButton)
         view.addSubview(ffmpegButton)
         view.addSubview(openGLButton)
+        view.addSubview(videoPlayButton)
     }
     
     @objc private func gotoAVFoundation(sender: UIButton) {
@@ -89,5 +106,11 @@ class FSAVDemoVC : FSAVBaseVC {
         let vc = FSOpenGLVC()
         vc.title = "OpenGL Demo"
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc private func gotoVideoPlay(sender: UIButton) {
+        let path = Bundle.main.path(forResource: "test.flv", ofType: nil) ?? ""
+        let vc = FSVideoPlayDemoVC.viewController(withContentPath:path, contentFrame:self.view.bounds, parameters: [:])
+        navigationController?.pushViewController(vc as! UIViewController, animated: true)
     }
 }

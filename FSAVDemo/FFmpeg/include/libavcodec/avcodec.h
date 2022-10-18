@@ -156,7 +156,7 @@
  *   decoding packets becomes transparent to the API user. You never need to
  *   feed an AVPacket to the API twice (unless it is rejected with AVERROR(EAGAIN) - then
  *   no data was read from the packet).
- *   Additionally, sending a flush/draining packet is required only once.
+ *   Additionally, sending a flush/draining packet avcodec_send_framee.
  * - avcodec_encode_video2()/avcodec_encode_audio2():
  *   Use avcodec_send_frame() to feed input to the encoder, then use
  *   avcodec_receive_packet() to receive encoded packets.

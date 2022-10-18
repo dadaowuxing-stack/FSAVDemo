@@ -23,6 +23,13 @@
 		B30CC8DA2898D2F000328473 /* FSNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30CC8D12898D2F000328473 /* FSNavigationController.swift */; };
 		B30CC8DB2898D2F000328473 /* FSSectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30CC8D32898D2F000328473 /* FSSectionItem.swift */; };
 		B30CC8DC2898D2F000328473 /* FSItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30CC8D42898D2F000328473 /* FSItem.swift */; };
+		B318BACC28FCEBC500662E3F /* FSVideoOutput.m in Sources */ = {isa = PBXBuildFile; fileRef = B318BACB28FCEBC500662E3F /* FSVideoOutput.m */; };
+		B318BAD228FD2C5E00662E3F /* FSBaseEffectFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = B318BAD128FD2C5E00662E3F /* FSBaseEffectFilter.m */; };
+		B318BADA28FD2D4E00662E3F /* FSContrastEnhancerFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = B318BAD728FD2D4E00662E3F /* FSContrastEnhancerFilter.m */; };
+		B318BADD28FD2DFE00662E3F /* FSYUVFrameCopier.m in Sources */ = {isa = PBXBuildFile; fileRef = B318BADC28FD2DFE00662E3F /* FSYUVFrameCopier.m */; };
+		B318BAE028FD2EA000662E3F /* FSDirectPassRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = B318BADF28FD2EA000662E3F /* FSDirectPassRenderer.m */; };
+		B318BAE328FD371700662E3F /* FSVideoPlayDemoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B318BAE228FD371700662E3F /* FSVideoPlayDemoVC.m */; };
+		B318BAE528FD3A3B00662E3F /* test.flv in Resources */ = {isa = PBXBuildFile; fileRef = B318BAE428FD3A3B00662E3F /* test.flv */; };
 		B3198E52289A2CA1009A3130 /* FSBridgeFFmpeg.mm in Sources */ = {isa = PBXBuildFile; fileRef = B3198E51289A2CA1009A3130 /* FSBridgeFFmpeg.mm */; };
 		B3198E54289A44C9009A3130 /* FSDropdownListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3198E53289A44C9009A3130 /* FSDropdownListView.swift */; };
 		B3198E56289A44D9009A3130 /* FSDropdownListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3198E55289A44D9009A3130 /* FSDropdownListItem.swift */; };
@@ -134,6 +141,19 @@
 		B30CC8D12898D2F000328473 /* FSNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSNavigationController.swift; sourceTree = "<group>"; };
 		B30CC8D32898D2F000328473 /* FSSectionItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSSectionItem.swift; sourceTree = "<group>"; };
 		B30CC8D42898D2F000328473 /* FSItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSItem.swift; sourceTree = "<group>"; };
+		B318BACA28FCEBC500662E3F /* FSVideoOutput.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSVideoOutput.h; sourceTree = "<group>"; };
+		B318BACB28FCEBC500662E3F /* FSVideoOutput.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSVideoOutput.m; sourceTree = "<group>"; };
+		B318BAD028FD2C5E00662E3F /* FSBaseEffectFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSBaseEffectFilter.h; sourceTree = "<group>"; };
+		B318BAD128FD2C5E00662E3F /* FSBaseEffectFilter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSBaseEffectFilter.m; sourceTree = "<group>"; };
+		B318BAD728FD2D4E00662E3F /* FSContrastEnhancerFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSContrastEnhancerFilter.m; sourceTree = "<group>"; };
+		B318BAD828FD2D4E00662E3F /* FSContrastEnhancerFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSContrastEnhancerFilter.h; sourceTree = "<group>"; };
+		B318BADB28FD2DFE00662E3F /* FSYUVFrameCopier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSYUVFrameCopier.h; sourceTree = "<group>"; };
+		B318BADC28FD2DFE00662E3F /* FSYUVFrameCopier.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSYUVFrameCopier.m; sourceTree = "<group>"; };
+		B318BADE28FD2EA000662E3F /* FSDirectPassRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSDirectPassRenderer.h; sourceTree = "<group>"; };
+		B318BADF28FD2EA000662E3F /* FSDirectPassRenderer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSDirectPassRenderer.m; sourceTree = "<group>"; };
+		B318BAE128FD371700662E3F /* FSVideoPlayDemoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSVideoPlayDemoVC.h; sourceTree = "<group>"; };
+		B318BAE228FD371700662E3F /* FSVideoPlayDemoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSVideoPlayDemoVC.m; sourceTree = "<group>"; };
+		B318BAE428FD3A3B00662E3F /* test.flv */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.flv; sourceTree = "<group>"; };
 		B3198E50289A2CA1009A3130 /* FSBridgeFFmpeg.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSBridgeFFmpeg.h; sourceTree = "<group>"; };
 		B3198E51289A2CA1009A3130 /* FSBridgeFFmpeg.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = FSBridgeFFmpeg.mm; sourceTree = "<group>"; };
 		B3198E53289A44C9009A3130 /* FSDropdownListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSDropdownListView.swift; sourceTree = "<group>"; };
@@ -564,6 +584,8 @@
 				B30CC8CF2898D2F000328473 /* FSFFmpegVC.swift */,
 				B374BF1228F182AF000BE8D5 /* FSOpenGLVC.swift */,
 				B30CC8D12898D2F000328473 /* FSNavigationController.swift */,
+				B318BAE128FD371700662E3F /* FSVideoPlayDemoVC.h */,
+				B318BAE228FD371700662E3F /* FSVideoPlayDemoVC.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -576,6 +598,37 @@
 				B3198E55289A44D9009A3130 /* FSDropdownListItem.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		B318BACE28FD2C3600662E3F /* render */ = {
+			isa = PBXGroup;
+			children = (
+				B318BAD928FD2D4E00662E3F /* copier */,
+				B318BAD628FD2D4E00662E3F /* filter */,
+				B318BAD028FD2C5E00662E3F /* FSBaseEffectFilter.h */,
+				B318BAD128FD2C5E00662E3F /* FSBaseEffectFilter.m */,
+				B318BADE28FD2EA000662E3F /* FSDirectPassRenderer.h */,
+				B318BADF28FD2EA000662E3F /* FSDirectPassRenderer.m */,
+			);
+			path = render;
+			sourceTree = "<group>";
+		};
+		B318BAD628FD2D4E00662E3F /* filter */ = {
+			isa = PBXGroup;
+			children = (
+				B318BAD828FD2D4E00662E3F /* FSContrastEnhancerFilter.h */,
+				B318BAD728FD2D4E00662E3F /* FSContrastEnhancerFilter.m */,
+			);
+			path = filter;
+			sourceTree = "<group>";
+		};
+		B318BAD928FD2D4E00662E3F /* copier */ = {
+			isa = PBXGroup;
+			children = (
+				B318BADB28FD2DFE00662E3F /* FSYUVFrameCopier.h */,
+				B318BADC28FD2DFE00662E3F /* FSYUVFrameCopier.m */,
+			);
+			path = copier;
 			sourceTree = "<group>";
 		};
 		B32EAD6E28F53BD00042C86F /* VideoRecorder */ = {
@@ -600,6 +653,9 @@
 		B32EAD7428F6658A0042C86F /* VideoOutput */ = {
 			isa = PBXGroup;
 			children = (
+				B318BACE28FD2C3600662E3F /* render */,
+				B318BACA28FCEBC500662E3F /* FSVideoOutput.h */,
+				B318BACB28FCEBC500662E3F /* FSVideoOutput.m */,
 			);
 			path = VideoOutput;
 			sourceTree = "<group>";
@@ -1087,6 +1143,7 @@
 		B36FFEBF28967D0E005D0164 /* FileSource */ = {
 			isa = PBXGroup;
 			children = (
+				B318BAE428FD3A3B00662E3F /* test.flv */,
 				B36FFEC028967D0E005D0164 /* 44100_s16le_2.aac */,
 				B36FFEC128967D0E005D0164 /* input_1280x720.mp4 */,
 				B36FFEC228967D0E005D0164 /* 48000_f32le_1.pcm */,
@@ -1298,6 +1355,7 @@
 				B36FFEC528967D0E005D0164 /* 44100_s16le_2.aac in Resources */,
 				B36FFEC628967D0E005D0164 /* input_1280x720.mp4 in Resources */,
 				B3461F9D28F41C08008555E4 /* simple.fsh in Resources */,
+				B318BAE528FD3A3B00662E3F /* test.flv in Resources */,
 				B3461F9F28F41C1C008555E4 /* simple.vsh in Resources */,
 				B36FFEC828967D0E005D0164 /* 44100_s16le_2.pcm in Resources */,
 				B36FFEC928967D0E005D0164 /* in.pcm in Resources */,
@@ -1379,11 +1437,13 @@
 				B30CC8B52898AACD00328473 /* audio_record.cpp in Sources */,
 				B3198E54289A44C9009A3130 /* FSDropdownListView.swift in Sources */,
 				B36FFE2528951BFE005D0164 /* FSAudioMuxerVC.m in Sources */,
+				B318BADD28FD2DFE00662E3F /* FSYUVFrameCopier.m in Sources */,
 				B36FFE2A28951BFE005D0164 /* FSVideoRenderVC.m in Sources */,
 				B30CC8D62898D2F000328473 /* FSAVFoundationVC.swift in Sources */,
 				B3AB233D289E51D9000C05A1 /* play_pcm.cpp in Sources */,
 				B3198E56289A44D9009A3130 /* FSDropdownListItem.swift in Sources */,
 				B36FFE1428951BFE005D0164 /* FSVideoEncoder.m in Sources */,
+				B318BAD228FD2C5E00662E3F /* FSBaseEffectFilter.m in Sources */,
 				B32EAD7F28F666FF0042C86F /* FSAudioSession.m in Sources */,
 				B3198E52289A2CA1009A3130 /* FSBridgeFFmpeg.mm in Sources */,
 				B30CC8D92898D2F000328473 /* FSFFmpegVC.swift in Sources */,
@@ -1400,6 +1460,7 @@
 				B36FFE2728951BFE005D0164 /* FSVideoEncoderVC.m in Sources */,
 				B36FFE1E28951BFE005D0164 /* FSMP4Muxer.m in Sources */,
 				B32EAD8228F691E20042C86F /* FSAVSynchronizer.m in Sources */,
+				B318BACC28FCEBC500662E3F /* FSVideoOutput.m in Sources */,
 				B36FFE2C28951BFE005D0164 /* FSVideoMuxerVC.m in Sources */,
 				B36FFE2428951BFE005D0164 /* FSAudioDemuxerVC.m in Sources */,
 				B36FFE1628951BFE005D0164 /* FSAudioDecoder.m in Sources */,
@@ -1413,8 +1474,11 @@
 				B3BFAAA9289D151B003B5D85 /* audio_muxer.cpp in Sources */,
 				B374BF1728F184AE000BE8D5 /* FSOpenGLTriangleRenderVC.m in Sources */,
 				B32EAD7C28F666610042C86F /* AVAudioSession+RouteUtils.m in Sources */,
+				B318BAE028FD2EA000662E3F /* FSDirectPassRenderer.m in Sources */,
+				B318BAE328FD371700662E3F /* FSVideoPlayDemoVC.m in Sources */,
 				B30CC8DA2898D2F000328473 /* FSNavigationController.swift in Sources */,
 				B36FFE1228951BFE005D0164 /* FSVideoEncoderConfig.m in Sources */,
+				B318BADA28FD2D4E00662E3F /* FSContrastEnhancerFilter.m in Sources */,
 				B3AB2340289E51FD000C05A1 /* play_wav.cpp in Sources */,
 				B36FFEBA28951EAA005D0164 /* CodecUtil.c in Sources */,
 				B36FFE2D28951BFE005D0164 /* FSAVDemuxerVC.m in Sources */,
@@ -1571,6 +1635,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = J9QNPWJA7V;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1613,6 +1678,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = J9QNPWJA7V;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",

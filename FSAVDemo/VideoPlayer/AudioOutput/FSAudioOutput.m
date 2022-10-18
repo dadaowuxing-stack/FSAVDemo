@@ -3,7 +3,7 @@
 //  FSAVDemo
 //
 //  Created by louis on 2022/10/12.
-//
+//  音频输出模块
 
 #import "FSAudioOutput.h"
 #import <AudioToolbox/AudioToolbox.h>
@@ -13,6 +13,26 @@
  * AudioOutput(音频输出模块)的职责:
  *
  */
+
+/**
+ **************Setup AudioSession**********
+ * 1: Category
+ * 2: Set Listener
+ *      Interrupt Listener
+ *      AudioRoute Change Listener
+ *      Hardwate output Volume Listener
+ * 3: Set IO BufferDuration
+ * 4: Active AudioSession
+ *
+ **************Setup AudioUnit**************
+ * 1:Build AudioComponentDescription To Build AudioUnit Instance
+ * 2:Build AudioStreamBasicDescription To Set AudioUnit Property
+ * 3:Connect Node Or Set RenderCallback For AudioUnit
+ * 4:Initialize AudioUnit
+ * 5:Initialize AudioUnit
+ * 6:AudioOutputUnitStart
+ *
+ **/
 
 static const AudioUnitElement inputElement = 1;
 
@@ -39,7 +59,7 @@ static void CheckStatus(OSStatus status, NSString *message, BOOL fatal);
 @property(nonatomic, assign) AUNode             convertNode;
 @property(nonatomic, assign) AudioUnit          convertUnit;
 
-@property (readwrite, copy) id<FSFillDataDelegate> fillAudioDataDelegate;
+@property (nonatomic, weak) id<FSFillDataDelegate> fillAudioDataDelegate;
 
 @end
 

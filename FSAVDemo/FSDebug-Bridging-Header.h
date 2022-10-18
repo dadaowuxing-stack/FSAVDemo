@@ -11,5 +11,6 @@
 #import "FSBridgeFFmpeg.h"
 #import "FSFileManager.h"
 #import "FSBaseVC.h"
+#import "FSVideoPlayDemoVC.h"
 
 #endif /* FSDebug_Bridging_Header_h */

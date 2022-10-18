@@ -60,11 +60,11 @@ class FSAVFoundationVC: FSAVBaseVC {
     func videoItems() -> [FSItem] {
         let capture = FSItem(title: "Video Capture", subTitle: "视频采集", path: "FSVideoCaptureVC", opType: .videoCapture)
         let encoder = FSItem(title: "Video Encoder", subTitle: "视频编码", path: "FSVideoEncoderVC", opType: .videoEncoder)
-        let muxer = FSItem(title: "Video Muxer", subTitle: "视频采集", path: "FSVideoMuxerVC", opType: .videoMuxer)
-        let demuxer = FSItem(title: "Video Demuxer", subTitle: "视频编码", path: "FSVideoDemuxerVC", opType: .videoDemuxer)
-        let avDemuxer = FSItem(title: "AV Demuxer", subTitle: "视频采集", path: "FSAVDemuxerVC", opType: .avDemuxer)
-        let decoder = FSItem(title: "Video Decoder", subTitle: "视频编码", path: "FSVideoDecoderVC", opType: .videoDecoder)
-        let render = FSItem(title: "Video Render", subTitle: "视频采集", path: "FSVideoRenderVC", opType: .videoRender)
+        let muxer = FSItem(title: "Video Muxer", subTitle: "视频封装", path: "FSVideoMuxerVC", opType: .videoMuxer)
+        let demuxer = FSItem(title: "Video Demuxer", subTitle: "视频解封装", path: "FSVideoDemuxerVC", opType: .videoDemuxer)
+        let avDemuxer = FSItem(title: "AV Demuxer", subTitle: "音视频解封装", path: "FSAVDemuxerVC", opType: .avDemuxer)
+        let decoder = FSItem(title: "Video Decoder", subTitle: "视频解码", path: "FSVideoDecoderVC", opType: .videoDecoder)
+        let render = FSItem(title: "Video Render", subTitle: "视频渲染", path: "FSVideoRenderVC", opType: .videoRender)
         
         return [capture, encoder, muxer, demuxer, avDemuxer, decoder, render]
     }
