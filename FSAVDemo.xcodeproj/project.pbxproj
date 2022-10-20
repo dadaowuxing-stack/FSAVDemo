@@ -103,6 +103,9 @@
 		B37AF9AE2900EEB1008A8CAD /* video_scale.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B37AF9AC2900EEB1008A8CAD /* video_scale.cpp */; };
 		B37AF9B12900EF1F008A8CAD /* video_jpg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B37AF9AF2900EF1F008A8CAD /* video_jpg.cpp */; };
 		B37AF9B42900F0F2008A8CAD /* encode_muxer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B37AF9B22900F0F2008A8CAD /* encode_muxer.cpp */; };
+		B37AF9B72900F418008A8CAD /* audio_acrossfade.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B37AF9B52900F418008A8CAD /* audio_acrossfade.cpp */; };
+		B37AF9BA2900F4A7008A8CAD /* audio_volume.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B37AF9B82900F4A7008A8CAD /* audio_volume.cpp */; };
+		B37AF9BD2900F4E6008A8CAD /* subtitles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B37AF9BB2900F4E6008A8CAD /* subtitles.cpp */; };
 		B3A1075B28A22B1B0089C10A /* libSDL2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B3A1075A28A22B1B0089C10A /* libSDL2.a */; };
 		B3A107BB28A22BA20089C10A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3A107BA28A22BA20089C10A /* CoreGraphics.framework */; };
 		B3A107BD28A22BB20089C10A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3A107BC28A22BB20089C10A /* QuartzCore.framework */; };
@@ -405,6 +408,12 @@
 		B37AF9B02900EF1F008A8CAD /* video_jpg.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = video_jpg.hpp; sourceTree = "<group>"; };
 		B37AF9B22900F0F2008A8CAD /* encode_muxer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = encode_muxer.cpp; sourceTree = "<group>"; };
 		B37AF9B32900F0F2008A8CAD /* encode_muxer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = encode_muxer.hpp; sourceTree = "<group>"; };
+		B37AF9B52900F418008A8CAD /* audio_acrossfade.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = audio_acrossfade.cpp; sourceTree = "<group>"; };
+		B37AF9B62900F418008A8CAD /* audio_acrossfade.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = audio_acrossfade.hpp; sourceTree = "<group>"; };
+		B37AF9B82900F4A7008A8CAD /* audio_volume.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = audio_volume.cpp; sourceTree = "<group>"; };
+		B37AF9B92900F4A7008A8CAD /* audio_volume.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = audio_volume.hpp; sourceTree = "<group>"; };
+		B37AF9BB2900F4E6008A8CAD /* subtitles.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = subtitles.cpp; sourceTree = "<group>"; };
+		B37AF9BC2900F4E6008A8CAD /* subtitles.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = subtitles.hpp; sourceTree = "<group>"; };
 		B3A1075A28A22B1B0089C10A /* libSDL2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSDL2.a; sourceTree = "<group>"; };
 		B3A107BA28A22BA20089C10A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		B3A107BC28A22BB20089C10A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -1208,6 +1217,10 @@
 				B3BFAAA8289D151B003B5D85 /* audio_muxer.hpp */,
 				B3BFAAAA289D153F003B5D85 /* audio_demuxer.cpp */,
 				B3BFAAAB289D153F003B5D85 /* audio_demuxer.hpp */,
+				B37AF9B52900F418008A8CAD /* audio_acrossfade.cpp */,
+				B37AF9B62900F418008A8CAD /* audio_acrossfade.hpp */,
+				B37AF9B82900F4A7008A8CAD /* audio_volume.cpp */,
+				B37AF9B92900F4A7008A8CAD /* audio_volume.hpp */,
 				B37AF98E2900E2C6008A8CAD /* demuxer.cpp */,
 				B37AF98F2900E2C6008A8CAD /* demuxer.hpp */,
 				B3AB233B289E51D9000C05A1 /* play_pcm.cpp */,
@@ -1238,6 +1251,8 @@
 				B37AF9982900EAD6008A8CAD /* muxer.hpp */,
 				B37AF99D2900EC74008A8CAD /* transcode.cpp */,
 				B37AF99E2900EC74008A8CAD /* transcode.hpp */,
+				B37AF9BB2900F4E6008A8CAD /* subtitles.cpp */,
+				B37AF9BC2900F4E6008A8CAD /* subtitles.hpp */,
 			);
 			path = cppcode;
 			sourceTree = "<group>";
@@ -1486,6 +1501,7 @@
 				B37AF9A22900EDB9008A8CAD /* video_resample.cpp in Sources */,
 				B36FFE2028951BFE005D0164 /* FSBaseVC.m in Sources */,
 				B36FFE0D28951BFE005D0164 /* FSAudioConfig.m in Sources */,
+				B37AF9BA2900F4A7008A8CAD /* audio_volume.cpp in Sources */,
 				B3461F9B28F401C1008555E4 /* FSTriangleRenderView.m in Sources */,
 				B21489AE2840BE4600446FD4 /* AppDelegate.m in Sources */,
 				B32EAD8A28F694AD0042C86F /* FSVideoPlayerVC.m in Sources */,
@@ -1534,6 +1550,7 @@
 				B36FFE2328951BFE005D0164 /* FSAudioRenderVC.m in Sources */,
 				B3AB233A289E5189000C05A1 /* audio_resample.cpp in Sources */,
 				B36FFE1928951BFE005D0164 /* FSAudioRender.m in Sources */,
+				B37AF9B72900F418008A8CAD /* audio_acrossfade.cpp in Sources */,
 				B30CC8B82898B25500328473 /* audio_encode.cpp in Sources */,
 				B3BFAAA9289D151B003B5D85 /* audio_muxer.cpp in Sources */,
 				B374BF1728F184AE000BE8D5 /* FSOpenGLTriangleRenderVC.m in Sources */,
@@ -1542,6 +1559,7 @@
 				B318BAE328FD371700662E3F /* FSVideoPlayDemoVC.m in Sources */,
 				B30CC8DA2898D2F000328473 /* FSNavigationController.swift in Sources */,
 				B36FFE1228951BFE005D0164 /* FSVideoEncoderConfig.m in Sources */,
+				B37AF9BD2900F4E6008A8CAD /* subtitles.cpp in Sources */,
 				B318BADA28FD2D4E00662E3F /* FSContrastEnhancerFilter.m in Sources */,
 				B3AB2340289E51FD000C05A1 /* play_wav.cpp in Sources */,
 				B36FFEBA28951EAA005D0164 /* CodecUtil.c in Sources */,
