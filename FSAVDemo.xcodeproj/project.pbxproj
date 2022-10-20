@@ -30,6 +30,7 @@
 		B318BAE028FD2EA000662E3F /* FSDirectPassRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = B318BADF28FD2EA000662E3F /* FSDirectPassRenderer.m */; };
 		B318BAE328FD371700662E3F /* FSVideoPlayDemoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B318BAE228FD371700662E3F /* FSVideoPlayDemoVC.m */; };
 		B318BAE528FD3A3B00662E3F /* test.flv in Resources */ = {isa = PBXBuildFile; fileRef = B318BAE428FD3A3B00662E3F /* test.flv */; };
+		B318BAE828FE9EBD00662E3F /* video_play.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B318BAE628FE9EBD00662E3F /* video_play.cpp */; };
 		B3198E52289A2CA1009A3130 /* FSBridgeFFmpeg.mm in Sources */ = {isa = PBXBuildFile; fileRef = B3198E51289A2CA1009A3130 /* FSBridgeFFmpeg.mm */; };
 		B3198E54289A44C9009A3130 /* FSDropdownListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3198E53289A44C9009A3130 /* FSDropdownListView.swift */; };
 		B3198E56289A44D9009A3130 /* FSDropdownListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3198E55289A44D9009A3130 /* FSDropdownListItem.swift */; };
@@ -92,6 +93,16 @@
 		B36FFECD28967E37005D0164 /* FSFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B36FFECC28967E37005D0164 /* FSFileManager.m */; };
 		B374BF1328F182AF000BE8D5 /* FSOpenGLVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B374BF1228F182AF000BE8D5 /* FSOpenGLVC.swift */; };
 		B374BF1728F184AE000BE8D5 /* FSOpenGLTriangleRenderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B374BF1628F184AE000BE8D5 /* FSOpenGLTriangleRenderVC.m */; };
+		B37AF9902900E2C6008A8CAD /* demuxer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B37AF98E2900E2C6008A8CAD /* demuxer.cpp */; };
+		B37AF9992900EAD6008A8CAD /* muxer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B37AF9972900EAD6008A8CAD /* muxer.cpp */; };
+		B37AF99F2900EC74008A8CAD /* transcode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B37AF99D2900EC74008A8CAD /* transcode.cpp */; };
+		B37AF9A22900EDB9008A8CAD /* video_resample.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B37AF9A02900EDB9008A8CAD /* video_resample.cpp */; };
+		B37AF9A52900EDDB008A8CAD /* merge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B37AF9A32900EDDB008A8CAD /* merge.cpp */; };
+		B37AF9A82900EE20008A8CAD /* hard_encoder_decoder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B37AF9A62900EE20008A8CAD /* hard_encoder_decoder.cpp */; };
+		B37AF9AB2900EE43008A8CAD /* soft_encoder_decoder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B37AF9A92900EE43008A8CAD /* soft_encoder_decoder.cpp */; };
+		B37AF9AE2900EEB1008A8CAD /* video_scale.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B37AF9AC2900EEB1008A8CAD /* video_scale.cpp */; };
+		B37AF9B12900EF1F008A8CAD /* video_jpg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B37AF9AF2900EF1F008A8CAD /* video_jpg.cpp */; };
+		B37AF9B42900F0F2008A8CAD /* encode_muxer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B37AF9B22900F0F2008A8CAD /* encode_muxer.cpp */; };
 		B3A1075B28A22B1B0089C10A /* libSDL2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B3A1075A28A22B1B0089C10A /* libSDL2.a */; };
 		B3A107BB28A22BA20089C10A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3A107BA28A22BA20089C10A /* CoreGraphics.framework */; };
 		B3A107BD28A22BB20089C10A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3A107BC28A22BB20089C10A /* QuartzCore.framework */; };
@@ -154,6 +165,8 @@
 		B318BAE128FD371700662E3F /* FSVideoPlayDemoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSVideoPlayDemoVC.h; sourceTree = "<group>"; };
 		B318BAE228FD371700662E3F /* FSVideoPlayDemoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSVideoPlayDemoVC.m; sourceTree = "<group>"; };
 		B318BAE428FD3A3B00662E3F /* test.flv */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.flv; sourceTree = "<group>"; };
+		B318BAE628FE9EBD00662E3F /* video_play.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = video_play.cpp; sourceTree = "<group>"; };
+		B318BAE728FE9EBD00662E3F /* video_play.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = video_play.hpp; sourceTree = "<group>"; };
 		B3198E50289A2CA1009A3130 /* FSBridgeFFmpeg.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSBridgeFFmpeg.h; sourceTree = "<group>"; };
 		B3198E51289A2CA1009A3130 /* FSBridgeFFmpeg.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = FSBridgeFFmpeg.mm; sourceTree = "<group>"; };
 		B3198E53289A44C9009A3130 /* FSDropdownListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSDropdownListView.swift; sourceTree = "<group>"; };
@@ -372,6 +385,26 @@
 		B374BF1228F182AF000BE8D5 /* FSOpenGLVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSOpenGLVC.swift; sourceTree = "<group>"; };
 		B374BF1528F184AE000BE8D5 /* FSOpenGLTriangleRenderVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSOpenGLTriangleRenderVC.h; sourceTree = "<group>"; };
 		B374BF1628F184AE000BE8D5 /* FSOpenGLTriangleRenderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSOpenGLTriangleRenderVC.m; sourceTree = "<group>"; };
+		B37AF98E2900E2C6008A8CAD /* demuxer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = demuxer.cpp; sourceTree = "<group>"; };
+		B37AF98F2900E2C6008A8CAD /* demuxer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = demuxer.hpp; sourceTree = "<group>"; };
+		B37AF9972900EAD6008A8CAD /* muxer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = muxer.cpp; sourceTree = "<group>"; };
+		B37AF9982900EAD6008A8CAD /* muxer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = muxer.hpp; sourceTree = "<group>"; };
+		B37AF99D2900EC74008A8CAD /* transcode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = transcode.cpp; sourceTree = "<group>"; };
+		B37AF99E2900EC74008A8CAD /* transcode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = transcode.hpp; sourceTree = "<group>"; };
+		B37AF9A02900EDB9008A8CAD /* video_resample.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = video_resample.cpp; sourceTree = "<group>"; };
+		B37AF9A12900EDB9008A8CAD /* video_resample.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = video_resample.hpp; sourceTree = "<group>"; };
+		B37AF9A32900EDDB008A8CAD /* merge.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = merge.cpp; sourceTree = "<group>"; };
+		B37AF9A42900EDDB008A8CAD /* merge.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = merge.hpp; sourceTree = "<group>"; };
+		B37AF9A62900EE20008A8CAD /* hard_encoder_decoder.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = hard_encoder_decoder.cpp; sourceTree = "<group>"; };
+		B37AF9A72900EE20008A8CAD /* hard_encoder_decoder.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = hard_encoder_decoder.hpp; sourceTree = "<group>"; };
+		B37AF9A92900EE43008A8CAD /* soft_encoder_decoder.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = soft_encoder_decoder.cpp; sourceTree = "<group>"; };
+		B37AF9AA2900EE43008A8CAD /* soft_encoder_decoder.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = soft_encoder_decoder.hpp; sourceTree = "<group>"; };
+		B37AF9AC2900EEB1008A8CAD /* video_scale.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = video_scale.cpp; sourceTree = "<group>"; };
+		B37AF9AD2900EEB1008A8CAD /* video_scale.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = video_scale.hpp; sourceTree = "<group>"; };
+		B37AF9AF2900EF1F008A8CAD /* video_jpg.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = video_jpg.cpp; sourceTree = "<group>"; };
+		B37AF9B02900EF1F008A8CAD /* video_jpg.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = video_jpg.hpp; sourceTree = "<group>"; };
+		B37AF9B22900F0F2008A8CAD /* encode_muxer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = encode_muxer.cpp; sourceTree = "<group>"; };
+		B37AF9B32900F0F2008A8CAD /* encode_muxer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = encode_muxer.hpp; sourceTree = "<group>"; };
 		B3A1075A28A22B1B0089C10A /* libSDL2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSDL2.a; sourceTree = "<group>"; };
 		B3A107BA28A22BA20089C10A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		B3A107BC28A22BB20089C10A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -1175,6 +1208,8 @@
 				B3BFAAA8289D151B003B5D85 /* audio_muxer.hpp */,
 				B3BFAAAA289D153F003B5D85 /* audio_demuxer.cpp */,
 				B3BFAAAB289D153F003B5D85 /* audio_demuxer.hpp */,
+				B37AF98E2900E2C6008A8CAD /* demuxer.cpp */,
+				B37AF98F2900E2C6008A8CAD /* demuxer.hpp */,
 				B3AB233B289E51D9000C05A1 /* play_pcm.cpp */,
 				B3AB233C289E51D9000C05A1 /* play_pcm.hpp */,
 				B3A1085B28A2657B0089C10A /* pcm_to_wav.cpp */,
@@ -1183,6 +1218,26 @@
 				B3AB233F289E51FD000C05A1 /* play_wav.hpp */,
 				B3D2252C28A3468A00A835C1 /* video_record.cpp */,
 				B3D2252D28A3468A00A835C1 /* video_record.hpp */,
+				B318BAE628FE9EBD00662E3F /* video_play.cpp */,
+				B318BAE728FE9EBD00662E3F /* video_play.hpp */,
+				B37AF9A02900EDB9008A8CAD /* video_resample.cpp */,
+				B37AF9A12900EDB9008A8CAD /* video_resample.hpp */,
+				B37AF9AC2900EEB1008A8CAD /* video_scale.cpp */,
+				B37AF9AD2900EEB1008A8CAD /* video_scale.hpp */,
+				B37AF9AF2900EF1F008A8CAD /* video_jpg.cpp */,
+				B37AF9B02900EF1F008A8CAD /* video_jpg.hpp */,
+				B37AF9B22900F0F2008A8CAD /* encode_muxer.cpp */,
+				B37AF9B32900F0F2008A8CAD /* encode_muxer.hpp */,
+				B37AF9A32900EDDB008A8CAD /* merge.cpp */,
+				B37AF9A42900EDDB008A8CAD /* merge.hpp */,
+				B37AF9A62900EE20008A8CAD /* hard_encoder_decoder.cpp */,
+				B37AF9A72900EE20008A8CAD /* hard_encoder_decoder.hpp */,
+				B37AF9A92900EE43008A8CAD /* soft_encoder_decoder.cpp */,
+				B37AF9AA2900EE43008A8CAD /* soft_encoder_decoder.hpp */,
+				B37AF9972900EAD6008A8CAD /* muxer.cpp */,
+				B37AF9982900EAD6008A8CAD /* muxer.hpp */,
+				B37AF99D2900EC74008A8CAD /* transcode.cpp */,
+				B37AF99E2900EC74008A8CAD /* transcode.hpp */,
 			);
 			path = cppcode;
 			sourceTree = "<group>";
@@ -1415,16 +1470,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B37AF9AE2900EEB1008A8CAD /* video_scale.cpp in Sources */,
+				B37AF9B12900EF1F008A8CAD /* video_jpg.cpp in Sources */,
 				B36FFE1D28951BFE005D0164 /* FSMuxerConfig.m in Sources */,
 				B36FFE1128951BFE005D0164 /* FSAudioEncoder.m in Sources */,
 				B36FFE2628951BFE005D0164 /* FSVideoCaptureVC.m in Sources */,
 				B36FFE1828951BFE005D0164 /* render.metal in Sources */,
 				B36FFE0F28951BFE005D0164 /* FSVideoCaptureConfig.m in Sources */,
+				B37AF9AB2900EE43008A8CAD /* soft_encoder_decoder.cpp in Sources */,
 				B36FFE2128951BFE005D0164 /* FSAudioEncoderVC.m in Sources */,
 				B36FFE1028951BFE005D0164 /* FSAudioCapture.m in Sources */,
 				B36FFE2B28951BFE005D0164 /* FSVideoDemuxerVC.m in Sources */,
 				B3F722B6287F984E00E1CDB2 /* FSWeakProxy.m in Sources */,
 				B3BFAAAC289D153F003B5D85 /* audio_demuxer.cpp in Sources */,
+				B37AF9A22900EDB9008A8CAD /* video_resample.cpp in Sources */,
 				B36FFE2028951BFE005D0164 /* FSBaseVC.m in Sources */,
 				B36FFE0D28951BFE005D0164 /* FSAudioConfig.m in Sources */,
 				B3461F9B28F401C1008555E4 /* FSTriangleRenderView.m in Sources */,
@@ -1434,6 +1493,7 @@
 				B36FFE1A28951BFE005D0164 /* FSMP4Demuxer.m in Sources */,
 				B36FFECD28967E37005D0164 /* FSFileManager.m in Sources */,
 				B21489BF2840BE4700446FD4 /* main.m in Sources */,
+				B37AF9B42900F0F2008A8CAD /* encode_muxer.cpp in Sources */,
 				B30CC8B52898AACD00328473 /* audio_record.cpp in Sources */,
 				B3198E54289A44C9009A3130 /* FSDropdownListView.swift in Sources */,
 				B36FFE2528951BFE005D0164 /* FSAudioMuxerVC.m in Sources */,
@@ -1443,6 +1503,7 @@
 				B3AB233D289E51D9000C05A1 /* play_pcm.cpp in Sources */,
 				B3198E56289A44D9009A3130 /* FSDropdownListItem.swift in Sources */,
 				B36FFE1428951BFE005D0164 /* FSVideoEncoder.m in Sources */,
+				B37AF9992900EAD6008A8CAD /* muxer.cpp in Sources */,
 				B318BAD228FD2C5E00662E3F /* FSBaseEffectFilter.m in Sources */,
 				B32EAD7F28F666FF0042C86F /* FSAudioSession.m in Sources */,
 				B3198E52289A2CA1009A3130 /* FSBridgeFFmpeg.mm in Sources */,
@@ -1461,9 +1522,12 @@
 				B36FFE1E28951BFE005D0164 /* FSMP4Muxer.m in Sources */,
 				B32EAD8228F691E20042C86F /* FSAVSynchronizer.m in Sources */,
 				B318BACC28FCEBC500662E3F /* FSVideoOutput.m in Sources */,
+				B37AF9A82900EE20008A8CAD /* hard_encoder_decoder.cpp in Sources */,
+				B37AF99F2900EC74008A8CAD /* transcode.cpp in Sources */,
 				B36FFE2C28951BFE005D0164 /* FSVideoMuxerVC.m in Sources */,
 				B36FFE2428951BFE005D0164 /* FSAudioDemuxerVC.m in Sources */,
 				B36FFE1628951BFE005D0164 /* FSAudioDecoder.m in Sources */,
+				B37AF9A52900EDDB008A8CAD /* merge.cpp in Sources */,
 				B374BF1328F182AF000BE8D5 /* FSOpenGLVC.swift in Sources */,
 				B36FFE0E28951BFE005D0164 /* FSVideoCapture.m in Sources */,
 				B36FFE1528951BFE005D0164 /* FSVideoDecoder.m in Sources */,
@@ -1482,8 +1546,10 @@
 				B3AB2340289E51FD000C05A1 /* play_wav.cpp in Sources */,
 				B36FFEBA28951EAA005D0164 /* CodecUtil.c in Sources */,
 				B36FFE2D28951BFE005D0164 /* FSAVDemuxerVC.m in Sources */,
+				B318BAE828FE9EBD00662E3F /* video_play.cpp in Sources */,
 				B36FFE2828951BFE005D0164 /* FSVideoPacketExtraData.m in Sources */,
 				B30CC8DB2898D2F000328473 /* FSSectionItem.swift in Sources */,
+				B37AF9902900E2C6008A8CAD /* demuxer.cpp in Sources */,
 				B3A1085D28A2657B0089C10A /* pcm_to_wav.cpp in Sources */,
 				B30CC8D72898D2F000328473 /* FSAVDemoVC.swift in Sources */,
 				B36FFE1B28951BFE005D0164 /* FSDemuxerConfig.m in Sources */,

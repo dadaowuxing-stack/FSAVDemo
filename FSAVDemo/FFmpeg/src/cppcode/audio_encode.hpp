@@ -3,7 +3,7 @@
 //  FSAVDemo
 //
 //  Created by louis on 2022/8/2.
-//
+//  音频编码
 
 #ifndef audio_encode_hpp
 #define audio_encode_hpp

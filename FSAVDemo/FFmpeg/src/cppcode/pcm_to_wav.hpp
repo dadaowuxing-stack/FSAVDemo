@@ -3,7 +3,7 @@
 //  FSAVDemo
 //
 //  Created by louis on 2022/8/9.
-//
+//  PCM 转 WAV
 
 #ifndef pcm_to_wav_hpp
 #define pcm_to_wav_hpp
