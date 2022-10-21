@@ -13,16 +13,19 @@
 char errbuf[1024]; \
 av_strerror(ret, errbuf, sizeof (errbuf));
 
+/// 选择音频编码器
+/// - Parameter format: 音频格式类型
 static AVCodec* select_codec(CodecFormat format) {
     AVCodec *codec = nullptr;
     
     if (format == CodecFormatAAC) {
-//        codec = avcodec_find_encoder(AV_CODEC_ID_AAC);
-        codec = avcodec_find_encoder_by_name("libfdk_aac");
+        // codec = avcodec_find_encoder(AV_CODEC_ID_AAC); // ffmpeg 自带的 aac 编码器
+        codec = avcodec_find_encoder_by_name("libfdk_aac"); // 引入的 fdk_aac 编码器
     } else if (format == CodecFormatMP3) {
-        
+        //codec = avcodec_find_encoder(AV_CODEC_ID_MP3);
+        codec = avcodec_find_encoder_by_name("libmp3lame");
     } else if (format == CodecFormatAC3) {
-        
+        codec = avcodec_find_encoder(AV_CODEC_ID_AC3);
     }
     
     return codec;
@@ -46,6 +49,7 @@ static int check_sample_fmt(const AVCodec *codec, enum AVSampleFormat sample_fmt
 /// @param frame 编码帧
 /// @param file 文件
 static int encode(AVCodecContext *codecCtx, AVPacket *packet, AVFrame *frame, FILE *file) {
+    // 向编码器提供原始视频或音频帧
     int ret = avcodec_send_frame(codecCtx, frame);
     if (ret < 0) {
         ERROR_BUF(ret);
@@ -144,7 +148,7 @@ void AudioEncode::doEncode(AudioEncodeSpec &in_spec, CodecFormat format, bool sa
         return;
     }
     
-    // 2.创建编码上下文
+    // 2.创建编码上下文(贯穿编码整个过程),这个和avcodec_open2()传入的必须是同一个编码器,不然会报错
     m_pCodecCtx = avcodec_alloc_context3(pCodec);
     if (!m_pCodecCtx) {
         LOGD("avcodec_alloc_context3 error");
@@ -164,7 +168,7 @@ void AudioEncode::doEncode(AudioEncodeSpec &in_spec, CodecFormat format, bool sa
     // 规格
     m_pCodecCtx->profile = FF_PROFILE_AAC_HE_V2;
     
-    // 4.打开编码器上下文
+    // 4.打开编码器上下文(初始化上下文, 打开此上下文的编码器)
     ret = avcodec_open2(m_pCodecCtx, pCodec, nullptr);
     if (ret < 0) {
         ERROR_BUF(ret)
@@ -189,7 +193,7 @@ void AudioEncode::doEncode(AudioEncodeSpec &in_spec, CodecFormat format, bool sa
      *  3、当align为0时，自动根据目前cpu架构位数进行分配，但最终不一定是按照32或者64的参数进行分配
      */
     // 5.分配内存块,用于存储未压缩的音频数据
-    // 存放编码前的数据
+    // 存放编码前的数据(PCM)
     srcFrame = av_frame_alloc();
     if (!srcFrame) {
         LOGD("av_frame_alloc error");
@@ -219,7 +223,7 @@ void AudioEncode::doEncode(AudioEncodeSpec &in_spec, CodecFormat format, bool sa
         return;
     }
     
-    // 让缓冲区(内存块)可写
+    // 让缓冲区(内存块)可写(确保帧数据可写，尽可能避免数据复制)
     ret = av_frame_make_writable(srcFrame);
     if (ret < 0) {
         ERROR_BUF(ret)
@@ -228,7 +232,7 @@ void AudioEncode::doEncode(AudioEncodeSpec &in_spec, CodecFormat format, bool sa
         return;
     }
     
-    // 存放编码后的数据
+    // 分配一个packet,用于存放编码后的数据
     packet = av_packet_alloc();
     if (!packet) {
         LOGD("av_packet_alloc error");
@@ -256,10 +260,13 @@ void AudioEncode::doEncode(AudioEncodeSpec &in_spec, CodecFormat format, bool sa
     //int require_size = av_samples_get_buffer_size(nullptr, src_nb_channels, src_nb_samples, src_sample_format, 0);
     while ((readsize = fread(srcFrame->data[0], 1, srcFrame->linesize[0], srcFile)) > 0) {
         if (ret < srcFrame->linesize[0]) {
+            // 每个样本的字节数
             int bytes = av_get_bytes_per_sample((AVSampleFormat) srcFrame->format);
+            // 声道数
             int ch = av_get_channel_layout_nb_channels(srcFrame->channel_layout);
             // 设置真正有效的样本帧数量
             // 防止编码器编码了一些冗余数据
+            // readsize: 读取的大小; (bytes * ch): 样本帧的大小
             srcFrame->nb_samples = int(readsize) / (bytes * ch);
         }
         if (encode(m_pCodecCtx, packet, srcFrame, dstFile) < 0) {

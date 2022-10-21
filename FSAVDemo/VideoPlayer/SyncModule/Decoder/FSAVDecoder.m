@@ -248,7 +248,7 @@ static int interrupt_callback(void *ctx) {
         SwrContext *swrContext = NULL;
         if(![self audioCodecIsSupported:codecCtx]){
             NSLog(@"because of audio Codec Is Not Supported so we will init swresampler...");
-            /**
+            /**创建采样上下文
              * 初始化resampler
              * @param s               Swr context, can be NULL
              * @param out_ch_layout   output channel layout (AV_CH_LAYOUT_*)

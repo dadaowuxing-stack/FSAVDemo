@@ -68,15 +68,15 @@ AudioRecord::~AudioRecord() {
 void AudioRecord::doStartRecord(string fmt_name, string device_name, string file_path) {
     LOGD("开始录制");
     isRecording = true;
-    // 获取输入格式对象
+    // 获取输入格式对象(平台不一样输入的格式也不一样: iOS/Mac 平台是:avfoundation)
     AVInputFormat *fmt = av_find_input_format(fmt_name.c_str());
     if (!fmt) {
         LOGD("av_find_input_format error: %s", fmt_name.c_str());
         return;
     }
-    // 格式上下文（将来可以利用上下文操作设备）
+    // 格式上下文（贯穿整个过程,将来可以利用上下文操作设备）
     AVFormatContext *ctx = nullptr;
-    // 打开设备
+    // 打开设备, 获取上下文信息
     int ret = avformat_open_input(&ctx, device_name.c_str(), fmt, nullptr);
     if (ret < 0) {
         LOGD("avformat_open_input error: %s", device_name.c_str());
@@ -95,10 +95,11 @@ void AudioRecord::doStartRecord(string fmt_name, string device_name, string file
         return;
     }
     
-    // 数据包
+    // 声明数据包(它是一个结构体,采集的数据会存放到数据包中)
+    // Allocate an AVPacket and set its fields to default values.
     AVPacket *pkt = av_packet_alloc();
     while (isRecording) {
-        // 不断采集数据
+        // 不断采集数据()
         ret = av_read_frame(ctx, pkt);
         // 采集成功
         if (ret == 0) {
@@ -109,7 +110,7 @@ void AudioRecord::doStartRecord(string fmt_name, string device_name, string file
             LOGD("av_read_frame error");
             break;
         }
-        // 必须要加，释放pkt内部的资源
+        // 必须要加，释放pkt内部的资源(the packet must be freed with av_packet_unref when it is no longer needed.)
         av_packet_unref(pkt);
     }
     // 关闭文件
