@@ -311,7 +311,7 @@
     
     return _captureSession;
 }
-
+// 预渲染layer
 - (AVCaptureVideoPreviewLayer *)previewLayer {
     if (!_captureSession) {
         return nil;

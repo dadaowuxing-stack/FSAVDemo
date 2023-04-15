@@ -139,7 +139,7 @@
         __weak typeof(self) weakSelf = self;
         _videoCapture.sessionInitSuccessCallBack = ^() {
             dispatch_async(dispatch_get_main_queue(), ^{
-                // 预览渲染。
+                // 预览渲染
                 [weakSelf.view.layer insertSublayer:weakSelf.videoCapture.previewLayer atIndex:0];
                 weakSelf.videoCapture.previewLayer.backgroundColor = [UIColor blackColor].CGColor;
                 weakSelf.videoCapture.previewLayer.frame = weakSelf.view.bounds;
@@ -147,7 +147,7 @@
         };
         _videoCapture.sampleBufferOutputCallBack = ^(CMSampleBufferRef sampleBuffer) {
             if (sampleBuffer && weakSelf.isWriting) {
-                // 编码。
+                // 编码
                 [weakSelf.videoEncoder encodePixelBuffer:CMSampleBufferGetImageBuffer(sampleBuffer) ptsTime:CMSampleBufferGetPresentationTimeStamp(sampleBuffer)];
             }
         };

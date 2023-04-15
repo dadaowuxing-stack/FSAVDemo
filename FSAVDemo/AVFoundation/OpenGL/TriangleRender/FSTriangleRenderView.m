@@ -3,7 +3,7 @@
 //  FSAVDemo
 //
 //  Created by louis on 2022/10/10.
-//
+//  渲染视图
 
 #import "FSTriangleRenderView.h"
 #import <OpenGLES/ES2/gl.h>
@@ -12,8 +12,8 @@
 #define PositionDimension 3 // 顶点坐标
 #define ColorDimension 4    // 颜色维度
 typedef struct {
-    GLfloat position[PositionDimension]; // { x, y, z }
-    GLfloat color[ColorDimension]; // {r, g, b, a}
+    GLfloat position[PositionDimension]; // { x, y, z } // 顶点坐标
+    GLfloat color[ColorDimension]; // {r, g, b, a}      // 颜色维度
 } SceneVertex;
 
 @interface FSTriangleRenderView ()
@@ -21,13 +21,14 @@ typedef struct {
 @property (nonatomic, assign) GLsizei width;
 @property (nonatomic, assign) GLsizei height;
 
+// iOS 平台对 EGL 的实现是 EAGL（Embedded Apple Graphics Library），其中 CAEAGLLayer 就是一种可以支持 OpenGL ES 绘制的图层类型
 @property (nonatomic, strong) CAEAGLLayer *eaglLayer;
-@property (nonatomic, strong) EAGLContext *eaglContext;
+@property (nonatomic, strong) EAGLContext *eaglContext; // EAGL上下文
 
 @property (nonatomic, assign) GLuint simpleProgram;
 
-@property (nonatomic, assign) GLuint renderBuffer;
-@property (nonatomic, assign) GLuint frameBuffer;
+@property (nonatomic, assign) GLuint renderBuffer;  // 渲染缓冲区对象
+@property (nonatomic, assign) GLuint frameBuffer;   //
 
 @end
 
@@ -52,11 +53,11 @@ typedef struct {
     _eaglLayer = (CAEAGLLayer *)self.layer;
     _eaglLayer.opacity = 1.0;
     _eaglLayer.drawableProperties = @{kEAGLDrawablePropertyRetainedBacking: @(NO),
-                                      kEAGLDrawablePropertyColorFormat: kEAGLColorFormatRGBA8};
+                                      kEAGLDrawablePropertyColorFormat: kEAGLColorFormatRGBA8}; // 绘制属性
     
     // 2.创建 OpenGL 上下文
     EAGLRenderingAPI api = kEAGLRenderingAPIOpenGLES2; // 使用 OpenGL API 的版本
-    EAGLContext *context = [[EAGLContext alloc] initWithAPI:api];
+    EAGLContext *context = [[EAGLContext alloc] initWithAPI:api]; // 获取EAGL上下文
     if (!context) {
         NSLog(@"Create context failed!");
         return;
@@ -69,12 +70,12 @@ typedef struct {
     }
     _eaglContext = context;
     
-    // 3.申请并绑定渲染缓冲区对象 RBO 用来存储即将绘制到屏幕上的图像数据
+    // 3.申请并绑定渲染缓冲区对象 RBO(渲染缓冲区对象) 用来存储即将绘制到屏幕上的图像数据
     glGenRenderbuffers(1, &_renderBuffer); // 创建 RBO
     glBindRenderbuffer(GL_RENDERBUFFER, _renderBuffer); // 绑定 RBO 到 OpenGL 渲染管线
     [_eaglContext renderbufferStorage:GL_RENDERBUFFER fromDrawable:_eaglLayer]; // 将渲染图层（_eaglLayer）的存储绑定到 RBO
     
-    // 4.申请并绑定帧缓冲区对象 FBO; FBO 本身不能用于渲染，只有绑定了纹理（Texture）或者渲染缓冲区（RBO）等作为附件之后才能作为渲染目标
+    // 4.申请并绑定帧缓冲区对象 FBO(帧缓冲区对象); FBO 本身不能用于渲染，只有绑定了纹理（Texture）或者渲染缓冲区（RBO）等作为附件之后才能作为渲染目标
     glGenFramebuffers(1, &_frameBuffer); // 创建 FBO
     glBindFramebuffer(GL_FRAMEBUFFER, _frameBuffer); // 绑定 FBO 到 OpenGL 渲染管线
     // 将 RBO 绑定为 FBO 的一个附件，绑定后，OpenGL 对 FBO 的绘制会同步到 RBO 后再上屏
@@ -85,7 +86,7 @@ typedef struct {
     glClear(GL_COLOR_BUFFER_BIT); // 清空旧渲染缓存
     glViewport(0, 0, _width, _height); // 设置渲染窗口区域
     
-    // 6.加载和编译 shader，并链接到着色器程序
+    // 6.加载和编译 shader(着色器)，并链接到着色器程序
     if (_simpleProgram) {
         glDeleteProgram(_simpleProgram);
         _simpleProgram = 0;
@@ -96,9 +97,10 @@ typedef struct {
      1.创建 Shader（着色器）
      2.创建 Program
      */
-    // 加载和编译 shader
+    // VSH(VertexShader 顶点着色器), FSH(FragmentShader 片段着色器)
     NSString *simpleVSH = [[NSBundle mainBundle] pathForResource:@"simple" ofType:@"vsh"];
     NSString *simpleFSH = [[NSBundle mainBundle] pathForResource:@"simple" ofType:@"fsh"];
+    // 加载和编译 shader(着色器)
     _simpleProgram = [self loadShaderWithVertexShader:simpleVSH fragmentShader:simpleFSH];
     
     // 当顶点着色器和片元着色器都被附加到程序中之后，最后一步就是链接程序
@@ -140,12 +142,13 @@ typedef struct {
     /******************************创建VBO 代码 start*******************************/
     
     // 设置三角形 3 个顶点数据，包括坐标信息和颜色信息
+    // 默认坐标系是-1 到 1
     const SceneVertex vertices[] = {
         {{-0.5,  0.5, 0.0}, { 1.0, 0.0, 0.0, 1.000}}, // 左下 // 红色
         {{-0.5, -0.5, 0.0}, { 0.0, 1.0, 0.0, 1.000}}, // 右下 // 绿色
         {{ 0.5, -0.5, 0.0}, { 0.0, 0.0, 1.0, 1.000}}, // 左上 // 蓝色
     };
-    // 申请并绑定 VBO VBO 的作用是在显存中提前开辟好一块内存，用于缓存顶点数据，从而避免每次绘制时的 CPU 与 GPU 之间的内存拷贝，可以提升渲染性能
+    // 申请并绑定 VBO, VBO 的作用是在显存中提前开辟好一块内存，用于缓存顶点数据，从而避免每次绘制时的 CPU 与 GPU 之间的内存拷贝，可以提升渲染性能
     GLuint vertexBufferID;
     glGenBuffers(1, &vertexBufferID); // 创建 VBO
     glBindBuffer(GL_ARRAY_BUFFER, vertexBufferID); // 绑定 VBO 到 OpenGL 渲染管线
@@ -158,7 +161,7 @@ typedef struct {
     /******************************创建VBO 代码 end*******************************/
     
     // 8.绘制三角形
-    // 获取与 Shader 中对应的参数信息：
+    // 获取与 Shader(着色器) 中对应的参数信息：
     GLuint vertexPositionLocation = glGetAttribLocation(_simpleProgram, "v_position");
     GLuint vertexColorLocation = glGetAttribLocation(_simpleProgram, "v_color");
     // 顶点位置属性
