@@ -114,6 +114,7 @@
 		B37AF9B72900F418008A8CAD /* audio_acrossfade.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B37AF9B52900F418008A8CAD /* audio_acrossfade.cpp */; };
 		B37AF9BA2900F4A7008A8CAD /* audio_volume.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B37AF9B82900F4A7008A8CAD /* audio_volume.cpp */; };
 		B37AF9BD2900F4E6008A8CAD /* subtitles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B37AF9BB2900F4E6008A8CAD /* subtitles.cpp */; };
+		B385B85229ECD98B00436311 /* FSOpenGLVideoRenderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B385B85129ECD98B00436311 /* FSOpenGLVideoRenderVC.m */; };
 		B3A1075B28A22B1B0089C10A /* libSDL2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B3A1075A28A22B1B0089C10A /* libSDL2.a */; };
 		B3A107BB28A22BA20089C10A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3A107BA28A22BA20089C10A /* CoreGraphics.framework */; };
 		B3A107BD28A22BB20089C10A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3A107BC28A22BB20089C10A /* QuartzCore.framework */; };
@@ -439,6 +440,8 @@
 		B37AF9B92900F4A7008A8CAD /* audio_volume.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = audio_volume.hpp; sourceTree = "<group>"; };
 		B37AF9BB2900F4E6008A8CAD /* subtitles.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = subtitles.cpp; sourceTree = "<group>"; };
 		B37AF9BC2900F4E6008A8CAD /* subtitles.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = subtitles.hpp; sourceTree = "<group>"; };
+		B385B85029ECD98B00436311 /* FSOpenGLVideoRenderVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSOpenGLVideoRenderVC.h; sourceTree = "<group>"; };
+		B385B85129ECD98B00436311 /* FSOpenGLVideoRenderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSOpenGLVideoRenderVC.m; sourceTree = "<group>"; };
 		B3A1075A28A22B1B0089C10A /* libSDL2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSDL2.a; sourceTree = "<group>"; };
 		B3A107BA28A22BA20089C10A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		B3A107BC28A22BB20089C10A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -652,6 +655,8 @@
 			children = (
 				B307285829CEE1E400E30B2E /* Effect */,
 				B307285429CEE0EF00E30B2E /* Render */,
+				B385B85029ECD98B00436311 /* FSOpenGLVideoRenderVC.h */,
+				B385B85129ECD98B00436311 /* FSOpenGLVideoRenderVC.m */,
 			);
 			path = VideoRender;
 			sourceTree = "<group>";
@@ -1566,6 +1571,7 @@
 				B36FFE2628951BFE005D0164 /* FSVideoCaptureVC.m in Sources */,
 				B36FFE1828951BFE005D0164 /* render.metal in Sources */,
 				B36FFE0F28951BFE005D0164 /* FSVideoCaptureConfig.m in Sources */,
+				B385B85229ECD98B00436311 /* FSOpenGLVideoRenderVC.m in Sources */,
 				B37AF9AB2900EE43008A8CAD /* soft_encoder_decoder.cpp in Sources */,
 				B36FFE2128951BFE005D0164 /* FSAudioEncoderVC.m in Sources */,
 				B36FFE1028951BFE005D0164 /* FSAudioCapture.m in Sources */,

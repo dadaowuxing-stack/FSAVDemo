@@ -45,9 +45,10 @@ class FSOpenGLVC: FSAVBaseVC {
     }
     
     func openGLItems() -> [FSItem] {
-        let render = FSItem(title: "OpenGL Render", subTitle: "图形渲染", path: "FSOpenGLTriangleRenderVC", opType: .triangleRender)
+        let triangleRender = FSItem(title: "OpenGL Render", subTitle: "图形渲染", path: "FSOpenGLTriangleRenderVC", opType: .openGLTriangleRender)
+        let videoRender = FSItem(title: "OpenGL Render", subTitle: "视频渲染", path: "FSOpenGLVideoRenderVC", opType: .openGLVideoRender)
         
-        return [render]
+        return [triangleRender, videoRender]
     }
 }
 
