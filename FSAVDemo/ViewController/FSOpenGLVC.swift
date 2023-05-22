@@ -45,10 +45,11 @@ class FSOpenGLVC: FSAVBaseVC {
     }
     
     func openGLItems() -> [FSItem] {
-        let triangleRender = FSItem(title: "OpenGL Render", subTitle: "图形渲染", path: "FSOpenGLTriangleRenderVC", opType: .openGLTriangleRender)
-        let videoRender = FSItem(title: "OpenGL Render", subTitle: "视频渲染", path: "FSOpenGLVideoRenderVC", opType: .openGLVideoRender)
+        let triangleRender = FSItem(title: "OpenGL Render", subTitle: "1-图形渲染", path: "FSOpenGLTriangleRenderVC", opType: .openGLTriangleRender)
+        let videoRender = FSItem(title: "OpenGL Video Render", subTitle: "2-视频渲染", path: "FSOpenGLVideoRenderVC", opType: .openGLVideoRender)
+        let gaussianBlur = FSItem(title: "Gaussian Blur", subTitle: "3-高斯模糊", path: "FSGaussianBlurVC", opType: .openGLGaussianBlur)
         
-        return [triangleRender, videoRender]
+        return [triangleRender, videoRender, gaussianBlur]
     }
 }
 

@@ -73,6 +73,7 @@ typedef NS_ENUM(NSInteger, FSMediaOpType) {
     
     FSMediaOpTypeOpenGLTriangleRender,
     FSMediaOpTypeOpenGLVideoRender,
+    FSMediaOpTypeOpenGLGaussianBlur,
 };
 
 #endif /* FSMediaBase_h */

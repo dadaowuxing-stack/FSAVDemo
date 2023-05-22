@@ -171,6 +171,7 @@
 
 #pragma mark - Private Method
 
+/// 创建解码器 && 配置解码参数
 - (OSStatus)_setupDecompressionSession:(CMFormatDescriptionRef)videoDescription {
     if (_decoderSession) {
         return noErr;

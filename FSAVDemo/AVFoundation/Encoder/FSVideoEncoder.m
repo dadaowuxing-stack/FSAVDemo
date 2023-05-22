@@ -76,6 +76,7 @@
     });
 }
 /// 编码器的输入是 CVPixelBuffer 类型的结构体，输出是 CMSampleBuffer 类型的结构体
+/// CVPixelBufferRef 是准备待编码的视频数据
 - (void)encodePixelBuffer:(CVPixelBufferRef)pixelBuffer ptsTime:(CMTime)timeStamp {
     // 编码
     if (!pixelBuffer || self.retrySessionCount >= FSEncoderRetrySessionMaxCount || self.encodeFrameFailedCount >= FSEncoderEncodeFrameFailedMaxCount) {
@@ -149,6 +150,22 @@
 
 #pragma mark - Privte Method
 
+/**
+ 创建编码器，配置编解码参数：根据需要配置视频编解码参数，例如视频分辨率、帧率、码率、编码格式等。
+ 常用的 VideoToolbox 参数包括：
+
+ kCVPixelBufferPixelFormatTypeKey：指定像素格式，例如 kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange 表示 YUV 格式。
+
+ kVTCompressionPropertyKey_ProfileLevel：指定编码的 H.264 等级和配置文件。
+
+ kVTCompressionPropertyKey_AverageBitRate：指定编码的平均比特率。
+
+ kVTCompressionPropertyKey_MaxKeyFrameInterval：指定关键帧的最大间隔。
+
+ kVTDecompressionPropertyKey_UsingHardwareAcceleratedVideoDecoder：指定是否使用硬件加速解码。
+
+ kVTDecompressionPropertyKey_OutputPixelFormat：指定解码输出的像素格式。
+ */
 - (OSStatus)_setupCompressionSession {
     if (_compressionSession) {
         return noErr;
@@ -158,6 +175,7 @@
     // 这里要设置画面尺寸、编码器类型、编码数据回调
     OSStatus status = VTCompressionSessionCreate(NULL, _config.size.width, _config.size.height, _config.codecType, NULL, NULL, NULL, encoderOutputCallback, (__bridge void *) self, &_compressionSession);
     if (status != noErr) {
+        NSLog(@"Failed to create compression session with error %d", (int)status);
         return status;
     }
     

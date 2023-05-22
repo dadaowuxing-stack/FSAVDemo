@@ -19,14 +19,6 @@
 		B307285129CECEAB00E30B2E /* simple.vsh in Resources */ = {isa = PBXBuildFile; fileRef = B307284C29CECEAB00E30B2E /* simple.vsh */; };
 		B307285229CECEAB00E30B2E /* FSOpenGLTriangleRenderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B307284D29CECEAB00E30B2E /* FSOpenGLTriangleRenderVC.m */; };
 		B307285729CEE10700E30B2E /* FSOpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = B307285629CEE10700E30B2E /* FSOpenGLView.m */; };
-		B307285E29CEE26700E30B2E /* FSTextureFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = B307285D29CEE26700E30B2E /* FSTextureFrame.m */; };
-		B307286129CEE4BF00E30B2E /* FSGLFilter.mm in Sources */ = {isa = PBXBuildFile; fileRef = B307286029CEE4BF00E30B2E /* FSGLFilter.mm */; };
-		B307286429CEE60F00E30B2E /* FSGLProgram.mm in Sources */ = {isa = PBXBuildFile; fileRef = B307286329CEE60F00E30B2E /* FSGLProgram.mm */; };
-		B307286729CEE65900E30B2E /* FSGLFrameBuffer.mm in Sources */ = {isa = PBXBuildFile; fileRef = B307286629CEE65900E30B2E /* FSGLFrameBuffer.mm */; };
-		B307286A29CEE67600E30B2E /* FSPixelBufferConvertTexture.mm in Sources */ = {isa = PBXBuildFile; fileRef = B307286929CEE67600E30B2E /* FSPixelBufferConvertTexture.mm */; };
-		B307286D29CEF4C000E30B2E /* FSGLTextureAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = B307286C29CEF4C000E30B2E /* FSGLTextureAttributes.m */; };
-		B307287029CEF99200E30B2E /* FSGLBase.m in Sources */ = {isa = PBXBuildFile; fileRef = B307286F29CEF99100E30B2E /* FSGLBase.m */; };
-		B307287329CEFB5300E30B2E /* FSGLFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = B307287229CEFB5300E30B2E /* FSGLFrame.m */; };
 		B30CC8B52898AACD00328473 /* audio_record.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B30CC8B32898AACD00328473 /* audio_record.cpp */; };
 		B30CC8B82898B25500328473 /* audio_encode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B30CC8B62898B25500328473 /* audio_encode.cpp */; };
 		B30CC8D62898D2F000328473 /* FSAVFoundationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30CC8CC2898D2F000328473 /* FSAVFoundationVC.swift */; };
@@ -52,6 +44,17 @@
 		B32EAD8228F691E20042C86F /* FSAVSynchronizer.m in Sources */ = {isa = PBXBuildFile; fileRef = B32EAD8128F691E20042C86F /* FSAVSynchronizer.m */; };
 		B32EAD8728F694380042C86F /* FSAVDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = B32EAD8628F694380042C86F /* FSAVDecoder.m */; };
 		B32EAD8A28F694AD0042C86F /* FSVideoPlayerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B32EAD8928F694AD0042C86F /* FSVideoPlayerVC.m */; };
+		B368053229F01D6A00C89BD1 /* FSTextureFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = B368052229F01D6A00C89BD1 /* FSTextureFrame.m */; };
+		B368053329F01D6A00C89BD1 /* FSGLFrameBuffer.mm in Sources */ = {isa = PBXBuildFile; fileRef = B368052429F01D6A00C89BD1 /* FSGLFrameBuffer.mm */; };
+		B368053429F01D6A00C89BD1 /* FSPixelBufferConvertTexture.mm in Sources */ = {isa = PBXBuildFile; fileRef = B368052629F01D6A00C89BD1 /* FSPixelBufferConvertTexture.mm */; };
+		B368053529F01D6A00C89BD1 /* FSGLFilter.mm in Sources */ = {isa = PBXBuildFile; fileRef = B368052729F01D6A00C89BD1 /* FSGLFilter.mm */; };
+		B368053629F01D6A00C89BD1 /* FSGLProgram.mm in Sources */ = {isa = PBXBuildFile; fileRef = B368052829F01D6A00C89BD1 /* FSGLProgram.mm */; };
+		B368053729F01D6A00C89BD1 /* FSGLBase.m in Sources */ = {isa = PBXBuildFile; fileRef = B368052929F01D6A00C89BD1 /* FSGLBase.m */; };
+		B368053829F01D6A00C89BD1 /* FSGLFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = B368052B29F01D6A00C89BD1 /* FSGLFrame.m */; };
+		B368053929F01D6A00C89BD1 /* FSGLTextureAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = B368052E29F01D6A00C89BD1 /* FSGLTextureAttributes.m */; };
+		B368053D29F0BE5E00C89BD1 /* FSGaussianBlurVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B368053C29F0BE5E00C89BD1 /* FSGaussianBlurVC.m */; };
+		B368054029F0BEAB00C89BD1 /* FSGLGaussianBlur.m in Sources */ = {isa = PBXBuildFile; fileRef = B368053F29F0BEAB00C89BD1 /* FSGLGaussianBlur.m */; };
+		B368054329F0BF9000C89BD1 /* FSUIImageConvertTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = B368054229F0BF9000C89BD1 /* FSUIImageConvertTexture.m */; };
 		B36FFE0D28951BFE005D0164 /* FSAudioConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = B36FFDBB28951BFE005D0164 /* FSAudioConfig.m */; };
 		B36FFE0E28951BFE005D0164 /* FSVideoCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = B36FFDBC28951BFE005D0164 /* FSVideoCapture.m */; };
 		B36FFE0F28951BFE005D0164 /* FSVideoCaptureConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = B36FFDBD28951BFE005D0164 /* FSVideoCaptureConfig.m */; };
@@ -159,22 +162,6 @@
 		B307284E29CECEAB00E30B2E /* FSTriangleRenderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSTriangleRenderView.h; sourceTree = "<group>"; };
 		B307285529CEE10700E30B2E /* FSOpenGLView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSOpenGLView.h; sourceTree = "<group>"; };
 		B307285629CEE10700E30B2E /* FSOpenGLView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSOpenGLView.m; sourceTree = "<group>"; };
-		B307285C29CEE26700E30B2E /* FSTextureFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSTextureFrame.h; sourceTree = "<group>"; };
-		B307285D29CEE26700E30B2E /* FSTextureFrame.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSTextureFrame.m; sourceTree = "<group>"; };
-		B307285F29CEE4BF00E30B2E /* FSGLFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSGLFilter.h; sourceTree = "<group>"; };
-		B307286029CEE4BF00E30B2E /* FSGLFilter.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = FSGLFilter.mm; sourceTree = "<group>"; };
-		B307286229CEE60F00E30B2E /* FSGLProgram.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSGLProgram.h; sourceTree = "<group>"; };
-		B307286329CEE60F00E30B2E /* FSGLProgram.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = FSGLProgram.mm; sourceTree = "<group>"; };
-		B307286529CEE65900E30B2E /* FSGLFrameBuffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSGLFrameBuffer.h; sourceTree = "<group>"; };
-		B307286629CEE65900E30B2E /* FSGLFrameBuffer.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = FSGLFrameBuffer.mm; sourceTree = "<group>"; };
-		B307286829CEE67600E30B2E /* FSPixelBufferConvertTexture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSPixelBufferConvertTexture.h; sourceTree = "<group>"; };
-		B307286929CEE67600E30B2E /* FSPixelBufferConvertTexture.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = FSPixelBufferConvertTexture.mm; sourceTree = "<group>"; };
-		B307286B29CEF4C000E30B2E /* FSGLTextureAttributes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSGLTextureAttributes.h; sourceTree = "<group>"; };
-		B307286C29CEF4C000E30B2E /* FSGLTextureAttributes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSGLTextureAttributes.m; sourceTree = "<group>"; };
-		B307286E29CEF99100E30B2E /* FSGLBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSGLBase.h; sourceTree = "<group>"; };
-		B307286F29CEF99100E30B2E /* FSGLBase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSGLBase.m; sourceTree = "<group>"; };
-		B307287129CEFB5300E30B2E /* FSGLFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSGLFrame.h; sourceTree = "<group>"; };
-		B307287229CEFB5300E30B2E /* FSGLFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSGLFrame.m; sourceTree = "<group>"; };
 		B30CC8B32898AACD00328473 /* audio_record.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = audio_record.cpp; sourceTree = "<group>"; };
 		B30CC8B42898AACD00328473 /* audio_record.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = audio_record.hpp; sourceTree = "<group>"; };
 		B30CC8B62898B25500328473 /* audio_encode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = audio_encode.cpp; sourceTree = "<group>"; };
@@ -218,6 +205,28 @@
 		B32EAD8628F694380042C86F /* FSAVDecoder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSAVDecoder.m; sourceTree = "<group>"; };
 		B32EAD8828F694AD0042C86F /* FSVideoPlayerVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSVideoPlayerVC.h; sourceTree = "<group>"; };
 		B32EAD8928F694AD0042C86F /* FSVideoPlayerVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSVideoPlayerVC.m; sourceTree = "<group>"; };
+		B368052229F01D6A00C89BD1 /* FSTextureFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSTextureFrame.m; sourceTree = "<group>"; };
+		B368052329F01D6A00C89BD1 /* FSGLFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSGLFrame.h; sourceTree = "<group>"; };
+		B368052429F01D6A00C89BD1 /* FSGLFrameBuffer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FSGLFrameBuffer.mm; sourceTree = "<group>"; };
+		B368052529F01D6A00C89BD1 /* FSGLTextureAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSGLTextureAttributes.h; sourceTree = "<group>"; };
+		B368052629F01D6A00C89BD1 /* FSPixelBufferConvertTexture.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FSPixelBufferConvertTexture.mm; sourceTree = "<group>"; };
+		B368052729F01D6A00C89BD1 /* FSGLFilter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FSGLFilter.mm; sourceTree = "<group>"; };
+		B368052829F01D6A00C89BD1 /* FSGLProgram.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FSGLProgram.mm; sourceTree = "<group>"; };
+		B368052929F01D6A00C89BD1 /* FSGLBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSGLBase.m; sourceTree = "<group>"; };
+		B368052A29F01D6A00C89BD1 /* FSPixelBufferConvertTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSPixelBufferConvertTexture.h; sourceTree = "<group>"; };
+		B368052B29F01D6A00C89BD1 /* FSGLFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSGLFrame.m; sourceTree = "<group>"; };
+		B368052C29F01D6A00C89BD1 /* FSGLProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSGLProgram.h; sourceTree = "<group>"; };
+		B368052D29F01D6A00C89BD1 /* FSTextureFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSTextureFrame.h; sourceTree = "<group>"; };
+		B368052E29F01D6A00C89BD1 /* FSGLTextureAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSGLTextureAttributes.m; sourceTree = "<group>"; };
+		B368052F29F01D6A00C89BD1 /* FSGLFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSGLFilter.h; sourceTree = "<group>"; };
+		B368053029F01D6A00C89BD1 /* FSGLFrameBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSGLFrameBuffer.h; sourceTree = "<group>"; };
+		B368053129F01D6A00C89BD1 /* FSGLBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSGLBase.h; sourceTree = "<group>"; };
+		B368053B29F0BE5E00C89BD1 /* FSGaussianBlurVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSGaussianBlurVC.h; sourceTree = "<group>"; };
+		B368053C29F0BE5E00C89BD1 /* FSGaussianBlurVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSGaussianBlurVC.m; sourceTree = "<group>"; };
+		B368053E29F0BEAB00C89BD1 /* FSGLGaussianBlur.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSGLGaussianBlur.h; sourceTree = "<group>"; };
+		B368053F29F0BEAB00C89BD1 /* FSGLGaussianBlur.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSGLGaussianBlur.m; sourceTree = "<group>"; };
+		B368054129F0BF9000C89BD1 /* FSUIImageConvertTexture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSUIImageConvertTexture.h; sourceTree = "<group>"; };
+		B368054229F0BF9000C89BD1 /* FSUIImageConvertTexture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSUIImageConvertTexture.m; sourceTree = "<group>"; };
 		B36FFDB928951BFE005D0164 /* FSVideoCaptureConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSVideoCaptureConfig.h; sourceTree = "<group>"; };
 		B36FFDBA28951BFE005D0164 /* FSAudioCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSAudioCapture.h; sourceTree = "<group>"; };
 		B36FFDBB28951BFE005D0164 /* FSAudioConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSAudioConfig.m; sourceTree = "<group>"; };
@@ -653,7 +662,6 @@
 		B307285329CEDB8900E30B2E /* VideoRender */ = {
 			isa = PBXGroup;
 			children = (
-				B307285829CEE1E400E30B2E /* Effect */,
 				B307285429CEE0EF00E30B2E /* Render */,
 				B385B85029ECD98B00436311 /* FSOpenGLVideoRenderVC.h */,
 				B385B85129ECD98B00436311 /* FSOpenGLVideoRenderVC.m */,
@@ -668,29 +676,6 @@
 				B307285629CEE10700E30B2E /* FSOpenGLView.m */,
 			);
 			path = Render;
-			sourceTree = "<group>";
-		};
-		B307285829CEE1E400E30B2E /* Effect */ = {
-			isa = PBXGroup;
-			children = (
-				B307287129CEFB5300E30B2E /* FSGLFrame.h */,
-				B307287229CEFB5300E30B2E /* FSGLFrame.m */,
-				B307285C29CEE26700E30B2E /* FSTextureFrame.h */,
-				B307285D29CEE26700E30B2E /* FSTextureFrame.m */,
-				B307285F29CEE4BF00E30B2E /* FSGLFilter.h */,
-				B307286029CEE4BF00E30B2E /* FSGLFilter.mm */,
-				B307286229CEE60F00E30B2E /* FSGLProgram.h */,
-				B307286329CEE60F00E30B2E /* FSGLProgram.mm */,
-				B307286529CEE65900E30B2E /* FSGLFrameBuffer.h */,
-				B307286629CEE65900E30B2E /* FSGLFrameBuffer.mm */,
-				B307286829CEE67600E30B2E /* FSPixelBufferConvertTexture.h */,
-				B307286929CEE67600E30B2E /* FSPixelBufferConvertTexture.mm */,
-				B307286B29CEF4C000E30B2E /* FSGLTextureAttributes.h */,
-				B307286C29CEF4C000E30B2E /* FSGLTextureAttributes.m */,
-				B307286E29CEF99100E30B2E /* FSGLBase.h */,
-				B307286F29CEF99100E30B2E /* FSGLBase.m */,
-			);
-			path = Effect;
 			sourceTree = "<group>";
 		};
 		B30CC8C92898D2F000328473 /* View */ = {
@@ -816,6 +801,42 @@
 				B32EAD8628F694380042C86F /* FSAVDecoder.m */,
 			);
 			path = Decoder;
+			sourceTree = "<group>";
+		};
+		B368052129F01D6A00C89BD1 /* Effect */ = {
+			isa = PBXGroup;
+			children = (
+				B368053129F01D6A00C89BD1 /* FSGLBase.h */,
+				B368052929F01D6A00C89BD1 /* FSGLBase.m */,
+				B368052F29F01D6A00C89BD1 /* FSGLFilter.h */,
+				B368052729F01D6A00C89BD1 /* FSGLFilter.mm */,
+				B368052329F01D6A00C89BD1 /* FSGLFrame.h */,
+				B368052B29F01D6A00C89BD1 /* FSGLFrame.m */,
+				B368053029F01D6A00C89BD1 /* FSGLFrameBuffer.h */,
+				B368052429F01D6A00C89BD1 /* FSGLFrameBuffer.mm */,
+				B368052C29F01D6A00C89BD1 /* FSGLProgram.h */,
+				B368052829F01D6A00C89BD1 /* FSGLProgram.mm */,
+				B368052529F01D6A00C89BD1 /* FSGLTextureAttributes.h */,
+				B368052E29F01D6A00C89BD1 /* FSGLTextureAttributes.m */,
+				B368052A29F01D6A00C89BD1 /* FSPixelBufferConvertTexture.h */,
+				B368052629F01D6A00C89BD1 /* FSPixelBufferConvertTexture.mm */,
+				B368052D29F01D6A00C89BD1 /* FSTextureFrame.h */,
+				B368052229F01D6A00C89BD1 /* FSTextureFrame.m */,
+				B368053E29F0BEAB00C89BD1 /* FSGLGaussianBlur.h */,
+				B368053F29F0BEAB00C89BD1 /* FSGLGaussianBlur.m */,
+				B368054129F0BF9000C89BD1 /* FSUIImageConvertTexture.h */,
+				B368054229F0BF9000C89BD1 /* FSUIImageConvertTexture.m */,
+			);
+			path = Effect;
+			sourceTree = "<group>";
+		};
+		B368053A29F0BE4500C89BD1 /* GaussianBlur */ = {
+			isa = PBXGroup;
+			children = (
+				B368053B29F0BE5E00C89BD1 /* FSGaussianBlurVC.h */,
+				B368053C29F0BE5E00C89BD1 /* FSGaussianBlurVC.m */,
+			);
+			path = GaussianBlur;
 			sourceTree = "<group>";
 		};
 		B36FFDB728951BFE005D0164 /* AVFoundation */ = {
@@ -1343,6 +1364,8 @@
 		B374BF1428F1848A000BE8D5 /* OpenGL */ = {
 			isa = PBXGroup;
 			children = (
+				B368053A29F0BE4500C89BD1 /* GaussianBlur */,
+				B368052129F01D6A00C89BD1 /* Effect */,
 				B307285329CEDB8900E30B2E /* VideoRender */,
 				B307284829CECEAB00E30B2E /* TriangleRender */,
 			);
@@ -1563,6 +1586,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B368054029F0BEAB00C89BD1 /* FSGLGaussianBlur.m in Sources */,
 				B37AF9AE2900EEB1008A8CAD /* video_scale.cpp in Sources */,
 				B37AF9B12900EF1F008A8CAD /* video_jpg.cpp in Sources */,
 				B36FFE1D28951BFE005D0164 /* FSMuxerConfig.m in Sources */,
@@ -1574,6 +1598,7 @@
 				B385B85229ECD98B00436311 /* FSOpenGLVideoRenderVC.m in Sources */,
 				B37AF9AB2900EE43008A8CAD /* soft_encoder_decoder.cpp in Sources */,
 				B36FFE2128951BFE005D0164 /* FSAudioEncoderVC.m in Sources */,
+				B368054329F0BF9000C89BD1 /* FSUIImageConvertTexture.m in Sources */,
 				B36FFE1028951BFE005D0164 /* FSAudioCapture.m in Sources */,
 				B36FFE2B28951BFE005D0164 /* FSVideoDemuxerVC.m in Sources */,
 				B3F722B6287F984E00E1CDB2 /* FSWeakProxy.m in Sources */,
@@ -1588,45 +1613,43 @@
 				B36FFE1A28951BFE005D0164 /* FSMP4Demuxer.m in Sources */,
 				B36FFECD28967E37005D0164 /* FSFileManager.m in Sources */,
 				B21489BF2840BE4700446FD4 /* main.m in Sources */,
-				B307286429CEE60F00E30B2E /* FSGLProgram.mm in Sources */,
 				B37AF9B42900F0F2008A8CAD /* encode_muxer.cpp in Sources */,
 				B30CC8B52898AACD00328473 /* audio_record.cpp in Sources */,
 				B307285729CEE10700E30B2E /* FSOpenGLView.m in Sources */,
 				B3198E54289A44C9009A3130 /* FSDropdownListView.swift in Sources */,
-				B307287329CEFB5300E30B2E /* FSGLFrame.m in Sources */,
+				B368053829F01D6A00C89BD1 /* FSGLFrame.m in Sources */,
 				B36FFE2528951BFE005D0164 /* FSAudioMuxerVC.m in Sources */,
 				B318BADD28FD2DFE00662E3F /* FSYUVFrameCopier.m in Sources */,
-				B307286129CEE4BF00E30B2E /* FSGLFilter.mm in Sources */,
 				B36FFE2A28951BFE005D0164 /* FSVideoRenderVC.m in Sources */,
 				B307285229CECEAB00E30B2E /* FSOpenGLTriangleRenderVC.m in Sources */,
+				B368053329F01D6A00C89BD1 /* FSGLFrameBuffer.mm in Sources */,
 				B30CC8D62898D2F000328473 /* FSAVFoundationVC.swift in Sources */,
-				B307286A29CEE67600E30B2E /* FSPixelBufferConvertTexture.mm in Sources */,
 				B3AB233D289E51D9000C05A1 /* play_pcm.cpp in Sources */,
 				B3198E56289A44D9009A3130 /* FSDropdownListItem.swift in Sources */,
 				B36FFE1428951BFE005D0164 /* FSVideoEncoder.m in Sources */,
 				B37AF9992900EAD6008A8CAD /* muxer.cpp in Sources */,
-				B307286D29CEF4C000E30B2E /* FSGLTextureAttributes.m in Sources */,
 				B318BAD228FD2C5E00662E3F /* FSBaseEffectFilter.m in Sources */,
+				B368053529F01D6A00C89BD1 /* FSGLFilter.mm in Sources */,
 				B32EAD7F28F666FF0042C86F /* FSAudioSession.m in Sources */,
 				B3198E52289A2CA1009A3130 /* FSBridgeFFmpeg.mm in Sources */,
-				B307287029CEF99200E30B2E /* FSGLBase.m in Sources */,
 				B30CC8D92898D2F000328473 /* FSFFmpegVC.swift in Sources */,
 				B36FFE1F28951BFE005D0164 /* FSAudioCaptureVC.m in Sources */,
 				B36FFEBE2895312E005D0164 /* CLog.c in Sources */,
 				B3D2252E28A3468A00A835C1 /* video_record.cpp in Sources */,
 				B36FFE1328951BFE005D0164 /* FSAudioTools.m in Sources */,
-				B307286729CEE65900E30B2E /* FSGLFrameBuffer.mm in Sources */,
+				B368053229F01D6A00C89BD1 /* FSTextureFrame.m in Sources */,
 				B32EAD8728F694380042C86F /* FSAVDecoder.m in Sources */,
-				B307285E29CEE26700E30B2E /* FSTextureFrame.m in Sources */,
 				B21489B12840BE4600446FD4 /* SceneDelegate.m in Sources */,
 				B36FFE1728951BFE005D0164 /* FSMetalView.m in Sources */,
 				B30CC8DC2898D2F000328473 /* FSItem.swift in Sources */,
 				B36FFE2228951BFE005D0164 /* FSAudioDecoderVC.m in Sources */,
 				B36FFE2928951BFE005D0164 /* FSVideoDecoderVC.m in Sources */,
 				B36FFE2728951BFE005D0164 /* FSVideoEncoderVC.m in Sources */,
+				B368053629F01D6A00C89BD1 /* FSGLProgram.mm in Sources */,
 				B36FFE1E28951BFE005D0164 /* FSMP4Muxer.m in Sources */,
 				B32EAD8228F691E20042C86F /* FSAVSynchronizer.m in Sources */,
 				B318BACC28FCEBC500662E3F /* FSVideoOutput.m in Sources */,
+				B368053929F01D6A00C89BD1 /* FSGLTextureAttributes.m in Sources */,
 				B37AF9A82900EE20008A8CAD /* hard_encoder_decoder.cpp in Sources */,
 				B37AF99F2900EC74008A8CAD /* transcode.cpp in Sources */,
 				B36FFE2C28951BFE005D0164 /* FSVideoMuxerVC.m in Sources */,
@@ -1638,6 +1661,7 @@
 				B36FFE1528951BFE005D0164 /* FSVideoDecoder.m in Sources */,
 				B36FFE2328951BFE005D0164 /* FSAudioRenderVC.m in Sources */,
 				B3AB233A289E5189000C05A1 /* audio_resample.cpp in Sources */,
+				B368053D29F0BE5E00C89BD1 /* FSGaussianBlurVC.m in Sources */,
 				B36FFE1928951BFE005D0164 /* FSAudioRender.m in Sources */,
 				B37AF9B72900F418008A8CAD /* audio_acrossfade.cpp in Sources */,
 				B30CC8B82898B25500328473 /* audio_encode.cpp in Sources */,
@@ -1655,9 +1679,11 @@
 				B318BAE828FE9EBD00662E3F /* video_play.cpp in Sources */,
 				B36FFE2828951BFE005D0164 /* FSVideoPacketExtraData.m in Sources */,
 				B30CC8DB2898D2F000328473 /* FSSectionItem.swift in Sources */,
+				B368053729F01D6A00C89BD1 /* FSGLBase.m in Sources */,
 				B37AF9902900E2C6008A8CAD /* demuxer.cpp in Sources */,
 				B3A1085D28A2657B0089C10A /* pcm_to_wav.cpp in Sources */,
 				B30CC8D72898D2F000328473 /* FSAVDemoVC.swift in Sources */,
+				B368053429F01D6A00C89BD1 /* FSPixelBufferConvertTexture.mm in Sources */,
 				B36FFE1B28951BFE005D0164 /* FSDemuxerConfig.m in Sources */,
 				B30CC8D82898D2F000328473 /* FSAVBaseVC.swift in Sources */,
 			);

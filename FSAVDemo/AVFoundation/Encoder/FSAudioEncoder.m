@@ -23,6 +23,16 @@
 
 @end
 
+/**
+ 使用AudioToolbox进行音频编解码的过程如下：
+
+ 创建一个AudioConverterRef对象，用于进行音频格式转换和编解码。
+ 配置AudioConverterRef对象的属性，例如输入和输出音频格式、采样率、声道数等。
+ 准备输入音频数据，例如从文件或网络读取原始音频数据。
+ 使用AudioConverterFillComplexBuffer函数将输入音频数据转换为输出音频数据。该函数会将输入音频数据转换为指定格式的输出音频数据，并将转换后的数据保存到AudioBufferList中。
+ 处理输出音频数据，例如将转换后的音频数据写入文件或网络传输。
+
+ */
 @implementation FSAudioEncoder
 
 #pragma mark - Lifecycle
@@ -97,7 +107,7 @@
 
     // 2.根据音频参数创建编码器实例.
     NSError *error = nil;
-    // 第一次编码时创建编码器.
+    // 第一次编码时创建编码器.创建一个AudioConverterRef对象，用于进行音频格式转换和编解码。
     if (!_audioEncoderInstance) {
         [self setupAudioEncoderInstanceWithInputAudioFormat:audioFormat error:&error];
         if (error) {
@@ -158,7 +168,11 @@
     }
 }
 
-// 设置编码器
+/**
+ 设置编码器.
+ 创建一个AudioConverterRef对象，用于进行音频格式转换和编解码。
+ 配置AudioConverterRef对象的属性，例如输入和输出音频格式、采样率、声道数等。
+ */
 - (void)setupAudioEncoderInstanceWithInputAudioFormat:(AudioStreamBasicDescription)inputFormat error:(NSError **)error {
     // 1.设置音频编码器 输出参数. 其中一些参数与输入的音频数据参数一致.
     AudioStreamBasicDescription outputFormat = {0};

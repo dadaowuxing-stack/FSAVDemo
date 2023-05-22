@@ -9,8 +9,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FSGLGaussianBlur : NSObject
+#define STRINGIZE(x) #x
+#define STRINGIZE2(x) STRINGIZE(x)
+#define SHADER_STRING(text) @ STRINGIZE2(text)
 
-@end
+extern NSString *const FSGLGaussianBlurVertexShader;
+extern NSString *const FSGLGaussianBlurFragmentShader;
 
 NS_ASSUME_NONNULL_END
