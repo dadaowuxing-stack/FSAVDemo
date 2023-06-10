@@ -3,7 +3,7 @@
 //  FSAVDemo
 //
 //  Created by louis on 2022/10/10.
-//  渲染视图
+//  渲染三角视图
 
 #import "FSTriangleRenderView.h"
 #import <OpenGLES/ES2/gl.h>
