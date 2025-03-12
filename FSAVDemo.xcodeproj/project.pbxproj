@@ -126,7 +126,6 @@
 		B3A1085A28A24B860089C10A /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3A1085928A24B860089C10A /* CoreMotion.framework */; };
 		B3A1085D28A2657B0089C10A /* pcm_to_wav.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A1085B28A2657B0089C10A /* pcm_to_wav.cpp */; };
 		B3A219C5289B964600CA9FB2 /* libfdk-aac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B3A219C4289B964600CA9FB2 /* libfdk-aac.a */; };
-		B3A219D0289B9BF900CA9FB2 /* libiconv.2.4.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B3A219CF289B9BF000CA9FB2 /* libiconv.2.4.0.tbd */; };
 		B3A219D2289B9C1400CA9FB2 /* libz.1.2.5.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B3A219D1289B9C0C00CA9FB2 /* libz.1.2.5.tbd */; };
 		B3A219D4289BA08B00CA9FB2 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B3A219D3289BA08400CA9FB2 /* libbz2.tbd */; };
 		B3AB2331289E2E47000C05A1 /* libavdevice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B3AB2330289E2E47000C05A1 /* libavdevice.a */; };
@@ -139,6 +138,8 @@
 		B3BFAAA9289D151B003B5D85 /* audio_muxer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3BFAAA7289D151B003B5D85 /* audio_muxer.cpp */; };
 		B3BFAAAC289D153F003B5D85 /* audio_demuxer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3BFAAAA289D153F003B5D85 /* audio_demuxer.cpp */; };
 		B3D2252E28A3468A00A835C1 /* video_record.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3D2252C28A3468A00A835C1 /* video_record.cpp */; };
+		B3E8DD472D7AAA8400711C15 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B3A219CD289B9A5100CA9FB2 /* libiconv.tbd */; };
+		B3E8DD492D7AABE500711C15 /* FSPassKitVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E8DD482D7AABE500711C15 /* FSPassKitVC.swift */; };
 		B3F722B6287F984E00E1CDB2 /* FSWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = B3F722B5287F984E00E1CDB2 /* FSWeakProxy.m */; };
 /* End PBXBuildFile section */
 
@@ -537,6 +538,7 @@
 		B3BFAAAB289D153F003B5D85 /* audio_demuxer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = audio_demuxer.hpp; sourceTree = "<group>"; };
 		B3D2252C28A3468A00A835C1 /* video_record.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = video_record.cpp; sourceTree = "<group>"; };
 		B3D2252D28A3468A00A835C1 /* video_record.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = video_record.hpp; sourceTree = "<group>"; };
+		B3E8DD482D7AABE500711C15 /* FSPassKitVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSPassKitVC.swift; sourceTree = "<group>"; };
 		B3F722B4287F984E00E1CDB2 /* FSWeakProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSWeakProxy.h; sourceTree = "<group>"; };
 		B3F722B5287F984E00E1CDB2 /* FSWeakProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSWeakProxy.m; sourceTree = "<group>"; };
 		B43B142B74CD778284E7FC94 /* Pods-FSAVDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FSAVDemo.debug.xcconfig"; path = "Target Support Files/Pods-FSAVDemo/Pods-FSAVDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -549,6 +551,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3E8DD472D7AAA8400711C15 /* libiconv.tbd in Frameworks */,
 				B3A107BD28A22BB20089C10A /* QuartzCore.framework in Frameworks */,
 				B3AB2331289E2E47000C05A1 /* libavdevice.a in Frameworks */,
 				B36FFEAF28951D0C005D0164 /* libavfilter.a in Frameworks */,
@@ -568,7 +571,6 @@
 				B3A107BF28A22BBC0089C10A /* OpenGLES.framework in Frameworks */,
 				B36FFEB128951D0C005D0164 /* libavformat.a in Frameworks */,
 				B3AB2335289E4594000C05A1 /* AudioToolbox.framework in Frameworks */,
-				B3A219D0289B9BF900CA9FB2 /* libiconv.2.4.0.tbd in Frameworks */,
 				B3A219C5289B964600CA9FB2 /* libfdk-aac.a in Frameworks */,
 				B36FFEB328951D0C005D0164 /* libswresample.a in Frameworks */,
 				B36FFEB028951D0C005D0164 /* libavcodec.a in Frameworks */,
@@ -659,6 +661,7 @@
 			children = (
 				B30CC8CE2898D2F000328473 /* FSAVBaseVC.swift */,
 				B30CC8CD2898D2F000328473 /* FSAVDemoVC.swift */,
+				B3E8DD482D7AABE500711C15 /* FSPassKitVC.swift */,
 				B30CC8CC2898D2F000328473 /* FSAVFoundationVC.swift */,
 				B30CC8CF2898D2F000328473 /* FSFFmpegVC.swift */,
 				B374BF1228F182AF000BE8D5 /* FSOpenGLVC.swift */,
@@ -1605,6 +1608,7 @@
 				B37AF9A22900EDB9008A8CAD /* video_resample.cpp in Sources */,
 				B36FFE2028951BFE005D0164 /* FSBaseVC.m in Sources */,
 				B36FFE0D28951BFE005D0164 /* FSAudioConfig.m in Sources */,
+				B3E8DD492D7AABE500711C15 /* FSPassKitVC.swift in Sources */,
 				B37AF9BA2900F4A7008A8CAD /* audio_volume.cpp in Sources */,
 				B31A62662A347AF40080D40B /* FSGLFilter.mm in Sources */,
 				B31A626E2A347AF40080D40B /* FSOpenGLVideoRenderVC.m in Sources */,
